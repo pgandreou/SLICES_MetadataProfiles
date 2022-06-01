@@ -66,4 +66,12 @@ public sealed class DigitalObject
     // TODO
 
     #endregion Primary
+
+    #region TypeSpecific
+
+    public Software? Software { get; set; }
+
+    // TODO
+
+    #endregion TypeSpecific
 }
