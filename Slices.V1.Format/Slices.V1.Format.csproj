@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Slices.V1.FormatAnnotations\Slices.V1.FormatAnnotations.csproj" />
+  </ItemGroup>
+
 </Project>
