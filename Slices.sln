@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Format", "Slices.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.FormatAnnotations", "Slices.V1.FormatAnnotations\Slices.V1.FormatAnnotations.csproj", "{D14DF4B4-2BEA-4FDB-A046-3A5F07A42C09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.FormatAnnotations.Tests", "Slices.V1.FormatAnnotations.Tests\Slices.V1.FormatAnnotations.Tests.csproj", "{92801E55-8726-4C6B-9C0E-D34E73509E36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.FormatAnnotations.Tests", "Slices.V1.FormatAnnotations.Tests\Slices.V1.FormatAnnotations.Tests.csproj", "{92801E55-8726-4C6B-9C0E-D34E73509E36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.ExternalConverters.Abstractions", "Slices.V1.ExternalConverters.Abstractions\Slices.V1.ExternalConverters.Abstractions.csproj", "{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{92801E55-8726-4C6B-9C0E-D34E73509E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92801E55-8726-4C6B-9C0E-D34E73509E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92801E55-8726-4C6B-9C0E-D34E73509E36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
