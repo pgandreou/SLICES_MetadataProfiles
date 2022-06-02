@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.FormatAnnotations
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.FormatAnnotations.Tests", "Slices.V1.FormatAnnotations.Tests\Slices.V1.FormatAnnotations.Tests.csproj", "{92801E55-8726-4C6B-9C0E-D34E73509E36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.ExternalConverters.Abstractions", "Slices.V1.ExternalConverters.Abstractions\Slices.V1.ExternalConverters.Abstractions.csproj", "{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.ExternalConverters", "Slices.V1.ExternalConverters\Slices.V1.ExternalConverters.csproj", "{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

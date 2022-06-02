@@ -1,7 +1,7 @@
 ﻿using Slices.V1.Format;
 using System.Diagnostics.Contracts;
 
-namespace Slices.V1.ExternalConverters.Abstractions;
+namespace Slices.V1.ExternalConverters;
 
 public interface ISlicesExtrenalConverter
 {
