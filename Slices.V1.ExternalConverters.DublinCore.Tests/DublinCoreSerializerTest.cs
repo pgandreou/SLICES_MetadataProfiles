@@ -1,3 +1,5 @@
+using Slices.TestsSupport;
+
 namespace Slices.V1.ExternalConverters.DublinCore.Tests;
 
 public class DublinCoreSerializerTest
@@ -61,5 +63,16 @@ Various bugfixes in code and documentation</dc:description>
         var s = serializer.ToXml(record);
 
         Assert.NotEmpty(s);
+    }
+
+    [Fact]
+    public void Test3()
+    {
+        using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\immunarch-0-6-9.xml");
+
+        DublinCoreSerializer serializer = new();
+        DublinCoreObject result = serializer.FromXml(textReader);
+
+        Assert.NotNull(result);
     }
 }
