@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 
 namespace Slices.V1.StandardConverters;
 
-public interface ISlicesExtrenalConverter
+public interface ISlicesStandardConverter
 {
     /// <summary>
     /// A constant string representing which external standard this converter is handling
@@ -59,7 +59,7 @@ public interface ISlicesExtrenalConverter
 /// <typeparam name="TExternalModel">
 /// The typed in-memory representation of the external standard record.
 /// </typeparam>
-public interface ISlicesExtrenalConverter<TExternalModel> : ISlicesExtrenalConverter
+public interface ISlicesStandardConverter<TExternalModel> : ISlicesStandardConverter
 {
     /// <summary>
     /// Converts a single record from the external standard to SLICES.

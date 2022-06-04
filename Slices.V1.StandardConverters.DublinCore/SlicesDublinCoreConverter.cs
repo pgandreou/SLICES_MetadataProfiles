@@ -2,7 +2,7 @@
 
 namespace Slices.V1.StandardConverters.DublinCore;
 
-internal class SlicesDublinCoreConverter : ISlicesExtrenalConverter<DublinCoreObject>
+internal class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObject>
 {
     public string ExternalStandard => DublinCoreConstants.StandardId;
 
