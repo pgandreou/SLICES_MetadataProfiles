@@ -1,6 +1,6 @@
 using Slices.TestsSupport;
 
-namespace Slices.V1.ExternalConverters.DublinCore.Tests;
+namespace Slices.V1.StandardConverters.DublinCore.Tests;
 
 public class DublinCoreSerializerTest
 {

@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using System.Xml.Serialization;
 
-namespace Slices.V1.ExternalConverters.DublinCore;
+namespace Slices.V1.StandardConverters.DublinCore;
 
 internal class DublinCoreSerializer
 {

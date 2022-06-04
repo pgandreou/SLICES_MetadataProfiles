@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Slices.TestsSupport\Slices.TestsSupport.csproj" />
-    <ProjectReference Include="..\Slices.V1.ExternalConverters.DublinCore\Slices.V1.ExternalConverters.DublinCore.csproj" />
+    <ProjectReference Include="..\Slices.V1.StandardConverters.DublinCore\Slices.V1.StandardConverters.DublinCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

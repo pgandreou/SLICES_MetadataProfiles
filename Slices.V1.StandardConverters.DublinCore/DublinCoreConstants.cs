@@ -1,4 +1,4 @@
-﻿namespace Slices.V1.ExternalConverters.DublinCore;
+﻿namespace Slices.V1.StandardConverters.DublinCore;
 
 public static class DublinCoreConstants
 {

@@ -1,6 +1,6 @@
 ﻿using Slices.V1.Format;
 
-namespace Slices.V1.ExternalConverters.DublinCore;
+namespace Slices.V1.StandardConverters.DublinCore;
 
 internal class SlicesDublinCoreConverter : ISlicesExtrenalConverter<DublinCoreObject>
 {
