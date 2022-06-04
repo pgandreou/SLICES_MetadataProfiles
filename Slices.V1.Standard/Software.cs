@@ -1,4 +1,4 @@
-﻿using Slices.V1.FormatAnnotations;
+﻿using Slices.V1.StandardAnnotations;
 
 namespace Slices.V1.Format;
 

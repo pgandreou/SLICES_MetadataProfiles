@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Format", "Slices.V1.Format\Slices.V1.Format.csproj", "{4C2F3B0F-7355-4F82-B733-A7390FFBA31F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Standard", "Slices.V1.Standard\Slices.V1.Standard.csproj", "{4C2F3B0F-7355-4F82-B733-A7390FFBA31F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.FormatAnnotations", "Slices.V1.FormatAnnotations\Slices.V1.FormatAnnotations.csproj", "{D14DF4B4-2BEA-4FDB-A046-3A5F07A42C09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardAnnotations", "Slices.V1.StandardAnnotations\Slices.V1.StandardAnnotations.csproj", "{D14DF4B4-2BEA-4FDB-A046-3A5F07A42C09}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.FormatAnnotations.Tests", "Slices.V1.FormatAnnotations.Tests\Slices.V1.FormatAnnotations.Tests.csproj", "{92801E55-8726-4C6B-9C0E-D34E73509E36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardAnnotations.Tests", "Slices.V1.StandardAnnotations.Tests\Slices.V1.StandardAnnotations.Tests.csproj", "{92801E55-8726-4C6B-9C0E-D34E73509E36}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters", "Slices.V1.StandardConverters\Slices.V1.StandardConverters.csproj", "{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}"
 EndProject
@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.DublinCore.Tests", "Slices.V1.StandardConverters.DublinCore.Tests\Slices.V1.StandardConverters.DublinCore.Tests.csproj", "{6D22ECF0-8D74-4DA4-AD15-FD915C88BDAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.TestsSupport", "Slices.TestsSupport\Slices.TestsSupport.csproj", "{AF692E0F-D800-4863-A679-441BF6F6AD6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.TestsSupport", "Slices.TestsSupport\Slices.TestsSupport.csproj", "{AF692E0F-D800-4863-A679-441BF6F6AD6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

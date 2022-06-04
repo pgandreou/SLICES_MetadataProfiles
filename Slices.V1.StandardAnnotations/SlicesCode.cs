@@ -1,4 +1,4 @@
-﻿namespace Slices.V1.FormatAnnotations;
+﻿namespace Slices.V1.StandardAnnotations;
 
 public enum SlicesFieldCategory
 {

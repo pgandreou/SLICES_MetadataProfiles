@@ -1,4 +1,4 @@
-﻿namespace Slices.V1.FormatAnnotations;
+﻿namespace Slices.V1.StandardAnnotations;
 
 // TODO: Better names
 public enum SlicesAccessModiferType

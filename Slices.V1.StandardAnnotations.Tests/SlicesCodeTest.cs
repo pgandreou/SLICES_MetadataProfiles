@@ -1,4 +1,6 @@
-namespace Slices.V1.FormatAnnotations.Tests;
+using Slices.V1.StandardAnnotations;
+
+namespace Slices.V1.StandardAnnotations.Tests;
 
 public class SlicesCodeTest
 {

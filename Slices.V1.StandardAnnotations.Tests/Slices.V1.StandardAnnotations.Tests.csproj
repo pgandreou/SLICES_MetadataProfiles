@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Slices.V1.FormatAnnotations\Slices.V1.FormatAnnotations.csproj" />
+    <ProjectReference Include="..\Slices.V1.StandardAnnotations\Slices.V1.StandardAnnotations.csproj" />
   </ItemGroup>
 
 </Project>
