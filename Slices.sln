@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.TestsSupport", "Slices.TestsSupport\Slices.TestsSupport.csproj", "{AF692E0F-D800-4863-A679-441BF6F6AD6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.StandardConverters.Tests", "Slices.V1.StandardConverters.Tests\Slices.V1.StandardConverters.Tests.csproj", "{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{AF692E0F-D800-4863-A679-441BF6F6AD6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF692E0F-D800-4863-A679-441BF6F6AD6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF692E0F-D800-4863-A679-441BF6F6AD6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
