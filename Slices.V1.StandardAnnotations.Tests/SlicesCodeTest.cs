@@ -1,5 +1,3 @@
-using Slices.V1.StandardAnnotations;
-
 namespace Slices.V1.StandardAnnotations.Tests;
 
 public class SlicesCodeTest
@@ -12,5 +10,20 @@ public class SlicesCodeTest
         SlicesCodeAttribute slicesCode = new(category, order);
 
         Assert.Equal(expected, slicesCode.ToCodeString());
+    }
+
+    [Theory]
+    [MemberData(nameof(CategoryToCodeString_AllHandled_Values))]
+    public void CategoryToCodeString_AllHandled(SlicesFieldCategory category)
+    {
+        Assert.False(string.IsNullOrEmpty(category.ToCodeString()));
+    }
+
+    public static IEnumerable<object[]> CategoryToCodeString_AllHandled_Values()
+    {
+        foreach (SlicesFieldCategory category in Enum.GetValues<SlicesFieldCategory>())
+        {
+            yield return new object[] { category };
+        }
     }
 }
