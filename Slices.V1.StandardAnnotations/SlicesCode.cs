@@ -13,6 +13,11 @@ public enum SlicesFieldCategory
     /// </summary>
     ManagementInformation,
 
+    /// <summary>
+    /// The manner and mode in which the S-FDO can be accessed
+    /// </summary>
+    AccessInformation,
+
     // TODO rest
 };
 
@@ -39,6 +44,7 @@ public static class SlicesCodeExtensions
     {
         SlicesFieldCategory.PrimaryInformation => "PI",
         SlicesFieldCategory.ManagementInformation => "MA",
+        SlicesFieldCategory.AccessInformation => "AC",
 
         _ => throw new ArgumentOutOfRangeException(nameof(category), category, "Unhanded field category"),
     };

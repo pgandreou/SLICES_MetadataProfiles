@@ -2,6 +2,21 @@
 
 namespace Slices.V1.Format;
 
+public enum SlicesAccessType
+{
+    Remote,
+    Physical,
+    Virtual,
+    Other,
+}
+
+public enum SlicesAccessMode
+{
+    Free,
+    FreeConditionally,
+    ExcellenceBased,
+}
+
 // TODO: String length
 // TODO: Optional lists
 
@@ -127,13 +142,36 @@ public sealed class DigitalObject
     /// <summary>
     /// Identifier(s) of the contributor(s) of the digital object.
     /// </summary>
-    [SlicesCode(SlicesFieldCategory.ManagementInformation, 0)]
+    [SlicesCode(SlicesFieldCategory.ManagementInformation, 4)]
     [SlicesParticipation(SlicesParticipationType.RequiredIfExists)]
     [SlicesAccessModifer(SlicesAccessModiferType.PR)]
     public List<string>? ContributorIdentifier { get; set; }
 
     #endregion Management
 
+    #region Access
+
+    // TODO: Name (plural)
+    /// <summary>
+    /// The way a user can access the Resource
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.AccessInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public List<SlicesAccessType> AccessType { get; set; } = null!;
+
+    // TODO: Name (plural)
+    /// <summary>
+    /// Eligibility/criteria for granting access to users
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.AccessInformation, 2)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public List<SlicesAccessMode> AccessMode { get; set; } = null!;
+
+    #endregion Access
+
+    // TODO
 
     #region TypeSpecific
 
