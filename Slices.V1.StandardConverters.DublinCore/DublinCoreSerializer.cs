@@ -14,7 +14,14 @@ internal class DublinCoreSerializer
 
     public DublinCoreObject FromXml(TextReader reader)
     {
-        return (DublinCoreObject)xmlSerializer.Deserialize(reader);
+        DublinCoreObject? dublinCoreObject = (DublinCoreObject?)xmlSerializer.Deserialize(reader);
+
+        if (dublinCoreObject == null)
+        {
+            throw new Exception("xmlSerializer.Deserialize returned null - this should not happen");
+        }
+
+        return dublinCoreObject;
     }
 
     public string ToXml(DublinCoreObject record)
