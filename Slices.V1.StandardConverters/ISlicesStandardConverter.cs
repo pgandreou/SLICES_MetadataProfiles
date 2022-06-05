@@ -10,6 +10,7 @@ public interface ISlicesStandardConverter
     /// </summary>
     string ExternalStandard { get; }
 
+    // TODO: serializedValue -> TextReader
     /// <summary>
     /// Converts a single record from the external standard to SLICES.
     /// </summary>

@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace Slices.V1.StandardConverters.DublinCore;
 
-internal class DublinCoreSerializer
+public class DublinCoreSerializer
 {
     private XmlSerializer xmlSerializer = new(typeof(DublinCoreObject));
 
