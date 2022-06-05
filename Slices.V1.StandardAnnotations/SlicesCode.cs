@@ -18,6 +18,25 @@ public enum SlicesFieldCategory
     /// </summary>
     AccessInformation,
 
+    // TODO: not documented
+    LN,
+
+    /// <summary>
+    /// Language descriptors
+    /// </summary>
+    LanguageInformation,
+
+    /// <summary>
+    ///  Information related to registered users. The information access mode
+    ///  is by default private and only identifiers are used
+    /// </summary>
+    UserInformation,
+
+    /// <summary>
+    /// Legal information related to the rights of access, such as licences, copyrights, etc.
+    /// </summary>
+    RightsAndTerms,
+
     // TODO rest
 };
 
@@ -45,6 +64,10 @@ public static class SlicesCodeExtensions
         SlicesFieldCategory.PrimaryInformation => "PI",
         SlicesFieldCategory.ManagementInformation => "MA",
         SlicesFieldCategory.AccessInformation => "AC",
+        SlicesFieldCategory.LN => "LN",
+        SlicesFieldCategory.LanguageInformation => "LA",
+        SlicesFieldCategory.UserInformation => "US",
+        SlicesFieldCategory.RightsAndTerms => "RT",
 
         _ => throw new ArgumentOutOfRangeException(nameof(category), category, "Unhanded field category"),
     };

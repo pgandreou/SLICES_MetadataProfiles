@@ -1,4 +1,5 @@
-﻿using Slices.V1.StandardAnnotations;
+﻿using Slices.V1.Standard;
+using Slices.V1.StandardAnnotations;
 
 namespace Slices.V1.Format;
 
@@ -19,6 +20,7 @@ public enum SlicesAccessMode
 
 // TODO: String length
 // TODO: Optional lists
+// TODO: Some lists -> sets?
 
 public sealed class DigitalObject
 {
@@ -171,7 +173,177 @@ public sealed class DigitalObject
 
     #endregion Access
 
-    // TODO
+    #region Links
+
+    /// <summary>
+    /// List of other Resources required to use this Resource.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.LN, 1)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public List<RelationLink>? RequiredObjects { get; set; }
+
+    /// <summary>
+    /// List of other Resources that are commonly used with this Resource.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.LN, 2)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public List<RelationLink>? RelatedObjects { get; set; }
+
+    #endregion Links
+
+    #region Language
+
+    // TODO: should this be a list or single?
+    /// <summary>
+    /// The primary language of the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.LanguageInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public List<LanguageIso639_3>? PrimaryLanguage { get; set; }
+
+    /// <summary>
+    /// Other languages provided for the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.LanguageInformation, 2)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public List<LanguageIso639_3>? OtherLanguages { get; set; }
+
+    #endregion Language
+
+    #region UserInformation
+
+    // TODO: Type
+    /// <summary>
+    /// Main contact for the resource
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.UserInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    public string? Contact { get; set; }
+
+    // TODO: Type
+    /// <summary>
+    /// Public contact for the resource
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.UserInformation, 2)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string? PublicContact { get; set; }
+
+    #endregion UserInformation
+
+    #region RightsAndTerms
+
+    /// <summary>
+    /// Rights related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 1)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string Rights { get; set; } = null!;
+
+    /// <summary>
+    /// A URI for the rights related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 2)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public Uri? RightsURI { get; set; }
+
+    /// <summary>
+    /// Access rights related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 3)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string AccessRights { get; set; } = null!;
+
+    /// <summary>
+    /// License related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 4)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string License { get; set; } = null!;
+
+    /// <summary>
+    /// A URI for the licence related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 5)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public Uri? LicenseURI { get; set; }
+
+    /// <summary>
+    /// Copyrights holder related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 6)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string? CopyrightsHolder { get; set; }
+
+    /// <summary>
+    /// Confidentiality declaration for the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 7)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string? ConfidentialityDeclaration { get; set; }
+
+    /// <summary>
+    /// Special permissions related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 8)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string? SpecialPermissions { get; set; }
+
+    /// <summary>
+    /// Restrictions related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 9)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string? Restrictions { get; set; }
+
+    /// <summary>
+    /// Citation requirements related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 10)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string? CitationRequirements { get; set; }
+
+    /// <summary>
+    /// Conditions related with the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 11)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string? Conditions { get; set; }
+
+    /// <summary>
+    /// Disclaimer for the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 12)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string? Disclaimer { get; set; }
+
+    /// <summary>
+    /// A statement of any changes in ownership and custody of the resource since its creation
+    /// that are significant for its authenticity, integrity, and interpretation.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.RightsAndTerms, 13)]
+    [SlicesParticipation(SlicesParticipationType.RequiredIfExists)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public string? Provenance { get; set; }
+
+    #endregion RightsAndTerms
 
     #region TypeSpecific
 
