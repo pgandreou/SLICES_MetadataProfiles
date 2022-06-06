@@ -56,13 +56,8 @@ public partial class DataCiteResource
     [XmlArrayItem("description", IsNullable = false)]
     public DataCiteResourceDescription[] descriptions { get; set; }
 
-    // TODO
     [XmlArrayItem("geoLocation", IsNullable = false)]
-    [XmlArrayItem("geoLocationBox", typeof(DataCiteBox), IsNullable = false, NestingLevel = 1)]
-    [XmlArrayItem("geoLocationPlace", typeof(DataCitePlace), IsNullable = false, NestingLevel = 1)]
-    [XmlArrayItem("geoLocationPoint", typeof(DataCitePoint), IsNullable = false, NestingLevel = 1)]
-    [XmlArrayItem("geoLocationPolygon", typeof(DataCitePolygon), IsNullable = false, NestingLevel = 1)]
-    public object[][] geoLocations { get; set; }
+    public DataCiteResourceGeoLocation[] geoLocations { get; set; }
 
     [XmlArrayItem("fundingReference", IsNullable = false)]
     public DataCiteResourceFundingReference[] fundingReferences { get; set; }

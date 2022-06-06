@@ -6,7 +6,7 @@ namespace Slices.V1.StandardConverters.DataCite.Model;
 
 [Serializable]
 [XmlType("point", Namespace = "http://datacite.org/schema/kernel-4")]
-public partial class DataCitePoint
+public partial class DataCiteGeoPoint
 {
     public float pointLongitude { get; set; }
 

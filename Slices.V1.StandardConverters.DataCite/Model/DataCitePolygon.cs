@@ -6,12 +6,12 @@ namespace Slices.V1.StandardConverters.DataCite.Model;
 
 [Serializable]
 [XmlType(AnonymousType = true, Namespace = "http://datacite.org/schema/kernel-4")]
-public partial class DataCitePolygon
+public partial class DataCiteGeoPolygon
 {
     [XmlElement("polygonPoint")]
-    public DataCitePoint[] polygonPoint { get; set; }
+    public DataCiteGeoPoint[] polygonPoint { get; set; }
 
-    public DataCitePoint inPolygonPoint { get; set; }
+    public DataCiteGeoPoint inPolygonPoint { get; set; }
 }
 
 #nullable restore

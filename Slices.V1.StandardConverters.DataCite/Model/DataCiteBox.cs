@@ -6,7 +6,7 @@ namespace Slices.V1.StandardConverters.DataCite.Model;
 
 [Serializable]
 [XmlType("box", Namespace = "http://datacite.org/schema/kernel-4")]
-public partial class DataCiteBox
+public partial class DataCiteGeoBox
 {
     public float westBoundLongitude { get; set; }
 

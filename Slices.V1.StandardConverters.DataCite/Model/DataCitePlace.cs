@@ -6,7 +6,7 @@ namespace Slices.V1.StandardConverters.DataCite.Model;
 
 [Serializable]
 [XmlType(AnonymousType = true, Namespace = "http://datacite.org/schema/kernel-4")]
-public partial class DataCitePlace
+public partial class DataCiteGeoPlace
 {
     [XmlText]
     public string Value { get; set; }
