@@ -1,5 +1,5 @@
 ﻿using Slices.TestsSupport;
-using Slices.V1.Format;
+using Slices.V1.Standard;
 
 namespace Slices.V1.StandardConverters.DublinCore.Tests;
 

@@ -14,7 +14,7 @@ public partial class DataCiteResourceDescription
     public DataCiteResourceDescriptionBR[] Items { get; set; }
 
     [XmlText]
-    public string[] Text { get; set; }
+    public string Text { get; set; }
 
     [XmlAttribute]
     public DataCiteDescriptionType descriptionType { get; set; }

@@ -1,7 +1,6 @@
-﻿using Slices.V1.Standard;
-using Slices.V1.StandardAnnotations;
+﻿using Slices.V1.StandardAnnotations;
 
-namespace Slices.V1.Format;
+namespace Slices.V1.Standard;
 
 public enum SlicesAccessType
 {
