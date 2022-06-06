@@ -17,7 +17,12 @@ public static class SlicesTestHelpers
     public static StreamReader GetCopiedFileReader(Type testType, string pathRelativeToAssemblyRoot)
     {
         string path = GetCopiedFilePath(testType, pathRelativeToAssemblyRoot);
-        FileStream fs = new FileStream(path, FileMode.Open);
+        FileStream fs = new(path, new FileStreamOptions
+        {
+            Mode = FileMode.Open,
+            Access = FileAccess.Read,
+            Share = FileShare.Read,
+        });
 
         return new StreamReader(fs);
     }
