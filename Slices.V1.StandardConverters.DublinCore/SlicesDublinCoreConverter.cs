@@ -28,7 +28,7 @@ public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObje
         return slicesObject;
     }
 
-    public DigitalObject FromSerializedExtrenal(string serializedValue, string? format)
+    public DigitalObject FromSerializedExtrenal(TextReader serializedReader, string? format)
     {
         if (format == null) format = "xml";
 
@@ -37,7 +37,7 @@ public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObje
             throw new ArgumentOutOfRangeException(nameof(format), "Only \"xml\" is supported");
         }
 
-        return FromExtrenal(_serializer.FromXml(serializedValue));
+        return FromExtrenal(_serializer.FromXml(serializedReader));
     }
 
     public DublinCoreObject ToExtrenal(DigitalObject digitalObject)
@@ -45,7 +45,7 @@ public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObje
         throw new NotImplementedException();
     }
 
-    public string ToSerializedExtrenal(DigitalObject digitalObject, string? format)
+    public void ToSerializedExtrenal(DigitalObject digitalObject, string? format, TextWriter serializedWriter)
     {
         throw new NotImplementedException();
     }

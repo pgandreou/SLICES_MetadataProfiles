@@ -10,14 +10,15 @@ public interface ISlicesStandardConverter
     /// </summary>
     string ExternalStandard { get; }
 
-    // TODO: serializedValue -> TextReader
     /// <summary>
     /// Converts a single record from the external standard to SLICES.
     /// </summary>
     /// <remarks>
-    /// Implementations should be pure and safe to be called from multiple threads
+    /// Implementations should only mutate <paramref name="serializedReader"/> and be safe to be called from multiple threads
     /// </remarks>
-    /// <param name="serializedValue">A string representation of the external standard</param>
+    /// <param name="serializedReader">
+    /// A reader that will provide the serialized representation of the record in the external standard
+    /// </param>
     /// <param name="format">
     /// The format of <paramref name="serializedValue"/>.
     /// 
@@ -29,14 +30,13 @@ public interface ISlicesStandardConverter
     /// Not thrown if the format is null.
     /// </exception>
     /// <returns>The SLICES version of the record</returns>
-    [Pure]
-    DigitalObject FromSerializedExtrenal(string serializedValue, string? format);
+    DigitalObject FromSerializedExtrenal(TextReader serializedReader, string? format);
 
     /// <summary>
     /// Converts a single record from SLICES to the external standard.
     /// </summary>
     /// <remarks>
-    /// Implementations should be pure and safe to be called from multiple threads.
+    /// Implementations should only mutate <paramref name="serializedWriter"/> and be safe to be called from multiple threads.
     /// <paramref name="digitalObject"/> graph should not be modified until this method returns.
     /// </remarks>
     /// <param name="digitalObject">The record to convert</param>
@@ -45,13 +45,14 @@ public interface ISlicesStandardConverter
     /// 
     /// Null means that the implementation should assume the default format used by the external standard.
     /// </param>
+    /// <param name="serializedWriter">
+    /// A writer which will be fed the serialized record represented in the external standard
+    /// </param>
     /// <exception cref="UnsupportedExternalFormatException">
     /// Thrown if <paramref name="format"/> is not supported by the implementation.
     /// Not thrown if the format is null.
     /// </exception>
-    /// <returns>Serialized version of record represented in the external standard</returns>
-    [Pure]
-    string ToSerializedExtrenal(DigitalObject digitalObject, string? format);
+    void ToSerializedExtrenal(DigitalObject digitalObject, string? format, TextWriter serializedWriter);
 }
 
 /// <summary>
