@@ -1,6 +1,7 @@
 using Moq;
+using Slices.V1.StandardConverters.Common;
 
-namespace Slices.V1.StandardConverters.Tests;
+namespace Slices.V1.StandardConverters.Common.Tests;
 
 public class StandardConverterCollectionTest
 {

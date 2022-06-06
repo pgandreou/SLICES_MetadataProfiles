@@ -1,4 +1,4 @@
-﻿namespace Slices.V1.StandardConverters;
+﻿namespace Slices.V1.StandardConverters.Common;
 
 public class UnsupportedExternalFormatException : Exception
 {

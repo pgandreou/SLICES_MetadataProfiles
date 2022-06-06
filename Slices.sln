@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardAnnotatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardAnnotations.Tests", "Slices.V1.StandardAnnotations.Tests\Slices.V1.StandardAnnotations.Tests.csproj", "{92801E55-8726-4C6B-9C0E-D34E73509E36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters", "Slices.V1.StandardConverters\Slices.V1.StandardConverters.csproj", "{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.Common", "Slices.V1.StandardConverters.Common\Slices.V1.StandardConverters.Common.csproj", "{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.DublinCore", "Slices.V1.StandardConverters.DublinCore\Slices.V1.StandardConverters.DublinCore.csproj", "{43607D71-150E-4A55-A6C5-39768664038A}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.TestsSupport", "Slices.TestsSupport\Slices.TestsSupport.csproj", "{AF692E0F-D800-4863-A679-441BF6F6AD6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.StandardConverters.Tests", "Slices.V1.StandardConverters.Tests\Slices.V1.StandardConverters.Tests.csproj", "{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.Common.Tests", "Slices.V1.StandardConverters.Common.Tests\Slices.V1.StandardConverters.Common.Tests.csproj", "{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Slices.V1.StandardConverters\Slices.V1.StandardConverters.csproj" />
+    <ProjectReference Include="..\Slices.V1.StandardConverters.Common\Slices.V1.StandardConverters.Common.csproj" />
   </ItemGroup>
 
 </Project>
