@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.TestsSupport", "Slic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.Common.Tests", "Slices.V1.StandardConverters.Common.Tests\Slices.V1.StandardConverters.Common.Tests.csproj", "{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.DataCite", "Slices.V1.StandardConverters.DataCite\Slices.V1.StandardConverters.DataCite.csproj", "{DFE00034-527C-4570-A723-C5F4A30463C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.StandardConverters.DataCite.Tests", "Slices.V1.StandardConverters.DataCite.Tests\Slices.V1.StandardConverters.DataCite.Tests.csproj", "{48AFBA9A-AB68-4871-9C69-D6675DE1E299}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFE00034-527C-4570-A723-C5F4A30463C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFE00034-527C-4570-A723-C5F4A30463C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFE00034-527C-4570-A723-C5F4A30463C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFE00034-527C-4570-A723-C5F4A30463C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48AFBA9A-AB68-4871-9C69-D6675DE1E299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48AFBA9A-AB68-4871-9C69-D6675DE1E299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48AFBA9A-AB68-4871-9C69-D6675DE1E299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48AFBA9A-AB68-4871-9C69-D6675DE1E299}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
