@@ -59,6 +59,7 @@ public sealed class DigitalObject
 
     // TODO: Better type
     // TODO: CreatorIdentifiers?
+    // TODO: Creator array with previous?
     /// <summary>
     /// Identifier(s) of the creator(s) of the digital object.
     /// </summary>
