@@ -12,6 +12,7 @@ public partial class DataCiteCreatorName
     [XmlAttribute]
     public DataCiteNameType nameType { get; set; }
 
+    // TODO: Convert such to Nullable<T> instead of 2 props
     [XmlIgnore]
     public bool nameTypeSpecified { get; set; }
 

@@ -10,15 +10,15 @@ public partial class DataCiteResourceContributor
 {
     public DataCiteResourceContributorName contributorName { get; set; }
 
-    public object givenName { get; set; }
+    public string givenName { get; set; }
 
-    public object familyName { get; set; }
+    public string familyName { get; set; }
 
     [XmlElement("nameIdentifier")]
-    public object[] nameIdentifier { get; set; }
+    public DataCiteNameIdentifier[] nameIdentifier { get; set; }
 
     [XmlElement("affiliation")]
-    public object[] affiliation { get; set; }
+    public DataCiteAffiliation[] affiliation { get; set; }
 
     [XmlAttribute]
     public DataCiteContributorType contributorType { get; set; }

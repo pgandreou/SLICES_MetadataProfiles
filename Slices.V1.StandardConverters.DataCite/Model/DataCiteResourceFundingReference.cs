@@ -14,7 +14,7 @@ public partial class DataCiteResourceFundingReference
 
     public DataCiteResourceFundingAwardNumber awardNumber { get; set; }
 
-    public object awardTitle { get; set; }
+    public string awardTitle { get; set; }
 }
 
 #nullable restore

@@ -15,4 +15,35 @@ public class DataCiteSerializerTest
 
         Assert.NotNull(resource);
     }
+
+    [Fact]
+    public void Experiment1()
+    {
+        DataCiteResource resource = new();
+
+        resource.contributors = new[]
+        {
+            new DataCiteResourceContributor
+            {
+                contributorType = DataCiteContributorType.ProjectLeader,
+                contributorName = new DataCiteResourceContributorName { Value = "Starr, Joan" },
+                givenName = "Joan",
+                familyName = "Starr",
+                nameIdentifier = new [] { new DataCiteNameIdentifier
+                {
+                    schemeURI = "http://orcid.org/",
+                    nameIdentifierScheme = "ORCID",
+                    Value = "0000-0002-7285-027X",
+                } },
+            }
+        };
+
+        DataCiteSerializer serializer = new();
+        StringWriter writer = new();
+
+        serializer.ToXml(resource, writer);
+        string result = writer.ToString();
+
+        Assert.NotNull(result);
+    }
 }
