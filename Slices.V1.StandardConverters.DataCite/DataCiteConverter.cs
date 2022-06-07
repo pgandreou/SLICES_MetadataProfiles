@@ -1,6 +1,7 @@
 ﻿using Slices.V1.Standard;
 using Slices.V1.StandardConverters.Common;
 using Slices.V1.StandardConverters.DataCite.Model;
+using System.Diagnostics;
 
 namespace Slices.V1.StandardConverters.DataCite;
 
@@ -56,7 +57,40 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
 
         slicesObject.Version = externalModel.version;
 
-        // TODO
+        // TODO: MetadataProfile
+
+        slicesObject.Contributor = new List<string>(externalModel.contributors.Length);
+        slicesObject.ContributorIdentifier = new List<string>(externalModel.contributors.Length);
+
+        foreach (DataCiteResourceContributor contributor in externalModel.contributors)
+        {
+            slicesObject.Contributor.Add(contributor.contributorName.Value);
+            //slicesObject.ContributorIdentifier.Add(); TODO
+        }
+
+        // TODO: AccessType/AccessMode
+
+        slicesObject.RelatedObjects = new();
+
+        foreach (DataCiteResourceRelatedIdentifier relatedIdentifier in externalModel.relatedIdentifiers)
+        {
+            slicesObject.RelatedObjects.Add(new RelationLink 
+            {
+                Identifier = relatedIdentifier.Value,
+                RelationshipType = relatedIdentifier.relationType.ToString(),
+                ResourceType = relatedIdentifier.resourceTypeGeneralSpecified ? relatedIdentifier.relatedIdentifierType.ToString() : null,
+            });
+        }
+
+        slicesObject.PrimaryLanguage = new(new[] { new LanguageIso639_3 { Code = externalModel.language } }); // TODO: not iso639-3
+
+        if (externalModel.rightsList.Any())
+        {
+            DataCiteResourceRights rights = externalModel.rightsList.First();
+
+            slicesObject.Rights = rights.Value;
+            slicesObject.RightsURI = new Uri(rights.rightsURI);
+        }
 
         return slicesObject;
     }
