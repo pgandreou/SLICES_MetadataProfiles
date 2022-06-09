@@ -1,6 +1,7 @@
 ﻿using Slices.V1.Standard;
 using Slices.V1.StandardConverters.Common;
 using Slices.V1.StandardConverters.DataCite.Model;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace Slices.V1.StandardConverters.DataCite;
@@ -38,15 +39,14 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
             })
             .ToList();
 
-        // TODO
-        if (externalModel.titles.Any())
+        if (PickBestByLang(externalModel.titles, t => t.lang, out DataCiteResourceTitle? title))
         {
-            sfdo.Name = externalModel.titles.First().Value;
+            sfdo.Name = title.Value;
         }
 
-        if (externalModel.descriptions.Any())
+        if (PickBestByLang(externalModel.descriptions, t => t.lang, out DataCiteResourceDescription? description))
         {
-            sfdo.Description = externalModel.descriptions.First().Text;
+            sfdo.Description = description.Text;
         }
 
         // TODO: langs?
@@ -89,10 +89,8 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         {
         }
 
-        if (externalModel.rightsList.Any())
+        if (PickBestByLang(externalModel.rightsList, t => t.lang, out DataCiteResourceRights? rights))
         {
-            DataCiteResourceRights rights = externalModel.rightsList.First();
-
             sfdo.Rights = rights.Value;
             sfdo.RightsURI = new Uri(rights.rightsURI);
         }
@@ -123,6 +121,35 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
             Type = dcId.nameIdentifierScheme,
             Value = dcId.Value,
         };
+    }
+
+    private static bool PickBestByLang<TItem>(
+        IEnumerable<TItem> items,
+        Func<TItem, string> langSelector,
+        [NotNullWhen(true)] out TItem? selectedItem
+    )
+        where TItem : class
+    {
+        selectedItem = default;
+
+        if (!items.Any()) return false;
+
+        // Prefer English
+        selectedItem = items.FirstOrDefault(i => langSelector(i).StartsWith("en"));
+
+        // Otherwise try to find something that has a lang set
+        if (selectedItem == null)
+        {
+            selectedItem = items.FirstOrDefault(i => !string.IsNullOrWhiteSpace(langSelector(i)));
+        }
+
+        // Otherwise just pick the first
+        if (selectedItem == null)
+        {
+            selectedItem = items.First();
+        }
+
+        return true;
     }
 
     public SfdoResource FromSerializedExtrenal(TextReader serializedReader, string? format)
