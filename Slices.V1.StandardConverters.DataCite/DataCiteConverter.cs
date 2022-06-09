@@ -30,7 +30,11 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
             .ToList();
 
         sfdo.Creators = externalModel.creators
-            .Select(c => new SfdoCreator { Name = c.creatorName.Value }) // TODO: identifier
+            .Select(c => new SfdoCreator
+            {
+                Name = c.creatorName.Value,
+                Identifier = PickIdentifierForCreatorLike(c.nameIdentifier),
+            })
             .ToList();
 
         // TODO
@@ -56,7 +60,11 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         // TODO: MetadataProfile
 
         sfdo.Contributors = externalModel.contributors
-            .Select(c => new SfdoContributor { Name = c.contributorName.Value }) // TODO: identifier
+            .Select(c => new SfdoContributor
+            {
+                Name = c.contributorName.Value,
+                Identifier = PickIdentifierForCreatorLike(c.nameIdentifier),
+            })
             .ToList();
 
         // TODO: AccessType/AccessMode
@@ -83,6 +91,29 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         return sfdo;
 
         //return null!;
+    }
+
+    private static SfdoIdentifier? PickIdentifierForCreatorLike(DataCiteNameIdentifier[]? dataCiteNameIdentifiers)
+    {
+        if (dataCiteNameIdentifiers == null) return null;
+
+        // Try find one with scheme set
+        DataCiteNameIdentifier? dcId = dataCiteNameIdentifiers.FirstOrDefault(id => !string.IsNullOrWhiteSpace(id.nameIdentifierScheme));
+
+        // If failed, pick just first
+        if (dcId == null)
+        {
+            dcId = dataCiteNameIdentifiers.FirstOrDefault();
+        }
+
+        // If still nothing, then we have no id
+        if (dcId == null) return null;
+
+        return new SfdoIdentifier
+        {
+            Type = dcId.nameIdentifierScheme,
+            Value = dcId.Value,
+        };
     }
 
     public SfdoResource FromSerializedExtrenal(TextReader serializedReader, string? format)
