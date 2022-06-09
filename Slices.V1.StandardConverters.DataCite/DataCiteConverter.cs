@@ -39,12 +39,12 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
             })
             .ToList();
 
-        if (PickBestByLang(externalModel.titles, t => t.lang, out DataCiteResourceTitle? title))
+        if (PickBestByLang(externalModel.language, externalModel.titles, t => t.lang, out DataCiteResourceTitle? title))
         {
             sfdo.Name = title.Value;
         }
 
-        if (PickBestByLang(externalModel.descriptions, t => t.lang, out DataCiteResourceDescription? description))
+        if (PickBestByLang(externalModel.language, externalModel.descriptions, t => t.lang, out DataCiteResourceDescription? description))
         {
             sfdo.Description = description.Text;
         }
@@ -89,7 +89,7 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         {
         }
 
-        if (PickBestByLang(externalModel.rightsList, t => t.lang, out DataCiteResourceRights? rights))
+        if (PickBestByLang(externalModel.language, externalModel.rightsList, t => t.lang, out DataCiteResourceRights? rights))
         {
             sfdo.Rights = rights.Value;
             sfdo.RightsURI = new Uri(rights.rightsURI);
@@ -124,6 +124,7 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
     }
 
     private static bool PickBestByLang<TItem>(
+        string? resourceLang,
         IEnumerable<TItem> items,
         Func<TItem, string> langSelector,
         [NotNullWhen(true)] out TItem? selectedItem
@@ -131,25 +132,58 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         where TItem : class
     {
         selectedItem = default;
-
         if (!items.Any()) return false;
 
+        (string? Lang, TItem Item)[] langedItems = DeriveItemLangs(items, langSelector).ToArray();
+
         // Prefer English
-        selectedItem = items.FirstOrDefault(i => langSelector(i).StartsWith("en"));
+        (string? Lang, TItem Item) selectedTuple = langedItems.FirstOrDefault(t => t.Lang == "en");
+
+        // Otherwise prefer the resource lang
+        if (selectedTuple.Item == null)
+        {
+            resourceLang = GeneralizeLang(resourceLang);
+
+            // Otherwise prefer the resource lang
+            if (!string.IsNullOrWhiteSpace(resourceLang))
+            {
+                selectedTuple = langedItems.FirstOrDefault(t => t.Lang == resourceLang);
+            }
+        }
 
         // Otherwise try to find something that has a lang set
-        if (selectedItem == null)
+        if (selectedTuple.Item == null)
         {
-            selectedItem = items.FirstOrDefault(i => !string.IsNullOrWhiteSpace(langSelector(i)));
+            selectedTuple = langedItems.FirstOrDefault(t => !string.IsNullOrWhiteSpace(t.Lang));
         }
 
         // Otherwise just pick the first
-        if (selectedItem == null)
+        if (selectedTuple.Item == null)
         {
-            selectedItem = items.First();
+            selectedTuple = langedItems.First();
         }
 
+        selectedItem = selectedTuple.Item;
+
         return true;
+    }
+
+    private static IEnumerable<(string? Lang, TItem Item)> DeriveItemLangs<TItem>(
+        IEnumerable<TItem> items,
+        Func<TItem, string> langSelector
+    )
+        => items.Select(item => (GeneralizeLang(langSelector(item)), item));
+
+    private static string? GeneralizeLang(string? lang)
+    {
+        int separatorIndex = lang.IndexOf("-");
+
+        if (separatorIndex > 0)
+        {
+            return lang[..separatorIndex];
+        }
+
+        return lang;
     }
 
     public SfdoResource FromSerializedExtrenal(TextReader serializedReader, string? format)
