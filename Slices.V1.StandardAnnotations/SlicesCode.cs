@@ -18,8 +18,10 @@ public enum SlicesFieldCategory
     /// </summary>
     AccessInformation,
 
-    // TODO: not documented
-    LN,
+    /// <summary>
+    /// Persistent references to other objects
+    /// </summary>
+    Links,
 
     /// <summary>
     /// Language descriptors
@@ -64,7 +66,7 @@ public static class SlicesCodeExtensions
         SlicesFieldCategory.PrimaryInformation => "PI",
         SlicesFieldCategory.ManagementInformation => "MA",
         SlicesFieldCategory.AccessInformation => "AC",
-        SlicesFieldCategory.LN => "LN",
+        SlicesFieldCategory.Links => "LN",
         SlicesFieldCategory.LanguageInformation => "LA",
         SlicesFieldCategory.UserInformation => "US",
         SlicesFieldCategory.RightsAndTerms => "RT",

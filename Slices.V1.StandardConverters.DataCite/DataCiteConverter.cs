@@ -16,86 +16,88 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
 
     public string ExternalStandard => throw new NotImplementedException();
 
-    public DigitalObject FromExtrenal(DataCiteResource externalModel)
+    public SfdoResource FromExtrenal(DataCiteResource externalModel)
     {
-        DigitalObject slicesObject = new();
+        //DigitalObject slicesObject = new();
 
-        slicesObject.Identifier = $"{externalModel.identifier.identifierType}:{externalModel.identifier.Value}";
-        slicesObject.InternalIdentifier = Guid.NewGuid().ToString();
+        //slicesObject.Identifier = $"{externalModel.identifier.identifierType}:{externalModel.identifier.Value}";
+        //slicesObject.InternalIdentifier = Guid.NewGuid().ToString();
 
-        slicesObject.AlternateIdentifier = string.Join(
-            ";",
-            externalModel.alternateIdentifiers.Select(id => $"{id.Type}:{id.Value}")
-        );
+        //slicesObject.AlternateIdentifier = string.Join(
+        //    ";",
+        //    externalModel.alternateIdentifiers.Select(id => $"{id.Type}:{id.Value}")
+        //);
 
-        slicesObject.Creator = new List<string>(externalModel.creators.Length);
-        slicesObject.CreatorIdentifier = new List<string>(externalModel.creators.Length);
+        //slicesObject.Creator = new List<string>(externalModel.creators.Length);
+        //slicesObject.CreatorIdentifier = new List<string>(externalModel.creators.Length);
 
-        foreach (DataCiteCreator creator in externalModel.creators)
-        {
-            slicesObject.Creator.Add(creator.creatorName.Value);
-            //slicesObject.CreatorIdentifier.Add() // TODO
-        }
+        //foreach (DataCiteCreator creator in externalModel.creators)
+        //{
+        //    slicesObject.Creator.Add(creator.creatorName.Value);
+        //    //slicesObject.CreatorIdentifier.Add() // TODO
+        //}
 
-        // TODO
-        if (externalModel.titles.Any())
-        {
-            slicesObject.Name = externalModel.titles.First().Value;
-        }
+        //// TODO
+        //if (externalModel.titles.Any())
+        //{
+        //    slicesObject.Name = externalModel.titles.First().Value;
+        //}
 
-        if (externalModel.descriptions.Any())
-        {
-            slicesObject.Description = externalModel.descriptions.First().Text;
-        }
-        
-        // TODO: langs?
-        slicesObject.Subject = externalModel.subjects.Select(s => s.Value).ToList();
+        //if (externalModel.descriptions.Any())
+        //{
+        //    slicesObject.Description = externalModel.descriptions.First().Text;
+        //}
 
-        // TODO: keywords
+        //// TODO: langs?
+        //slicesObject.Subject = externalModel.subjects.Select(s => s.Value).ToList();
 
-        slicesObject.DateTimeCreated = DateTime.Now;
+        //// TODO: keywords
 
-        slicesObject.Version = externalModel.version;
+        //slicesObject.DateTimeCreated = DateTime.Now;
 
-        // TODO: MetadataProfile
+        //slicesObject.Version = externalModel.version;
 
-        slicesObject.Contributor = new List<string>(externalModel.contributors.Length);
-        slicesObject.ContributorIdentifier = new List<string>(externalModel.contributors.Length);
+        //// TODO: MetadataProfile
 
-        foreach (DataCiteResourceContributor contributor in externalModel.contributors)
-        {
-            slicesObject.Contributor.Add(contributor.contributorName.Value);
-            //slicesObject.ContributorIdentifier.Add(); TODO
-        }
+        //slicesObject.Contributor = new List<string>(externalModel.contributors.Length);
+        //slicesObject.ContributorIdentifier = new List<string>(externalModel.contributors.Length);
 
-        // TODO: AccessType/AccessMode
+        //foreach (DataCiteResourceContributor contributor in externalModel.contributors)
+        //{
+        //    slicesObject.Contributor.Add(contributor.contributorName.Value);
+        //    //slicesObject.ContributorIdentifier.Add(); TODO
+        //}
 
-        slicesObject.RelatedObjects = new();
+        //// TODO: AccessType/AccessMode
 
-        foreach (DataCiteResourceRelatedIdentifier relatedIdentifier in externalModel.relatedIdentifiers)
-        {
-            slicesObject.RelatedObjects.Add(new RelationLink 
-            {
-                Identifier = relatedIdentifier.Value,
-                RelationshipType = relatedIdentifier.relationType.ToString(),
-                ResourceType = relatedIdentifier.resourceTypeGeneralSpecified ? relatedIdentifier.relatedIdentifierType.ToString() : null,
-            });
-        }
+        //slicesObject.RelatedObjects = new();
 
-        slicesObject.PrimaryLanguage = new(new[] { new LanguageIso639_3 { Code = externalModel.language } }); // TODO: not iso639-3
+        //foreach (DataCiteResourceRelatedIdentifier relatedIdentifier in externalModel.relatedIdentifiers)
+        //{
+        //    slicesObject.RelatedObjects.Add(new SfdoRelationLink 
+        //    {
+        //        Identifier = relatedIdentifier.Value,
+        //        RelationshipType = relatedIdentifier.relationType.ToString(),
+        //        ResourceType = relatedIdentifier.resourceTypeGeneralSpecified ? relatedIdentifier.relatedIdentifierType.ToString() : null,
+        //    });
+        //}
 
-        if (externalModel.rightsList.Any())
-        {
-            DataCiteResourceRights rights = externalModel.rightsList.First();
+        //slicesObject.PrimaryLanguage = new(new[] { new LanguageIso639_3 { Code = externalModel.language } }); // TODO: not iso639-3
 
-            slicesObject.Rights = rights.Value;
-            slicesObject.RightsURI = new Uri(rights.rightsURI);
-        }
+        //if (externalModel.rightsList.Any())
+        //{
+        //    DataCiteResourceRights rights = externalModel.rightsList.First();
 
-        return slicesObject;
+        //    slicesObject.Rights = rights.Value;
+        //    slicesObject.RightsURI = new Uri(rights.rightsURI);
+        //}
+
+        //return slicesObject;
+
+        return null!;
     }
 
-    public DigitalObject FromSerializedExtrenal(TextReader serializedReader, string? format)
+    public SfdoResource FromSerializedExtrenal(TextReader serializedReader, string? format)
     {
         if (format == null) format = "xml";
 
@@ -107,12 +109,12 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         return FromExtrenal(_serializer.FromXml(serializedReader));
     }
 
-    public DataCiteResource ToExtrenal(DigitalObject digitalObject)
+    public DataCiteResource ToExtrenal(SfdoResource digitalObject)
     {
         throw new NotImplementedException();
     }
 
-    public void ToSerializedExtrenal(DigitalObject digitalObject, string? format, TextWriter serializedWriter)
+    public void ToSerializedExtrenal(SfdoResource digitalObject, string? format, TextWriter serializedWriter)
     {
         throw new NotImplementedException();
     }

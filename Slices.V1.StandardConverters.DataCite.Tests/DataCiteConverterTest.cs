@@ -11,7 +11,7 @@ public class DataCiteConverterTest
         using StreamReader reader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\datacite-example-full-v4.xml");
         DataCiteConverter converter = new(new DataCiteSerializer());
 
-        DigitalObject slicesObject = converter.FromSerializedExtrenal(reader, null);
+        SfdoResource slicesObject = converter.FromSerializedExtrenal(reader, null);
 
         Assert.NotNull(slicesObject);
     }

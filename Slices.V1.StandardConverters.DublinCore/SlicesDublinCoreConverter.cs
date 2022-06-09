@@ -15,12 +15,12 @@ public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObje
 
     public string ExternalStandard => DublinCoreConstants.StandardId;
 
-    public DigitalObject FromExtrenal(DublinCoreObject externalModel)
+    public SfdoResource FromExtrenal(DublinCoreObject externalModel)
     {
-        DigitalObject slicesObject = new();
+        SfdoResource slicesObject = new();
 
         slicesObject.Description = externalModel.description;
-        slicesObject.Creator = new(externalModel.creator);
+        //slicesObject.Creator = new(externalModel.creator);
         slicesObject.Name = externalModel.title;
         slicesObject.Rights = externalModel.rights;
 
@@ -29,7 +29,7 @@ public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObje
         return slicesObject;
     }
 
-    public DigitalObject FromSerializedExtrenal(TextReader serializedReader, string? format)
+    public SfdoResource FromSerializedExtrenal(TextReader serializedReader, string? format)
     {
         if (format == null) format = "xml";
 
@@ -41,12 +41,12 @@ public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObje
         return FromExtrenal(_serializer.FromXml(serializedReader));
     }
 
-    public DublinCoreObject ToExtrenal(DigitalObject digitalObject)
+    public DublinCoreObject ToExtrenal(SfdoResource digitalObject)
     {
         throw new NotImplementedException();
     }
 
-    public void ToSerializedExtrenal(DigitalObject digitalObject, string? format, TextWriter serializedWriter)
+    public void ToSerializedExtrenal(SfdoResource digitalObject, string? format, TextWriter serializedWriter)
     {
         throw new NotImplementedException();
     }

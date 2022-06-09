@@ -14,7 +14,7 @@ public class DublinCoreConverterTest
         SlicesDublinCoreConverter converter = new(serializer);
 
         DublinCoreObject dublinCoreObject = serializer.FromXml(textReader);
-        DigitalObject slicesObject = converter.FromExtrenal(dublinCoreObject);
+        SfdoResource slicesObject = converter.FromExtrenal(dublinCoreObject);
 
         Assert.NotNull(slicesObject);
     }
@@ -25,7 +25,7 @@ public class DublinCoreConverterTest
         using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\immunarch-0-6-9.xml");
         SlicesDublinCoreConverter converter = new(new DublinCoreSerializer());
 
-        DigitalObject slicesObject = converter.FromSerializedExtrenal(textReader, null);
+        SfdoResource slicesObject = converter.FromSerializedExtrenal(textReader, null);
 
         Assert.NotNull(slicesObject);
     }

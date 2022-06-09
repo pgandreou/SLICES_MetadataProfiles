@@ -1,6 +1,6 @@
 ﻿namespace Slices.V1.Standard;
 
-public struct RelationLink : IEquatable<RelationLink>
+public struct SfdoRelationLink : IEquatable<SfdoRelationLink>
 {
     public string Identifier { get; set; }
     public string RelationshipType { get; set; }
@@ -8,10 +8,10 @@ public struct RelationLink : IEquatable<RelationLink>
 
     public override bool Equals(object? obj)
     {
-        return obj is RelationLink link && Equals(link);
+        return obj is SfdoRelationLink link && Equals(link);
     }
 
-    public bool Equals(RelationLink other)
+    public bool Equals(SfdoRelationLink other)
     {
         return Identifier == other.Identifier &&
                RelationshipType == other.RelationshipType &&
@@ -23,12 +23,12 @@ public struct RelationLink : IEquatable<RelationLink>
         return HashCode.Combine(Identifier, RelationshipType, ResourceType);
     }
 
-    public static bool operator ==(RelationLink left, RelationLink right)
+    public static bool operator ==(SfdoRelationLink left, SfdoRelationLink right)
     {
         return left.Equals(right);
     }
 
-    public static bool operator !=(RelationLink left, RelationLink right)
+    public static bool operator !=(SfdoRelationLink left, SfdoRelationLink right)
     {
         return !(left == right);
     }

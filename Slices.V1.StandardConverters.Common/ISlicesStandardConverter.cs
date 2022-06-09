@@ -30,7 +30,7 @@ public interface ISlicesStandardConverter
     /// Not thrown if the format is null.
     /// </exception>
     /// <returns>The SLICES version of the record</returns>
-    DigitalObject FromSerializedExtrenal(TextReader serializedReader, string? format);
+    SfdoResource FromSerializedExtrenal(TextReader serializedReader, string? format);
 
     /// <summary>
     /// Converts a single record from SLICES to the external standard.
@@ -52,7 +52,7 @@ public interface ISlicesStandardConverter
     /// Thrown if <paramref name="format"/> is not supported by the implementation.
     /// Not thrown if the format is null.
     /// </exception>
-    void ToSerializedExtrenal(DigitalObject digitalObject, string? format, TextWriter serializedWriter);
+    void ToSerializedExtrenal(SfdoResource digitalObject, string? format, TextWriter serializedWriter);
 }
 
 /// <summary>
@@ -71,7 +71,7 @@ public interface ISlicesStandardConverter<TExternalModel> : ISlicesStandardConve
     /// </remarks>
     /// <returns>The SLICES version of the record</returns>
     [Pure]
-    DigitalObject FromExtrenal(TExternalModel externalModel);
+    SfdoResource FromExtrenal(TExternalModel externalModel);
 
     /// <summary>
     /// Converts a single record from SLICES to the external standard.
@@ -83,5 +83,5 @@ public interface ISlicesStandardConverter<TExternalModel> : ISlicesStandardConve
     /// <param name="digitalObject">The record to convert</param>
     /// <returns>Record represented in the external standard</returns>
     [Pure]
-    TExternalModel ToExtrenal(DigitalObject digitalObject);
+    TExternalModel ToExtrenal(SfdoResource digitalObject);
 }
