@@ -1,7 +1,23 @@
-﻿namespace Slices.V1.Standard;
+﻿using System.Diagnostics;
 
-// TODO: This needs to become an enum
+namespace Slices.V1.Standard;
+
 public struct LanguageIso639_3
 {
-    public string Code;
+    private string _code;
+
+    [DebuggerHidden]
+    public string Code
+    {
+        get => _code;
+        set
+        {
+            if (value.Length != 3)
+            {
+                throw new ArgumentOutOfRangeException(nameof(value));
+            }
+
+            _code = value;
+        }
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using Slices.V1.Standard;
 using Slices.V1.StandardConverters.Common;
 using Slices.V1.StandardConverters.DataCite.Model;
+using System.Globalization;
 
 namespace Slices.V1.StandardConverters.DataCite;
 
@@ -72,13 +73,21 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         sfdo.RelatedObjects = externalModel.relatedIdentifiers
             .Select(ri => new SfdoRelationLink
             {
-                Identifier = ri.Value,
+                Identifier = ri.Value, // TODO: Change type
                 RelationshipType = ri.relationType.ToString(),
                 ResourceType = ri.resourceTypeGeneralSpecified ? ri.relatedIdentifierType.ToString() : null,
             })
             .ToList();
 
-        sfdo.PrimaryLanguage = new(new[] { new LanguageIso639_3 { Code = externalModel.language } }); // TODO: not iso639-3
+        try
+        {
+            CultureInfo culture = CultureInfo.GetCultureInfo(externalModel.language);
+
+            sfdo.PrimaryLanguage.Add(new LanguageIso639_3 { Code = culture.ThreeLetterISOLanguageName });
+        }
+        catch (CultureNotFoundException)
+        {
+        }
 
         if (externalModel.rightsList.Any())
         {
