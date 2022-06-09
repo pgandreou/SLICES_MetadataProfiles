@@ -49,8 +49,9 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
             sfdo.Description = description.Text;
         }
 
-        // TODO: langs?
-        sfdo.Subjects = externalModel.subjects.Select(s => s.Value).ToList();
+        sfdo.Subjects = PickBestByLang(externalModel.language, externalModel.subjects, s => s.lang)
+            .Select(s => s.Value)
+            .ToList();
 
         // TODO: keywords
 
@@ -131,41 +132,49 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
     )
         where TItem : class
     {
-        selectedItem = default;
-        if (!items.Any()) return false;
+        selectedItem = PickBestByLang(resourceLang, items, langSelector).FirstOrDefault();
+
+        return selectedItem != null;
+    }
+
+    private static IEnumerable<TItem> PickBestByLang<TItem>(
+        string? resourceLang,
+        IEnumerable<TItem> items,
+        Func<TItem, string> langSelector
+    )
+        where TItem : class
+    {
+        if (!items.Any()) return Array.Empty<TItem>();
 
         (string? Lang, TItem Item)[] langedItems = DeriveItemLangs(items, langSelector).ToArray();
 
         // Prefer English
-        (string? Lang, TItem Item) selectedTuple = langedItems.FirstOrDefault(t => t.Lang == "en");
+        IEnumerable<(string? Lang, TItem Item)> selectedTuples = langedItems.Where(t => t.Lang == "en");
 
         // Otherwise prefer the resource lang
-        if (selectedTuple.Item == null)
+        if (!selectedTuples.Any())
         {
             resourceLang = GeneralizeLang(resourceLang);
 
-            // Otherwise prefer the resource lang
             if (!string.IsNullOrWhiteSpace(resourceLang))
             {
-                selectedTuple = langedItems.FirstOrDefault(t => t.Lang == resourceLang);
+                selectedTuples = langedItems.Where(t => t.Lang == resourceLang);
             }
         }
 
         // Otherwise try to find something that has a lang set
-        if (selectedTuple.Item == null)
+        if (!selectedTuples.Any())
         {
-            selectedTuple = langedItems.FirstOrDefault(t => !string.IsNullOrWhiteSpace(t.Lang));
+            selectedTuples = langedItems.Where(t => !string.IsNullOrWhiteSpace(t.Lang));
         }
 
-        // Otherwise just pick the first
-        if (selectedTuple.Item == null)
+        // Otherwise just pick all
+        if (!selectedTuples.Any())
         {
-            selectedTuple = langedItems.First();
+            selectedTuples = langedItems;
         }
 
-        selectedItem = selectedTuple.Item;
-
-        return true;
+        return selectedTuples.Select(t => t.Item);
     }
 
     private static IEnumerable<(string? Lang, TItem Item)> DeriveItemLangs<TItem>(
