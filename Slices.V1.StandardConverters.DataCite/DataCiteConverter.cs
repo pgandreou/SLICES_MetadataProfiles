@@ -73,7 +73,7 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         sfdo.RelatedObjects = externalModel.relatedIdentifiers
             .Select(ri => new SfdoRelationLink
             {
-                Identifier = ri.Value, // TODO: Change type
+                Identifier = new SfdoIdentifier { Type = ri.relatedIdentifierType.ToString(), Value = ri.Value },
                 RelationshipType = ri.relationType.ToString(),
                 ResourceType = ri.resourceTypeGeneralSpecified ? ri.relatedIdentifierType.ToString() : null,
             })

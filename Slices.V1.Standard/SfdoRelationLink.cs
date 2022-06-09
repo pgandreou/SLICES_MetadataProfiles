@@ -2,7 +2,7 @@
 
 public struct SfdoRelationLink : IEquatable<SfdoRelationLink>
 {
-    public string Identifier { get; set; }
+    public SfdoIdentifier Identifier { get; set; }
     public string RelationshipType { get; set; }
     public string ResourceType { get; set; }
 
