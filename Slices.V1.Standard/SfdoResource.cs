@@ -103,14 +103,14 @@ public sealed class SfdoResource
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
     public string Version { get; set; } = null!;
 
-    // TODO: type
     /// <summary>
     /// The metadata profile used  to describe this  resource
     /// </summary>
+    /// <remarks>The version of the SLICES standard</remarks>
     [SlicesCode(SlicesFieldCategory.ManagementInformation, 2)]
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
-    public string MetadataProfile { get; set; } = null!;
+    public string MetadataProfile { get; set; } = "V1";
 
     /// <summary>
     /// The institution or person responsible for collecting, managing, distributing, or otherwise contributing
@@ -135,7 +135,7 @@ public sealed class SfdoResource
     [SlicesCode(SlicesFieldCategory.AccessInformation, 1)]
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
-    public List<SfdoAccessType> AccessTypes { get; set; } = new();
+    public List<SfdoAccessType> AccessTypes { get; set; } = new() { SfdoAccessType.Remote };
 
     /// <summary>
     /// Eligibility/criteria for granting access to users
@@ -143,7 +143,7 @@ public sealed class SfdoResource
     [SlicesCode(SlicesFieldCategory.AccessInformation, 2)]
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
-    public List<SfdoAccessMode> AccessModes { get; set; } = new();
+    public List<SfdoAccessMode> AccessModes { get; set; } = new() { SfdoAccessMode.Free };
 
     #endregion Access
 

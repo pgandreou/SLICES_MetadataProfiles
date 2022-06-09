@@ -59,8 +59,6 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
 
         sfdo.Version = externalModel.version;
 
-        // TODO: MetadataProfile
-
         sfdo.Contributors = externalModel.contributors
             .Select(c => new SfdoContributor
             {
@@ -68,8 +66,6 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
                 Identifier = PickIdentifierForCreatorLike(c.nameIdentifier),
             })
             .ToList();
-
-        // TODO: AccessType/AccessMode
 
         sfdo.RelatedObjects = externalModel.relatedIdentifiers
             .Select(ri => new SfdoRelationLink
