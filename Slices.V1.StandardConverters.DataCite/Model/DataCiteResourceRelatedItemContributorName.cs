@@ -7,7 +7,7 @@ namespace Slices.V1.StandardConverters.DataCite.Model;
 
 [Serializable]
 [XmlType(AnonymousType = true, Namespace = "http://datacite.org/schema/kernel-4")]
-public partial class DataCiteCreatorName
+public partial class DataCiteResourceRelatedItemContributorName
 {
     [XmlAttribute]
     public DataCiteNameType nameType { get; set; }

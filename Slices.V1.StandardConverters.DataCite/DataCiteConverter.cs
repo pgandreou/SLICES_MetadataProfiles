@@ -59,13 +59,16 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
 
         sfdo.Version = externalModel.version;
 
-        sfdo.Contributors = externalModel.contributors
-            .Select(c => new SfdoContributor
-            {
-                Name = c.contributorName.Value,
-                Identifier = PickIdentifierForCreatorLike(c.nameIdentifier),
-            })
-            .ToList();
+        if (externalModel.contributors != null)
+        {
+            sfdo.Contributors = externalModel.contributors
+                .Select(c => new SfdoContributor
+                {
+                    Name = c.contributorName.Value,
+                    Identifier = PickIdentifierForCreatorLike(c.nameIdentifier),
+                })
+                .ToList();
+        }
 
         sfdo.RelatedObjects = externalModel.relatedIdentifiers
             .Select(ri => new SfdoRelationLink
@@ -76,14 +79,17 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
             })
             .ToList();
 
-        try
+        if (externalModel.language != null)
         {
-            CultureInfo culture = CultureInfo.GetCultureInfo(externalModel.language);
+            try
+            {
+                CultureInfo culture = CultureInfo.GetCultureInfo(externalModel.language);
 
-            sfdo.PrimaryLanguage.Add(new LanguageIso639_3 { Code = culture.ThreeLetterISOLanguageName });
-        }
-        catch (CultureNotFoundException)
-        {
+                sfdo.PrimaryLanguage.Add(new LanguageIso639_3 { Code = culture.ThreeLetterISOLanguageName });
+            }
+            catch (CultureNotFoundException)
+            {
+            } 
         }
 
         if (PickBestByLang(externalModel.language, externalModel.rightsList, t => t.lang, out DataCiteResourceRights? rights))
@@ -181,6 +187,8 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
 
     private static string? GeneralizeLang(string? lang)
     {
+        if (lang == null) return null;
+
         int separatorIndex = lang.IndexOf("-");
 
         if (separatorIndex > 0)

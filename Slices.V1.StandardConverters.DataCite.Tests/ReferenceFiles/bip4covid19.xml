@@ -1,0 +1,108 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://datacite.org/schema/kernel-4" xsi:schemaLocation="http://datacite.org/schema/kernel-4 http://schema.datacite.org/meta/kernel-4.1/metadata.xsd">
+  <identifier identifierType="DOI">10.5281/zenodo.6618817</identifier>
+  <creators>
+    <creator>
+      <creatorName>Thanasis Vergoulis</creatorName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0003-0555-4128</nameIdentifier>
+      <affiliation>Athena Research Center</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Ilias Kanellos</creatorName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0003-2146-3795</nameIdentifier>
+      <affiliation>Athena Research Center</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Serafeim Chatzopoulos</creatorName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0003-1714-5225</nameIdentifier>
+      <affiliation>Athena Research Center</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Danae Pla Karidi</creatorName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-3154-6212</nameIdentifier>
+      <affiliation>Athena Research Center</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Theodore Dalamagas</creatorName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-5002-7901</nameIdentifier>
+      <affiliation>Athena Research Center</affiliation>
+    </creator>
+  </creators>
+  <titles>
+    <title>BIP4COVID19: Impact metrics and indicators for coronavirus related publications</title>
+  </titles>
+  <publisher>Zenodo</publisher>
+  <publicationYear>2022</publicationYear>
+  <subjects>
+    <subject>COVID-19</subject>
+    <subject>coronavirus</subject>
+    <subject>scientometrics</subject>
+    <subject>bibliometrics</subject>
+  </subjects>
+  <dates>
+    <date dateType="Issued">2022-06-07</date>
+  </dates>
+  <resourceType resourceTypeGeneral="Dataset"/>
+  <alternateIdentifiers>
+    <alternateIdentifier alternateIdentifierType="url">https://zenodo.org/record/6618817</alternateIdentifier>
+  </alternateIdentifiers>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="Cites" resourceTypeGeneral="Dataset">https://pages.semanticscholar.org/coronavirus-research</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="Handle" relationType="IsSupplementTo" resourceTypeGeneral="Preprint">www.biorxiv.org/content/10.1101/2020.04.11.037093v2</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="Cites" resourceTypeGeneral="Software">https://github.com/diwis/PaperRanking</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsVersionOf">10.5281/zenodo.3723281</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsPartOf">https://zenodo.org/communities/covid-19</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsPartOf">https://zenodo.org/communities/zenodo</relatedIdentifier>
+  </relatedIdentifiers>
+  <version>93</version>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons Attribution 4.0 International</rights>
+    <rights rightsURI="info:eu-repo/semantics/openAccess">Open Access</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">
+      &lt;p&gt;This dataset contains impact metrics and indicators for a set of publications that are related to the &lt;a href="https://en.wikipedia.org/wiki/Coronavirus_disease_2019"&gt;COVID-19 infectious disease&lt;/a&gt; and the coronavirus that causes it. It is based on:&lt;/p&gt;
+
+      &lt;ol&gt;
+      &lt;li&gt;&amp;Tau;he &lt;a href="https://pages.semanticscholar.org/coronavirus-research"&gt;CORD-19 dataset&lt;/a&gt; released by the team of &lt;a href="https://www.semanticscholar.org/"&gt;Semantic Scholar&lt;/a&gt;&lt;sup&gt;1&lt;/sup&gt; and&lt;/li&gt;
+      &lt;li&gt;&amp;Tau;he curated data provided by the &lt;a href="https://www.ncbi.nlm.nih.gov/research/coronavirus/"&gt;LitCovid hub&lt;/a&gt;&lt;sup&gt;2&lt;/sup&gt;.&lt;/li&gt;
+      &lt;/ol&gt;
+
+      &lt;p&gt;These data have been cleaned and integrated with data from &lt;a href="https://github.com/echen102/COVID-19-TweetIDs"&gt;COVID-19-TweetIDs&lt;/a&gt; and from other sources (e.g., PMC). The result was dataset of&amp;nbsp;550,214 unique articles along with relevant metadata (e.g., the underlying citation network). We utilized this dataset to produce, for each article, the values of the following impact measures:&lt;/p&gt;
+
+      &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;&lt;strong&gt;Influence:&lt;/strong&gt;&lt;/em&gt; Citation-based measure reflecting the total impact of an article. This is based on the PageRank&lt;sup&gt;3&lt;/sup&gt; network analysis method. In the context of citation networks, it estimates the importance of each article based on its centrality in the whole network. This measure was calculated using the PaperRanking (&lt;a href="https://github.com/diwis/PaperRanking"&gt;https://github.com/diwis/PaperRanking&lt;/a&gt;) library&lt;sup&gt;4&lt;/sup&gt;.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;&lt;em&gt;Influence_alt:&lt;/em&gt;&lt;/strong&gt; Citation-based measure reflecting the total impact of an article. This is the Citation Count of each article, calculated based on the citation network between the articles contained in the BIP4COVID19 dataset.&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;&lt;strong&gt;Popularity:&lt;/strong&gt;&lt;/em&gt; Citation-based measure reflecting the current impact of an article. This is based on the AttRank&lt;sup&gt;5&lt;/sup&gt; citation network analysis method. Methods like PageRank are biased against recently published articles (new articles need time to receive their first citations). AttRank alleviates this problem incorporating an attention-based mechanism, akin to a time-restricted version of preferential attachment, to explicitly capture a researcher&amp;#39;s preference to read papers which received a lot of attention recently. This is why it is more suitable to capture the current &amp;quot;hype&amp;quot; of an article.&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;&lt;strong&gt;Popularity alternative:&lt;/strong&gt;&lt;/em&gt; An alternative citation-based measure reflecting the current impact of an article (this was the basic popularity measured provided by BIP4COVID19 until version 26). This is based on the RAM&lt;sup&gt;6&lt;/sup&gt; citation network analysis method. Methods like PageRank are biased against recently published articles (new articles need time to receive their first citations). RAM alleviates this problem using an approach known as &amp;quot;time-awareness&amp;quot;. This is why it is more suitable to capture the current &amp;quot;hype&amp;quot; of an article. This measure was calculated using the PaperRanking (&lt;a href="https://github.com/diwis/PaperRanking"&gt;https://github.com/diwis/PaperRanking&lt;/a&gt;) library&lt;sup&gt;4&lt;/sup&gt;.&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;&lt;strong&gt;Social Media Attention: &lt;/strong&gt;&lt;/em&gt;The number of tweets related to this article. Relevant data were collected from the &lt;a href="https://github.com/echen102/COVID-19-TweetIDs"&gt;COVID-19-TweetIDs&lt;/a&gt; dataset. In this version, tweets between 5/5/22-15/5/22 have been considered from the previous dataset.&lt;/li&gt;
+      &lt;/ul&gt;
+
+      &lt;p&gt;We provide five CSV files, all containing the same information, however each having its entries ordered by a different impact measure. All CSV files are tab separated and have the same columns (PubMed_id, PMC_id, DOI, influence_score, popularity_alt_score, popularity score, influence_alt score, tweets count).&lt;/p&gt;
+
+      &lt;p&gt;The work is based on the following publications:&lt;/p&gt;
+
+      &lt;blockquote&gt;
+      &lt;ol&gt;
+      &lt;li&gt;COVID-19 Open Research Dataset (CORD-19). 2020. Version 2022-05-31 Retrieved from https://pages.semanticscholar.org/coronavirus-research. Accessed 2022-05-31. doi:10.5281/zenodo.3715506&lt;/li&gt;
+      &lt;li&gt;Chen Q, Allot A, &amp;amp; Lu Z. (2020) Keep up with the latest coronavirus research, Nature 579:193 (version 2022-05-31)&lt;/li&gt;
+      &lt;li&gt;R. Motwani L. Page, S. Brin and T. Winograd. 1999. The PageRank Citation Ranking: Bringing Order to the Web. Technical Report. Stanford InfoLab.&lt;/li&gt;
+      &lt;li&gt;I. Kanellos, T. Vergoulis, D. Sacharidis, T. Dalamagas, Y. Vassiliou: Impact-Based Ranking of Scientific Publications: A Survey and Experimental Evaluation. TKDE 2019&lt;/li&gt;
+      &lt;li&gt;I. Kanellos, T. Vergoulis, D. Sacharidis, T. Dalamagas, Y. Vassiliou: Ranking Papers by their Short-Term Scientific Impact. CoRR abs/2006.00951 (2020)&lt;/li&gt;
+      &lt;li&gt;Rumi Ghosh, Tsung-Ting Kuo, Chun-Nan Hsu, Shou-De Lin, and Kristina Lerman. 2011. Time-Aware Ranking in Dynamic Citation Networks. In Data Mining Workshops (ICDMW). 373&amp;ndash;380&lt;/li&gt;
+      &lt;/ol&gt;
+      &lt;/blockquote&gt;
+
+      &lt;p&gt;A Web user interface that uses these data to facilitate the COVID-19 literature exploration, can be found &lt;a href="https://bip.covid19.athenarc.gr"&gt;here&lt;/a&gt;. More details in our peer-reviewed publication &lt;a href="https://doi.org/10.1162/qss_a_00169"&gt;here&lt;/a&gt; (also &lt;a href="https://www.biorxiv.org/content/10.1101/2020.04.11.037093v2"&gt;here&lt;/a&gt; there is an outdated preprint version).&lt;br&gt;
+      &lt;br&gt;
+      &lt;em&gt;Funding: We acknowledge support of this work by the project &amp;quot;Moving from Big Data Management to Data Science&amp;quot; (MIS 5002437/3) which is implemented under the Action &amp;quot;Reinforcement of the Research and Innovation Infrastructure&amp;quot;, funded by the Operational Programme &amp;quot;Competitiveness, Entrepreneurship and Innovation&amp;quot; (NSRF 2014-2020) and co-financed by Greece and the European Union (European Regional Development Fund).&lt;/em&gt;&lt;/p&gt;
+
+      &lt;p&gt;&lt;em&gt;&lt;strong&gt;Terms of use:&lt;/strong&gt;&lt;/em&gt; These data are provided &amp;quot;as is&amp;quot;, without any warranties of any kind. The data are provided under the Creative Commons Attribution 4.0 International license.&lt;/p&gt;
+    </description>
+    <description descriptionType="Other">
+      Please cite: Thanasis Vergoulis, Ilias Kanellos, Serafeim Chatzopoulos, Danae Pla Karidi, Theodore Dalamagas. "BIP4COVID19: Releasing impact measures for articles relevant to COVID-19".  Quantitative Science Studies
+      2022-01-24; doi: https://doi.org/10.1162/qss_a_00169
+    </description>
+    <description descriptionType="Other">{"references": ["COVID-19 Open Research Dataset (CORD-19). 2020. Version 2022-05-31. Retrieved from https://pages.semanticscholar.org/coronavirus-research. Accessed 2022-05-31", "I. Kanellos, T. Vergoulis, D. Sacharidis, T. Dalamagas, Y. Vassiliou: Impact-Based Ranking of Scientific Publications: A Survey and Experimental Evaluation. TKDE 2019", "I. Kanellos, T. Vergoulis, D. Sacharidis, T. Dalamagas, Y. Vassiliou: Ranking Papers by their Short-Term Scientific Impact. CoRR abs/2006.00951 (2020)", "Rumi Ghosh, Tsung-Ting Kuo, Chun-Nan Hsu, Shou-De Lin, and Kristina Lerman. 2011. Time-Aware Ranking in Dynamic Citation Networks. In Data Mining Workshops (ICDMW). 373\u2013380", "R. Motwani L. Page, S. Brin and T. Winograd. 1999. The PageRank Citation Ranking: Bringing Order to the Web. Technical Report. Stanford InfoLab.", "Chen Q, Allot A, &amp; Lu Z. (2020) Keep up with the latest coronavirus research, Nature 579:193 (version 2022-05-31)"]}</description>
+  </descriptions>
+</resource>

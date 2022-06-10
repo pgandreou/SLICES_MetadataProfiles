@@ -1,0 +1,267 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://datacite.org/schema/kernel-4" xsi:schemaLocation="http://datacite.org/schema/kernel-4 http://schema.datacite.org/meta/kernel-4.1/metadata.xsd">
+  <identifier identifierType="DOI">10.5281/zenodo.3991723</identifier>
+  <creators>
+    <creator>
+      <creatorName>Raussi, Petra</creatorName>
+      <givenName>Petra</givenName>
+      <familyName>Raussi</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0001-9768-8312</nameIdentifier>
+      <affiliation>VTT</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Mäki, Kari</creatorName>
+      <givenName>Kari</givenName>
+      <familyName>Mäki</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-5864-4613</nameIdentifier>
+      <affiliation>VTT</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Evens, Coretin</creatorName>
+      <givenName>Coretin</givenName>
+      <familyName>Evens</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-9380-933X</nameIdentifier>
+      <affiliation>VTT</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Grönroos, Eveliina</creatorName>
+      <givenName>Eveliina</givenName>
+      <familyName>Grönroos</familyName>
+      <affiliation>VTT</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Pröstl Andrén, Filip</creatorName>
+      <givenName>Filip</givenName>
+      <familyName>Pröstl Andrén</familyName>
+      <affiliation>AIT</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Widl, Edmund</creatorName>
+      <givenName>Edmund</givenName>
+      <familyName>Widl</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-2834-306X</nameIdentifier>
+      <affiliation>AIT</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Calin, Mihai</creatorName>
+      <givenName>Mihai</givenName>
+      <familyName>Calin</familyName>
+      <affiliation>AIT</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Strasser, Thomas</creatorName>
+      <givenName>Thomas</givenName>
+      <familyName>Strasser</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-6415-766X</nameIdentifier>
+      <affiliation>AIT</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Rikos, Evangelos</creatorName>
+      <givenName>Evangelos</givenName>
+      <familyName>Rikos</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-1776-9305</nameIdentifier>
+      <affiliation>CRES</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Heussen, Kai</creatorName>
+      <givenName>Kai</givenName>
+      <familyName>Heussen</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0003-3623-1372</nameIdentifier>
+      <affiliation>DTU</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Gehrke, Oliver</creatorName>
+      <givenName>Oliver</givenName>
+      <familyName>Gehrke</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0001-8184-6435</nameIdentifier>
+      <affiliation>DTU</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Jensen, Tue V.</creatorName>
+      <givenName>Tue V.</givenName>
+      <familyName>Jensen</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-6594-5094</nameIdentifier>
+      <affiliation>DTU</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Nguyen, Ha T.</creatorName>
+      <givenName>Ha T.</givenName>
+      <familyName>Nguyen</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0001-8570-4899</nameIdentifier>
+      <affiliation>DTU</affiliation>
+    </creator>
+    <creator>
+      <creatorName>van der Meer, Arjen</creatorName>
+      <givenName>Arjen</givenName>
+      <familyName>van der Meer</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0003-3963-0862</nameIdentifier>
+      <affiliation>TUD</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Subramaniam Rajkumar, Vetrivel</creatorName>
+      <givenName>Vetrivel</givenName>
+      <familyName>Subramaniam Rajkumar</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-5231-6790</nameIdentifier>
+      <affiliation>TUD</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Khavari, Ata</creatorName>
+      <givenName>Ata</givenName>
+      <familyName>Khavari</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0001-5894-0415</nameIdentifier>
+      <affiliation>DERlab</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Anastasakis, Konstantinos</creatorName>
+      <givenName>Konstantinos</givenName>
+      <familyName>Anastasakis</familyName>
+      <affiliation>HEDNO</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Kontou, Alkistis</creatorName>
+      <givenName>Alkistis</givenName>
+      <familyName>Kontou</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-4314-0623</nameIdentifier>
+      <affiliation>ICCS</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Orue, Inaki</creatorName>
+      <givenName>Inaki</givenName>
+      <familyName>Orue</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0001-5101-8399</nameIdentifier>
+      <affiliation>OCT</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Taxt, Henning</creatorName>
+      <givenName>Henning</givenName>
+      <familyName>Taxt</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-3999-0895</nameIdentifier>
+      <affiliation>SINTEF</affiliation>
+    </creator>
+    <creator>
+      <creatorName>D'Acro, Salvatore</creatorName>
+      <givenName>Salvatore</givenName>
+      <familyName>D'Acro</familyName>
+      <affiliation>SINTEF</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Rodríguez Seco, J. Emilio</creatorName>
+      <givenName>J. Emilio</givenName>
+      <familyName>Rodríguez Seco</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-8567-8122</nameIdentifier>
+      <affiliation>TEC</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Merino, Julia</creatorName>
+      <givenName>Julia</givenName>
+      <familyName>Merino</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-7923-2538</nameIdentifier>
+      <affiliation>TEC</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Felipe Cortes, Andrés</creatorName>
+      <givenName>Andrés</givenName>
+      <familyName>Felipe Cortes</familyName>
+      <affiliation>TEC</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Efthymiou, Venizelos</creatorName>
+      <givenName>Venizelos</givenName>
+      <familyName>Efthymiou</familyName>
+      <affiliation>UCY</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Venizelou, Venizelos</creatorName>
+      <givenName>Venizelos</givenName>
+      <familyName>Venizelou</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0001-9545-0212</nameIdentifier>
+      <affiliation>UCY</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Kynigos, Marios</creatorName>
+      <givenName>Marios</givenName>
+      <familyName>Kynigos</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0002-7204-1106</nameIdentifier>
+      <affiliation>UCY</affiliation>
+    </creator>
+    <creator>
+      <creatorName>Theocharides, Spyros</creatorName>
+      <givenName>Spyros</givenName>
+      <familyName>Theocharides</familyName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://orcid.org/">0000-0003-2164-6081</nameIdentifier>
+      <affiliation>UCY</affiliation>
+    </creator>
+  </creators>
+  <titles>
+    <title>D-NA4.1 Functional Scenarios</title>
+  </titles>
+  <publisher>Zenodo</publisher>
+  <publicationYear>2020</publicationYear>
+  <subjects>
+    <subject>Scenarios</subject>
+    <subject>Test Cases</subject>
+    <subject>Use Cases</subject>
+    <subject>Deliverable</subject>
+    <subject>European Union (EU)</subject>
+    <subject>H2020</subject>
+    <subject>Project</subject>
+    <subject>ERIGrid 2.0</subject>
+    <subject>GA 870620</subject>
+  </subjects>
+  <dates>
+    <date dateType="Issued">2020-08-19</date>
+  </dates>
+  <language>en</language>
+  <resourceType resourceTypeGeneral="Text">Project deliverable</resourceType>
+  <alternateIdentifiers>
+    <alternateIdentifier alternateIdentifierType="url">https://zenodo.org/record/3991723</alternateIdentifier>
+  </alternateIdentifiers>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsVersionOf">10.5281/zenodo.3991722</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsPartOf">https://zenodo.org/communities/erigrid2</relatedIdentifier>
+  </relatedIdentifiers>
+  <version>1.3</version>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons Attribution 4.0 International</rights>
+    <rights rightsURI="info:eu-repo/semantics/openAccess">Open Access</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">
+      &lt;p&gt;This deliverable describes the work conducted in ERIGrid 2.0 task NA4.1 &amp;rsquo;Definition of Functional Scenarios&amp;rsquo;. The work has been conducted via a survey and a brainstorming workshop.&amp;nbsp;The results are six Functional Scenarios:&lt;/p&gt;
+
+      &lt;ol&gt;
+      &lt;li&gt;Ancillary services provided by Distributed Energy Resources (DERs) and active grid assets,&lt;/li&gt;
+      &lt;li&gt;Microgrids &amp;amp; energy communities,&lt;/li&gt;
+      &lt;li&gt;Sector coupling,&lt;/li&gt;
+      &lt;li&gt;Frequency and voltage stability in inverter dominated power systems,&lt;/li&gt;
+      &lt;li&gt;Aggregation and flexibility management, and&lt;/li&gt;
+      &lt;li&gt;Digitalisation,&lt;/li&gt;
+      &lt;/ol&gt;
+
+      &lt;p&gt;which describe the overarching topics within ERIGrid 2.0. The Functional Scenarios will be&amp;nbsp;used as an input in further ERIGrid 2.0 work.&amp;nbsp;&lt;/p&gt;
+
+      &lt;p&gt;Smart grid and smart energy systems solutions have become complex and multidisciplinary.&amp;nbsp;With the further integration of Information and Communication Technology (ICT) and other energy systems new testing scenarios, profiles, and processes must be defined. In order to&amp;nbsp;achieve this, big trends affecting research, testing, and validation processes have been reviewed, with a special focus on new aspects such as interoperability testing or digitalisation.&amp;nbsp;The scenario descriptions define requirements, actors, etc. on a functional level. ERIGrid 2.0&amp;nbsp;work package NA4 &amp;rsquo;Iterative Creation of Scenarios and Test Case Profiles&amp;rsquo; addresses these&amp;nbsp;needs. This work has been conducted with emphasis on the alignment with the European&amp;nbsp;Green Deal, further support on the technology validation and roll-out phases, and further integration of the research infrastructures.&amp;nbsp;&lt;/p&gt;
+
+      &lt;p&gt;A Functional Scenario has been defined as an umbrella term comprising of motivation and&amp;nbsp;relevance for ERIGrid 2.0, system descriptions, use case and test case descriptions, and experimental setup descriptions. Each scenario has a single core idea and is formed on the basis&amp;nbsp;of inclusiveness. Functional Scenarios consider several high-level scenarios in other projects&amp;nbsp;and networks as a background forming the overall circumstances in which the Functional Scenario is considered. The high-level scenarios provide a holistic understanding of the current&amp;nbsp;status and development while also highlighting future visions and requirements impacting the&amp;nbsp;Functional Scenarios. The high-level scenarios also address the high-level drivers for the Functional Scenarios, such as needs for digitalisation of the smart energy systems. Furthermore,&amp;nbsp;Functional Scenarios are related to the generic system configurations developed in ERIGrid&amp;nbsp;and consider the work conducted in ERIGrid as a strong background for ERIGrid 2.0.&lt;/p&gt;
+
+      &lt;p&gt;The necessity for a mutual understanding of scenarios which are of interest to the ERIGrid&amp;nbsp;2.0 partners and their research infrastructures and in alignment of the project objectives, led&amp;nbsp;to conducting a survey regarding the first actions of the NA4.1 work. The purpose of this&amp;nbsp;survey was to gather inputs on a set of Functional Scenarios that were analysed in more detail&amp;nbsp;to deduce the most relevant approaches for ERIGrid 2.0. Overall, 15 partners participated&amp;nbsp;in the survey and submitted 35 scenarios. The survey results include scenarios on sector&amp;nbsp;coupling, multi-energy systems, ICT and automation, energy communities, microgrids and low-&lt;br&gt;
+      inertia grids, and stability, control and grid code challenges. Detailed descriptions of Functional&amp;nbsp;Scenarios submitted to the survey are presented in Appendix A: Functional Scenario Survey&amp;nbsp;Data of this deliverable.&lt;/p&gt;
+
+      &lt;p&gt;The formation of the Functional Scenarios was organised in six working groups, each of which&amp;nbsp;focused on a single Functional Scenario. The decision on the six Functional Scenario was&amp;nbsp;taken during the NA4 regular meetings and the brainstorming workshop itself based on the&amp;nbsp;results of the Functional Scenario survey.&lt;/p&gt;
+
+      &lt;p&gt;The focus of the first working group has been on a component focused scenario developed&amp;nbsp;based on the survey results on DERs and inverters. The resulting Functional Scenario 1 integrates key components, such as DER inverters and controllers with ICT, control and automation&amp;nbsp;architectures to enable new grid services with the development of interfaces between the active&amp;nbsp;components. The second working group has been focused on topics related to microgrids and&amp;nbsp;energy communities forming Functional Scenario 2 to support the local microgrid and energy&amp;nbsp;community development by enabling flexibility services locally with ICT and control including&amp;nbsp;exploitation of grid intelligence. While the third working group has been working on the survey&amp;nbsp;results on sector coupling and multi-energy systems with Functional Scenario 3 anticipating a&amp;nbsp;massive roll-out of power-to-X components in the near future by developing system level understanding of the impacts on the electrical domain. The fourth working group has been focused&amp;nbsp;on grid management and overall the perspectives of Distribution System Operators (DSOs)&amp;nbsp;and Transmission System Operators (TSOs) resulting in Functional Scenario 4 assuring frequency and voltage stability in low inertia systems through capabilities of Renewable Energy&amp;nbsp;Sources (RES), Distributed Generation (DG), controllable loads and storage systems as well&amp;nbsp;as ICT and control systems. The fifth working group has been based on the survey results&amp;nbsp;comprising of aggregation, flexibility, market and reserve topics and defined Functional Scenario 5 to focus on&amp;nbsp;communication functionality for aggregation, service matching, fail-over,&amp;nbsp;configuration, and interoperability addressing scale-related properties of aggregation and control solutions. Lastly, the sixth working group has been focused on digitalisation including wide&amp;nbsp;range of topics such as ICT infrastructure, communication, automation, control and monitoring.&amp;nbsp;Functional Scenario 6 explores the impact of ICT solutions on the physical (electrical power)&amp;nbsp;system covering new applications of data and data processing as well as new paths for exchanging data.&lt;/p&gt;
+
+      &lt;p&gt;The Functional Scenario templates used during the brainstorming workshop have been included in the Appendix B: Functional Scenario Templates.&lt;/p&gt;
+
+      &lt;p&gt;The work started in NA4.1 will continue in NA4.2 and NA4.4 with discussions on more detailed&amp;nbsp;definitions of the test cases which will initially provide the inputs for other project activities. The&amp;nbsp;discourse on the Functional Scenarios is also assumed to support ERIGrid 2.0 physical lab and&amp;nbsp;virtual access work and decision-making beyond ERIGrid 2.0.&lt;/p&gt;
+    </description>
+  </descriptions>
+  <fundingReferences>
+    <fundingReference>
+      <funderName>European Commission</funderName>
+      <funderIdentifier funderIdentifierType="Crossref Funder ID">10.13039/100010661</funderIdentifier>
+      <awardNumber awardURI="info:eu-repo/grantAgreement/EC/H2020/870620/">870620</awardNumber>
+      <awardTitle>European Research Infrastructure supporting Smart Grid and Smart Energy Systems Research, Technology Development, Validation and Roll Out – Second Edition</awardTitle>
+    </fundingReference>
+  </fundingReferences>
+</resource>

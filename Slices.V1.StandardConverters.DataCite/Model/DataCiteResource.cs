@@ -61,6 +61,9 @@ public partial class DataCiteResource
 
     [XmlArrayItem("fundingReference", IsNullable = false)]
     public DataCiteResourceFundingReference[] fundingReferences { get; set; }
+
+    [XmlArrayItem("relatedItem", IsNullable = false)]
+    public DataCiteResourceRelatedItem[] relatedItems { get; set; }
 }
 
 #nullable restore

@@ -7,13 +7,13 @@ namespace Slices.V1.StandardConverters.DataCite.Model;
 
 [Serializable]
 [XmlType(AnonymousType = true, Namespace = "http://datacite.org/schema/kernel-4")]
-public partial class DataCiteCreatorName
+public partial class DataCiteResourceRelatedItemTitle
 {
     [XmlAttribute]
-    public DataCiteNameType nameType { get; set; }
+    public DataCiteTitleType titleType { get; set; }
 
     [XmlIgnore]
-    public bool nameTypeSpecified { get; set; }
+    public bool titleTypeSpecified { get; set; }
 
     [XmlAttribute(Form = XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/XML/1998/namespace")]
     public string lang { get; set; }

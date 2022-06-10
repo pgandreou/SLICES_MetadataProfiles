@@ -17,14 +17,14 @@ public abstract class StandardXmlSerializerBase<TModel> : IStandardXmlSerializer
 
     public virtual TModel FromXml(TextReader reader)
     {
-        TModel? dublinCoreObject = (TModel?)xmlSerializer.Deserialize(reader);
+        TModel? deserialized = (TModel?)xmlSerializer.Deserialize(reader);
 
-        if (dublinCoreObject == null)
+        if (deserialized == null)
         {
             throw new Exception("xmlSerializer.Deserialize returned null - this should not happen");
         }
 
-        return dublinCoreObject;
+        return deserialized;
     }
 
     public virtual void ToXml(TModel record, TextWriter writer)

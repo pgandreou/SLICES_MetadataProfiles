@@ -8,11 +8,23 @@ public enum DataCiteResourceTypeGeneral
 {
     Audiovisual,
 
+    Book,
+
+    BookChapter,
+
     Collection,
+
+    ComputationalNotebook,
+
+    ConferencePaper,
+
+    ConferenceProceeding,
 
     DataPaper,
 
     Dataset,
+
+    Dissertation,
 
     Event,
 
@@ -20,15 +32,29 @@ public enum DataCiteResourceTypeGeneral
 
     InteractiveResource,
 
+    Journal,
+
+    JournalArticle,
+
     Model,
 
+    OutputManagementPlan,
+
+    PeerReview,
+
     PhysicalObject,
+
+    Preprint,
+
+    Report,
 
     Service,
 
     Software,
 
     Sound,
+
+    Standard,
 
     Text,
 

@@ -26,6 +26,8 @@ public enum DataCiteRelationType
 
     HasPart,
 
+    IsPublishedIn,
+
     IsReferencedBy,
 
     References,

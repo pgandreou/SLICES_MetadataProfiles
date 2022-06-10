@@ -3,8 +3,8 @@
 public struct SfdoRelationLink : IEquatable<SfdoRelationLink>
 {
     public SfdoIdentifier Identifier { get; set; }
-    public string RelationshipType { get; set; }
-    public string ResourceType { get; set; }
+    public string? RelationshipType { get; set; }
+    public string? ResourceType { get; set; }
 
     public override bool Equals(object? obj)
     {
