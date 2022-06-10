@@ -39,7 +39,57 @@ public enum SlicesFieldCategory
     /// </summary>
     RightsAndTerms,
 
-    // TODO rest
+    /// <summary>
+    /// Classification of the S-FDO in specific scientific domains
+    /// </summary>
+    ClassificationInformation,
+
+    /// <summary>
+    /// Specific publication information such as the date of submission and acceptance
+    /// </summary>
+    PublicationInformation,
+
+    /// <summary>
+    /// Information related to the financial aspects of access for the S-FDO
+    /// </summary>
+    FinancialInformation,
+
+    /// <summary>
+    /// Support information, such as helpdesk URLs, manuals, terms of use etc.
+    /// </summary>
+    SupportInformation,
+
+    /// <summary>
+    /// Information related to the funding instruments (e.g., body, project) of the S-FDO
+    /// </summary>
+    AttributionInformation,
+
+    /// <summary>
+    /// Fields utilized specifically with services and software and describe
+    /// important information such as standards, opensource technologies and certifications
+    /// </summary>
+    MaturityInformation,
+
+    /// <summary>
+    /// Location and Time descriptors. Locations use Geographic coordinates when applicable
+    /// </summary>
+    SpatioTemporalInformation,
+
+    /// <summary>
+    ///  Specific geographic coordinate attributes i.e., latitude, longitude and altitude
+    /// </summary>
+    GeographicInformation,
+
+    /// <summary>
+    /// Specific dataset descriptors, such as format, size
+    /// </summary>
+    DatasetInformation,
+
+    /// <summary>
+    /// Software related attributes, such as repository, documentation and
+    /// programming language used to develop the software
+    /// </summary>
+    Software,
 };
 
 [AttributeUsage(AttributeTargets.Property)]
@@ -70,6 +120,16 @@ public static class SlicesCodeExtensions
         SlicesFieldCategory.LanguageInformation => "LA",
         SlicesFieldCategory.UserInformation => "US",
         SlicesFieldCategory.RightsAndTerms => "RT",
+        SlicesFieldCategory.ClassificationInformation => "CL",
+        SlicesFieldCategory.PublicationInformation => "PB",
+        SlicesFieldCategory.FinancialInformation => "FN",
+        SlicesFieldCategory.SupportInformation => "SU",
+        SlicesFieldCategory.AttributionInformation => "AT",
+        SlicesFieldCategory.MaturityInformation => "MA", // TODO: same as ManagementInformation
+        SlicesFieldCategory.SpatioTemporalInformation => "ST",
+        SlicesFieldCategory.GeographicInformation => "GE",
+        SlicesFieldCategory.DatasetInformation => "DA",
+        SlicesFieldCategory.Software => "SW",
 
         _ => throw new ArgumentOutOfRangeException(nameof(category), category, "Unhanded field category"),
     };
