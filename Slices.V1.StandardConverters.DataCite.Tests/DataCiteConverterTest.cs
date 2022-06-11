@@ -94,8 +94,11 @@ public class DataCiteConverterTest
         sfdo.RightsURI = new Uri("https://creativecommons.org/publicdomain/zero/1.0/");
 
         DataCiteConverter converter = new(new DataCiteSerializer());
-        DataCiteResource dataCiteResource = converter.ToExtrenal(sfdo);
+        StringWriter writer = new();
 
-        Assert.NotNull(dataCiteResource);
+        converter.ToSerializedExtrenal(sfdo, null, writer);
+        string serialized = writer.ToString();
+
+        Assert.NotNull(serialized);
     }
 }

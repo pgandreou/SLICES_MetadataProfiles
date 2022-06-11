@@ -331,8 +331,15 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         return dataCiteResource;
     }
 
-    public void ToSerializedExtrenal(SfdoResource digitalObject, string? format, TextWriter serializedWriter)
+    public void ToSerializedExtrenal(SfdoResource sfdo, string? format, TextWriter serializedWriter)
     {
-        throw new NotImplementedException();
+        if (format == null) format = "xml";
+
+        if (format != "xml")
+        {
+            throw new ArgumentOutOfRangeException(nameof(format), "Only \"xml\" is supported");
+        }
+
+        _serializer.ToXml(ToExtrenal(sfdo), serializedWriter);
     }
 }
