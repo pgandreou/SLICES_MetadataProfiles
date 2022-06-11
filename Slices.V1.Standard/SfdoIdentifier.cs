@@ -5,6 +5,7 @@ public static class SfdoIdentifierTypes
     public static readonly string Doi = "DOI";
     public static readonly string Url = "URL";
     public static readonly string Orcid = "ORCID";
+    public static readonly string Arxiv = "arXiv";
 }
 
 public struct SfdoIdentifier : IEquatable<SfdoIdentifier>
