@@ -13,7 +13,7 @@ public class DublinCoreConverterTest
         DublinCoreSerializer serializer = new();
         SlicesDublinCoreConverter converter = new(serializer);
 
-        DublinCoreObject dublinCoreObject = serializer.FromXml(textReader);
+        DublinCoreResource dublinCoreObject = serializer.FromXml(textReader);
         SfdoResource slicesObject = converter.FromExtrenal(dublinCoreObject);
 
         Assert.NotNull(slicesObject);

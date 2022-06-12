@@ -3,7 +3,7 @@ using Slices.V1.StandardConverters.Common;
 
 namespace Slices.V1.StandardConverters.DublinCore;
 
-public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObject>
+public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreResource>
 {
     private readonly DublinCoreSerializer _serializer;
 
@@ -15,14 +15,14 @@ public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObje
 
     public string ExternalStandard => DublinCoreConstants.StandardId;
 
-    public SfdoResource FromExtrenal(DublinCoreObject externalModel)
+    public SfdoResource FromExtrenal(DublinCoreResource externalModel)
     {
         SfdoResource slicesObject = new();
 
-        slicesObject.Description = externalModel.description;
+        //slicesObject.Description = externalModel.description;
         //slicesObject.Creator = new(externalModel.creator);
-        slicesObject.Name = externalModel.title;
-        slicesObject.Rights = externalModel.rights;
+        //slicesObject.Name = externalModel.title;
+        //slicesObject.Rights = externalModel.rights;
 
         // TODO
 
@@ -41,7 +41,7 @@ public class SlicesDublinCoreConverter : ISlicesStandardConverter<DublinCoreObje
         return FromExtrenal(_serializer.FromXml(serializedReader));
     }
 
-    public DublinCoreObject ToExtrenal(SfdoResource digitalObject)
+    public DublinCoreResource ToExtrenal(SfdoResource digitalObject)
     {
         throw new NotImplementedException();
     }
