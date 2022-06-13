@@ -10,12 +10,19 @@ public static class SfdoIdentifierTypes
 
 public struct SfdoIdentifier : IEquatable<SfdoIdentifier>
 {
-    // TODO: restrict or free form?
-    public string Type;
-    public string Value;
+    /// <summary>
+    /// Null means the type isn't known and should be treated as "other"
+    /// </summary>
+    public string? Type { get; set; }
+    public string Value { get; set; }
 
     public override string ToString()
     {
+        if (Type == null)
+        {
+            return Value;
+        }
+
         return $"{Type}:{Value}";
     }
 
