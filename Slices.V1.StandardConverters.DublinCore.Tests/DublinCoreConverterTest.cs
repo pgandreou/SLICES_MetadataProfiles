@@ -29,4 +29,20 @@ public class DublinCoreConverterTest
 
         Assert.NotNull(slicesObject);
     }
+
+    [Fact]
+    public void FromToExtrenalSerialized1()
+    {
+        using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\immunarch-0-6-9.xml");
+        DublinCoreConverter converter = new(new DublinCoreSerializer());
+
+        SfdoResource sfdo = converter.FromSerializedExtrenal(textReader, null);
+
+        StringWriter writer = new();
+        converter.ToSerializedExtrenal(sfdo, null, writer);
+
+        string serialized = writer.ToString();
+
+        Assert.NotNull(serialized);
+    }
 }

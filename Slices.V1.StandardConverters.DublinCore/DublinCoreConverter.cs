@@ -157,13 +157,57 @@ public class DublinCoreConverter : ISlicesStandardConverter<DublinCoreResource>
         return FromExtrenal(_serializer.FromXml(serializedReader));
     }
 
-    public DublinCoreResource ToExtrenal(SfdoResource digitalObject)
+    public DublinCoreResource ToExtrenal(SfdoResource sfdo)
     {
-        throw new NotImplementedException();
+        DublinCoreResource dcResource = new();
+
+        dcResource.Titles = new[] { new DublinCoreElement(sfdo.Name) };
+        
+        dcResource.Creators = sfdo.Creators
+            .Select(c => new DublinCoreElement(c.Name))
+            .ToArray();
+
+        dcResource.Subjects = sfdo.Subjects
+            .Select(s => new DublinCoreElement(s))
+            .ToArray();
+
+        if (sfdo.Description != null)
+        {
+            dcResource.Descriptions = new[] { new DublinCoreElement(sfdo.Description) };
+        }
+
+        dcResource.Contributors = sfdo.Contributors
+            .Select(c => new DublinCoreElement(c.Name))
+            .ToArray();
+
+        dcResource.Identifiers = sfdo.AlternateIdentifiers
+            .Prepend(sfdo.Identifier)
+            .Select(id => new DublinCoreElement(id.ToString()))
+            .ToArray();
+
+        dcResource.Languages = sfdo.PrimaryLanguage
+            .Concat(sfdo.OtherLanguages)
+            .Select(l => new DublinCoreElement(l.Code))
+            .ToArray();
+
+        dcResource.Relations = sfdo.RelatedObjects
+            .Select(ro => new DublinCoreElement(ro.Identifier.ToString()))
+            .ToArray();
+
+        dcResource.Rights = new[] { new DublinCoreElement(sfdo.Rights) };
+
+        return dcResource;
     }
 
-    public void ToSerializedExtrenal(SfdoResource digitalObject, string? format, TextWriter serializedWriter)
+    public void ToSerializedExtrenal(SfdoResource sfdo, string? format, TextWriter serializedWriter)
     {
-        throw new NotImplementedException();
+        if (format == null) format = "xml";
+
+        if (format != "xml")
+        {
+            throw new ArgumentOutOfRangeException(nameof(format), "Only \"xml\" is supported");
+        }
+
+        _serializer.ToXml(ToExtrenal(sfdo), serializedWriter);
     }
 }
