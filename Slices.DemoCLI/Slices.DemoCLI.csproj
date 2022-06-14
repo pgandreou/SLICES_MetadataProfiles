@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Slices.V1.StandardConverters.Common\Slices.V1.StandardConverters.Common.csproj" />
+    <ProjectReference Include="..\Slices.V1.StandardConverters.DataCite\Slices.V1.StandardConverters.DataCite.csproj" />
+    <ProjectReference Include="..\Slices.V1.StandardConverters.DublinCore\Slices.V1.StandardConverters.DublinCore.csproj" />
+    <ProjectReference Include="..\Slices.V1.Standard\Slices.V1.Standard.csproj" />
+  </ItemGroup>
+
+</Project>

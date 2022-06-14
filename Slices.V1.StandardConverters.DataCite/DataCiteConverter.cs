@@ -15,7 +15,7 @@ public class DataCiteConverter : ISlicesStandardConverter<DataCiteResource>
         _serializer = serializer;
     }
 
-    public string ExternalStandard => throw new NotImplementedException();
+    public string ExternalStandard => DataCiteConstants.StandardId;
 
     public SfdoResource FromExtrenal(DataCiteResource externalModel)
     {

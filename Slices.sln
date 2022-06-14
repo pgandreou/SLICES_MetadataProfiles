@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.DataCite", "Slices.V1.StandardConverters.DataCite\Slices.V1.StandardConverters.DataCite.csproj", "{DFE00034-527C-4570-A723-C5F4A30463C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.StandardConverters.DataCite.Tests", "Slices.V1.StandardConverters.DataCite.Tests\Slices.V1.StandardConverters.DataCite.Tests.csproj", "{48AFBA9A-AB68-4871-9C69-D6675DE1E299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.DataCite.Tests", "Slices.V1.StandardConverters.DataCite.Tests\Slices.V1.StandardConverters.DataCite.Tests.csproj", "{48AFBA9A-AB68-4871-9C69-D6675DE1E299}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.DemoCLI", "Slices.DemoCLI\Slices.DemoCLI.csproj", "{1F289ED1-DD12-4135-9156-9F2E4A10213E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{48AFBA9A-AB68-4871-9C69-D6675DE1E299}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48AFBA9A-AB68-4871-9C69-D6675DE1E299}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48AFBA9A-AB68-4871-9C69-D6675DE1E299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F289ED1-DD12-4135-9156-9F2E4A10213E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F289ED1-DD12-4135-9156-9F2E4A10213E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F289ED1-DD12-4135-9156-9F2E4A10213E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F289ED1-DD12-4135-9156-9F2E4A10213E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
