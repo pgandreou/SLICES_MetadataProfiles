@@ -98,6 +98,25 @@ public sealed class SfdoResource
     public DateTime DateTimeCreated { get; set; }
     
     /// <summary>
+    /// Webpage with information about the Resource usually hosted and maintained by the Provider.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PrimaryInformation, 12)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<Uri> WebPage { get; set; }
+    
+    /// <summary>
+    /// Link to the logo/visual identity of the Resource. The logo will be visible at the Portal.
+    /// If there is no specific logo for the Resource the logo of the Provider may be used.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PrimaryInformation, 13)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<Uri> Logo { get; set; }
+    
+    /// <summary>
     /// The name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces
     /// the resource. This property will be used to formulate the citation, so consider the prominence of the role. 
     /// </summary>
@@ -181,7 +200,7 @@ public sealed class SfdoResource
     [SlicesCode(SlicesFieldCategory.ClassificationInformation, 1)]
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
-    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication, SfdoResourceType.Provider)]
     public SfdoOptional<List<string>> ScientificDomains { get; set; }
 
     /// <summary>
@@ -190,7 +209,7 @@ public sealed class SfdoResource
     [SlicesCode(SlicesFieldCategory.ClassificationInformation, 1)]
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
-    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication, SfdoResourceType.Provider)]
     public SfdoOptional<List<string>> ScientificSubdomains { get; set; }
 
     #endregion
@@ -213,7 +232,7 @@ public sealed class SfdoResource
     [SlicesParticipation(SlicesParticipationType.Optional)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
     [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
-    public SfdoOptional<List<DateOnly>> DatesModified { get; set; } = new();
+    public SfdoOptional<List<DateOnly>> DatesModified { get; set; }
 
     /// <summary>
     /// The date(s) the object was issued.
@@ -222,7 +241,7 @@ public sealed class SfdoResource
     [SlicesParticipation(SlicesParticipationType.Optional)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
     [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
-    public SfdoOptional<List<DateOnly>> DatesIssued { get; set; } = new();
+    public SfdoOptional<List<DateOnly>> DatesIssued { get; set; }
 
     /// <summary>
     /// The date(s) the object was accepted.
@@ -231,7 +250,7 @@ public sealed class SfdoResource
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
     [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
-    public SfdoOptional<List<DateOnly>> DatesAccepted { get; set; } = new();
+    public SfdoOptional<List<DateOnly>> DatesAccepted { get; set; }
 
     /// <summary>
     /// The date(s) the object was copyrighted.
@@ -240,8 +259,27 @@ public sealed class SfdoResource
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
     [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
-    public SfdoOptional<List<DateOnly>> DatesCopyrighted { get; set; } = new();
+    public SfdoOptional<List<DateOnly>> DatesCopyrighted { get; set; }
 
+    #endregion
+
+    #region Support
+
+    /// <summary>
+    /// The email to ask more information from the Provider about this Resource.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.SupportInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> HelpdeskEmail { get; set; }
+
+    [SlicesCode(SlicesFieldCategory.SupportInformation, 2)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> SecurityContactEmail { get; set; }
+    
     #endregion
 
     #region Links
