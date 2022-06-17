@@ -65,7 +65,13 @@ public sealed class SfdoResource
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
     public string? Description { get; set; }
 
-    // TODO: ResourceType
+    /// <summary>
+    /// The type(s) of the digital object
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PrimaryInformation, 8)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    public List<SfdoResourceType> ResourceTypes { get; set; } = new();
 
     /// <summary>
     /// The subject represented using key phrases, or classification codes. 
@@ -90,6 +96,26 @@ public sealed class SfdoResource
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
     public DateTime DateTimeCreated { get; set; }
+    
+    /// <summary>
+    /// The name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces
+    /// the resource. This property will be used to formulate the citation, so consider the prominence of the role. 
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PrimaryInformation, 14)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    public SfdoOptional<string> Publisher { get; set; }
+
+    /// <summary>
+    /// The year when the digital object was or will be made publicly available. In the case of resources such as
+    /// software or dynamic data where there may be multiple releases in one year, include the dateType vocabulary.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PrimaryInformation, 15)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    public SfdoOptional<int> PublicationYear { get; set; }
 
     #endregion Primary
 
@@ -146,6 +172,77 @@ public sealed class SfdoResource
     public List<SfdoAccessMode> AccessModes { get; set; } = new() { SfdoAccessMode.Free };
 
     #endregion Access
+    
+    #region Classification
+
+    /// <summary>
+    /// The branch of science, scientific discipline that is related to the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.ClassificationInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    public SfdoOptional<List<string>> ScientificDomains { get; set; }
+
+    /// <summary>
+    /// The subbranch of science, scientific subdicipline that is related to the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.ClassificationInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    public SfdoOptional<List<string>> ScientificSubdomains { get; set; }
+
+    #endregion
+    
+    #region Publication
+
+    /// <summary>
+    /// The date the object was submitted.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PublicationInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    public SfdoOptional<DateOnly> DateSubmitted { get; set; }
+
+    /// <summary>
+    /// The date(s) the object was modified.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PublicationInformation, 2)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    public SfdoOptional<List<DateOnly>> DatesModified { get; set; } = new();
+
+    /// <summary>
+    /// The date(s) the object was issued.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PublicationInformation, 3)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    public SfdoOptional<List<DateOnly>> DatesIssued { get; set; } = new();
+
+    /// <summary>
+    /// The date(s) the object was accepted.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PublicationInformation, 4)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    public SfdoOptional<List<DateOnly>> DatesAccepted { get; set; } = new();
+
+    /// <summary>
+    /// The date(s) the object was copyrighted.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.PublicationInformation, 5)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
+    public SfdoOptional<List<DateOnly>> DatesCopyrighted { get; set; } = new();
+
+    #endregion
 
     #region Links
 
