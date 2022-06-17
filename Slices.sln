@@ -3,27 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Standard", "Slices.V1.Standard\Slices.V1.Standard.csproj", "{4C2F3B0F-7355-4F82-B733-A7390FFBA31F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Model.Tests", "Slices.V1.Model.Tests\Slices.V1.Model.Tests.csproj", "{92801E55-8726-4C6B-9C0E-D34E73509E36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardAnnotations", "Slices.V1.StandardAnnotations\Slices.V1.StandardAnnotations.csproj", "{D14DF4B4-2BEA-4FDB-A046-3A5F07A42C09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.Common", "Slices.V1.Converters.Common\Slices.V1.Converters.Common.csproj", "{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardAnnotations.Tests", "Slices.V1.StandardAnnotations.Tests\Slices.V1.StandardAnnotations.Tests.csproj", "{92801E55-8726-4C6B-9C0E-D34E73509E36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.DublinCore", "Slices.V1.Converters.DublinCore\Slices.V1.Converters.DublinCore.csproj", "{43607D71-150E-4A55-A6C5-39768664038A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.Common", "Slices.V1.StandardConverters.Common\Slices.V1.StandardConverters.Common.csproj", "{E6AB18B0-9F5A-4AB9-A0A9-08C00D7A1312}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.DublinCore", "Slices.V1.StandardConverters.DublinCore\Slices.V1.StandardConverters.DublinCore.csproj", "{43607D71-150E-4A55-A6C5-39768664038A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.DublinCore.Tests", "Slices.V1.StandardConverters.DublinCore.Tests\Slices.V1.StandardConverters.DublinCore.Tests.csproj", "{6D22ECF0-8D74-4DA4-AD15-FD915C88BDAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.DublinCore.Tests", "Slices.V1.Converters.DublinCore.Tests\Slices.V1.Converters.DublinCore.Tests.csproj", "{6D22ECF0-8D74-4DA4-AD15-FD915C88BDAE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.TestsSupport", "Slices.TestsSupport\Slices.TestsSupport.csproj", "{AF692E0F-D800-4863-A679-441BF6F6AD6F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.Common.Tests", "Slices.V1.StandardConverters.Common.Tests\Slices.V1.StandardConverters.Common.Tests.csproj", "{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.Common.Tests", "Slices.V1.Converters.Common.Tests\Slices.V1.Converters.Common.Tests.csproj", "{B14D55E5-FE09-4CDA-85AE-7626B37CBA34}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.DataCite", "Slices.V1.StandardConverters.DataCite\Slices.V1.StandardConverters.DataCite.csproj", "{DFE00034-527C-4570-A723-C5F4A30463C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.DataCite", "Slices.V1.Converters.DataCite\Slices.V1.Converters.DataCite.csproj", "{DFE00034-527C-4570-A723-C5F4A30463C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.StandardConverters.DataCite.Tests", "Slices.V1.StandardConverters.DataCite.Tests\Slices.V1.StandardConverters.DataCite.Tests.csproj", "{48AFBA9A-AB68-4871-9C69-D6675DE1E299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.DataCite.Tests", "Slices.V1.Converters.DataCite.Tests\Slices.V1.Converters.DataCite.Tests.csproj", "{48AFBA9A-AB68-4871-9C69-D6675DE1E299}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.DemoCLI", "Slices.DemoCLI\Slices.DemoCLI.csproj", "{1F289ED1-DD12-4135-9156-9F2E4A10213E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.Model", "Slices.V1.Model\Slices.V1.Model.csproj", "{222BD08D-D4C8-4359-BC2A-72CFAEC7C8A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C2F3B0F-7355-4F82-B733-A7390FFBA31F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C2F3B0F-7355-4F82-B733-A7390FFBA31F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C2F3B0F-7355-4F82-B733-A7390FFBA31F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C2F3B0F-7355-4F82-B733-A7390FFBA31F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D14DF4B4-2BEA-4FDB-A046-3A5F07A42C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D14DF4B4-2BEA-4FDB-A046-3A5F07A42C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D14DF4B4-2BEA-4FDB-A046-3A5F07A42C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D14DF4B4-2BEA-4FDB-A046-3A5F07A42C09}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92801E55-8726-4C6B-9C0E-D34E73509E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92801E55-8726-4C6B-9C0E-D34E73509E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92801E55-8726-4C6B-9C0E-D34E73509E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,6 +65,10 @@ Global
 		{1F289ED1-DD12-4135-9156-9F2E4A10213E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F289ED1-DD12-4135-9156-9F2E4A10213E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F289ED1-DD12-4135-9156-9F2E4A10213E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{222BD08D-D4C8-4359-BC2A-72CFAEC7C8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222BD08D-D4C8-4359-BC2A-72CFAEC7C8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222BD08D-D4C8-4359-BC2A-72CFAEC7C8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222BD08D-D4C8-4359-BC2A-72CFAEC7C8A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

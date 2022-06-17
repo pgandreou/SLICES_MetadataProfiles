@@ -1,8 +1,8 @@
 ﻿using CommandLine;
-using Slices.V1.Standard;
-using Slices.V1.StandardConverters.Common;
-using Slices.V1.StandardConverters.DataCite;
-using Slices.V1.StandardConverters.DublinCore;
+using Slices.V1.Model;
+using Slices.V1.Converters.Common;
+using Slices.V1.Converters.DataCite;
+using Slices.V1.Converters.DublinCore;
 
 bool success = false;
 
@@ -40,8 +40,8 @@ Parser.Default.ParseArguments<Options>(args)
             Share = FileShare.Read,
         }));
 
-        SfdoResource sfdo = converterCollection.CovertersByStandard[o.SourceType].FromSerializedExtrenal(reader, null);
-        converterCollection.CovertersByStandard[o.DestinationType].ToSerializedExtrenal(sfdo, null, writer);
+        SfdoResource sfdo = converterCollection.CovertersByStandard[o.SourceType].FromSerializedExternal(reader, null);
+        converterCollection.CovertersByStandard[o.DestinationType].ToSerializedExternal(sfdo, null, writer);
 
         Console.WriteLine(writer.ToString());
 
@@ -53,11 +53,11 @@ return success ? 0 : 1;
 public class Options
 {
     [Option(Required = true)]
-    public string SourcePath { get; set; }
+    public string SourcePath { get; set; } = null!;
 
     [Option(Required = true)]
-    public string SourceType { get; set; }
+    public string SourceType { get; set; } = null!;
 
     [Option(Required = true)]
-    public string DestinationType { get; set; }
+    public string DestinationType { get; set; } = null!;
 }

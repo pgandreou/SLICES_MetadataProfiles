@@ -12,10 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Slices.V1.StandardConverters.Common\Slices.V1.StandardConverters.Common.csproj" />
-    <ProjectReference Include="..\Slices.V1.StandardConverters.DataCite\Slices.V1.StandardConverters.DataCite.csproj" />
-    <ProjectReference Include="..\Slices.V1.StandardConverters.DublinCore\Slices.V1.StandardConverters.DublinCore.csproj" />
-    <ProjectReference Include="..\Slices.V1.Standard\Slices.V1.Standard.csproj" />
+    <ProjectReference Include="..\Slices.V1.Converters.Common\Slices.V1.Converters.Common.csproj" />
+    <ProjectReference Include="..\Slices.V1.Converters.DataCite\Slices.V1.Converters.DataCite.csproj" />
+    <ProjectReference Include="..\Slices.V1.Converters.DublinCore\Slices.V1.Converters.DublinCore.csproj" />
   </ItemGroup>
 
 </Project>
