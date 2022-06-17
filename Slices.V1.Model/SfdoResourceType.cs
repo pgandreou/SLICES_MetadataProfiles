@@ -8,7 +8,7 @@ public enum SfdoResourceType
     Equipment,
     User,
     Publication,
-    Dataset,
+    Data,
     Services,
     Software,
 }

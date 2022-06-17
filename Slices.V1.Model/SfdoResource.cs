@@ -203,7 +203,7 @@ public sealed class SfdoResource
     [SlicesAssociatedResourceTypes(
         SfdoResourceType.Publication,
         SfdoResourceType.Provider,
-        SfdoResourceType.Dataset
+        SfdoResourceType.Data
     )]
     public SfdoOptional<List<string>> ScientificDomains { get; set; }
 
@@ -216,7 +216,7 @@ public sealed class SfdoResource
     [SlicesAssociatedResourceTypes(
         SfdoResourceType.Publication,
         SfdoResourceType.Provider,
-        SfdoResourceType.Dataset
+        SfdoResourceType.Data
     )]
     public SfdoOptional<List<string>> ScientificSubdomains { get; set; }
 
@@ -279,7 +279,7 @@ public sealed class SfdoResource
     [SlicesCode(SlicesFieldCategory.FinancialInformation, 1)]
     [SlicesParticipation(SlicesParticipationType.Optional)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
-    [SlicesAssociatedResourceTypes(SfdoResourceType.Dataset)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
     public SfdoOptional<Uri> PaymentModel { get; set; }
     
     /// <summary>
@@ -288,11 +288,122 @@ public sealed class SfdoResource
     [SlicesCode(SlicesFieldCategory.FinancialInformation, 2)]
     [SlicesParticipation(SlicesParticipationType.Optional)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
-    [SlicesAssociatedResourceTypes(SfdoResourceType.Dataset)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
     public SfdoOptional<Uri> Pricing { get; set; }
 
     #endregion
 
+    #region SpatioTemporal
+
+    /// <summary>
+    /// The address of the resource
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.SpatioTemporalInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<string> Address { get; set; }
+
+    /// <summary>
+    /// Object's start date (e.g., start date of data recording)
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.SpatioTemporalInformation, 2)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<DateTime> DateTimeStart { get; set; }
+
+    /// <summary>
+    /// Object's end date (e.g., end date of data recording)
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.SpatioTemporalInformation, 3)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<DateTime> DateTimeEnd { get; set; }
+
+    // TODO: type
+    /// <summary>
+    /// Combination of Latitude, Longitude and Altitude Coordinate(s)
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.SpatioTemporalInformation, 4)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<List<string>> Locations { get; set; }
+
+    #endregion
+
+    #region Dataset
+
+    /// <summary>
+    /// The size of the digital object in bytes.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.DatasetInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<int> Size { get; set; }
+
+    /// <summary>
+    /// Duration in ISO 8601 format.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.DatasetInformation, 2)]
+    [SlicesParticipation(SlicesParticipationType.RequiredIfExists)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<string> Duration { get; set; }
+
+    /// <summary>
+    /// The format of the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.DatasetInformation, 2)] // TODO
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<List<string>> Formats { get; set; }
+
+    /// <summary>
+    /// The material or physical carrier of the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.DatasetInformation, 3)]
+    [SlicesParticipation(SlicesParticipationType.RequiredIfExists)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<List<string>> Mediums { get; set; }
+    
+    /// <summary>
+    /// The compression format of the distribution in which the digital object is contained in
+    /// a compressed form, e.g. to reduce the size of the downloadable file. (source DCAT)
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.DatasetInformation, 4)]
+    [SlicesParticipation(SlicesParticipationType.RequiredIfExists)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<List<string>> CompressionFormats { get; set; }
+    
+    /// <summary>
+    /// Metadata about file (name, title, description, format, mimetype, type of file, persistentID,
+    /// download URL, format, size, compression format, checksum, checksum algorithm, bitrate,
+    /// duration encodedinf format, upload date, distribution…)
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.DatasetInformation, 5)]
+    [SlicesParticipation(SlicesParticipationType.Required)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<string> FileInfo { get; set; }
+    
+    /// <summary>
+    /// Information about data schema or standard of the digital object.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.DatasetInformation, 6)]
+    [SlicesParticipation(SlicesParticipationType.RequiredIfExists)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
+    public SfdoOptional<string> DataStandard { get; set; }
+    
+    #endregion
+    
     #region Support
 
     /// <summary>
@@ -304,6 +415,9 @@ public sealed class SfdoResource
     [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
     public SfdoOptional<string> HelpdeskEmail { get; set; }
 
+    /// <summary>
+    /// The email to contact the Provider for critical secutiry issues about this Resource.
+    /// </summary>
     [SlicesCode(SlicesFieldCategory.SupportInformation, 2)]
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PR)]
@@ -481,12 +595,4 @@ public sealed class SfdoResource
     public string? Provenance { get; set; }
 
     #endregion RightsAndTerms
-
-    #region TypeSpecific
-
-    //public Software? Software { get; set; }
-
-    // TODO
-
-    #endregion TypeSpecific
 }
