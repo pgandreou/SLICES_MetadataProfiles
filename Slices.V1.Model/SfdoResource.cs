@@ -200,7 +200,11 @@ public sealed class SfdoResource
     [SlicesCode(SlicesFieldCategory.ClassificationInformation, 1)]
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
-    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication, SfdoResourceType.Provider)]
+    [SlicesAssociatedResourceTypes(
+        SfdoResourceType.Publication,
+        SfdoResourceType.Provider,
+        SfdoResourceType.Dataset
+    )]
     public SfdoOptional<List<string>> ScientificDomains { get; set; }
 
     /// <summary>
@@ -209,7 +213,11 @@ public sealed class SfdoResource
     [SlicesCode(SlicesFieldCategory.ClassificationInformation, 1)]
     [SlicesParticipation(SlicesParticipationType.Required)]
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
-    [SlicesAssociatedResourceTypes(SfdoResourceType.Publication, SfdoResourceType.Provider)]
+    [SlicesAssociatedResourceTypes(
+        SfdoResourceType.Publication,
+        SfdoResourceType.Provider,
+        SfdoResourceType.Dataset
+    )]
     public SfdoOptional<List<string>> ScientificSubdomains { get; set; }
 
     #endregion
@@ -260,6 +268,28 @@ public sealed class SfdoResource
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
     [SlicesAssociatedResourceTypes(SfdoResourceType.Publication)]
     public SfdoOptional<List<DateOnly>> DatesCopyrighted { get; set; }
+
+    #endregion
+
+    #region Financial
+
+    /// <summary>
+    /// Webpage with the supported payment models and restrictions that apply to each of them
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.FinancialInformation, 1)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Dataset)]
+    public SfdoOptional<Uri> PaymentModel { get; set; }
+    
+    /// <summary>
+    /// Webpage with the information on the price scheme for this Object in case the customer is charged for.
+    /// </summary>
+    [SlicesCode(SlicesFieldCategory.FinancialInformation, 2)]
+    [SlicesParticipation(SlicesParticipationType.Optional)]
+    [SlicesAccessModifer(SlicesAccessModiferType.PU)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Dataset)]
+    public SfdoOptional<Uri> Pricing { get; set; }
 
     #endregion
 
