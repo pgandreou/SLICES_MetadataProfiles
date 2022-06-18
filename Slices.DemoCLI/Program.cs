@@ -17,7 +17,7 @@ Parser.Default.ParseArguments<Options>(args)
         IStandardConverterCollection converterCollection = new StandardConverterCollection(new ISlicesStandardConverter[]
         {
             new DataCiteConverter(new DataCiteSerializer()),
-            new DublinCoreConverter(new DublinCoreSerializer()),
+            new DublinCoreConverter(new DublinCoreImporter(), new DublinCoreExporter(), new DublinCoreSerializer()),
         });
 
         if (!converterCollection.CovertersByStandard.ContainsKey(o.SourceType))
