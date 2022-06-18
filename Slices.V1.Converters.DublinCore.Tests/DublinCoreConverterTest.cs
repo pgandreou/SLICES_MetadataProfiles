@@ -67,4 +67,22 @@ public class DublinCoreConverterTest
 
         Assert.NotNull(serialized);
     }
+    
+    [Fact]
+    public void FromToExternalSerialized2()
+    {
+        using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\d-na-4-1.xml");
+        DublinCoreConverter converter = new(new DublinCoreSerializer());
+
+        SfdoResource sfdo = converter.FromSerializedExternal(textReader, null);
+
+        StringWriter writer = new();
+        converter.ToSerializedExternal(sfdo, null, writer);
+
+        string serialized = writer.ToString();
+
+        Assert.NotNull(serialized);
+    }
+    
+    
 }

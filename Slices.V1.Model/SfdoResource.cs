@@ -65,6 +65,7 @@ public sealed class SfdoResource
     [SlicesAccessModifer(SlicesAccessModiferType.PU)]
     public string? Description { get; set; }
 
+    // TODO: this should be a set
     /// <summary>
     /// The type(s) of the digital object
     /// </summary>
