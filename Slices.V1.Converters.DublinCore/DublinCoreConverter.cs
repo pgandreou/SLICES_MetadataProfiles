@@ -1,5 +1,6 @@
 ﻿using Slices.V1.Converters.Common;
 using System.Globalization;
+using Slices.Common;
 using Slices.V1.Model;
 
 namespace Slices.V1.Converters.DublinCore;
@@ -115,10 +116,46 @@ public class DublinCoreConverter : ISlicesStandardConverter<DublinCoreResource>
             sfdo.ResourceTypes.Add(SfdoResourceType.Data);
         }
 
-        if (sfdo.ResourceTypes.Contains(SfdoResourceType.Data))
+        if (externalModel.Types.Any(t => t.Value.StartsWith("publication", StringComparison.InvariantCultureIgnoreCase)))
+        {
+            sfdo.ResourceTypes.Add(SfdoResourceType.Publication);
+        }
+
+        if (sfdo.ResourceTypes.Contains(SfdoResourceType.Publication))
+        {
+            sfdo.Publisher = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+
+            if (externalModel.Dates.Length == 1)
+            {
+                sfdo.PublicationYear = DateOnly.TryParse(externalModel.Dates[0].Value, out DateOnly date)
+                    ? SfdoOptional.WithValue(date.Year)
+                    : SfdoOptional.WithAbsent("Failed to parse date");
+            }
+            else
+            {
+                sfdo.PublicationYear = SfdoOptional.WithAbsent(
+                    "Failed to import from Dublin Core - multiple dates were specified"
+                );
+            }
+        }
+
+        if (sfdo.ResourceTypes.ContainsAny(SfdoResourceType.Data, SfdoResourceType.Publication))
         {
             sfdo.ScientificDomains = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
             sfdo.ScientificSubdomains = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        }
+
+        if (sfdo.ResourceTypes.Contains(SfdoResourceType.Publication))
+        {
+            sfdo.DateSubmitted = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.DatesModified = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.DatesIssued = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.DatesAccepted = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.DatesCopyrighted = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        }
+
+        if (sfdo.ResourceTypes.Contains(SfdoResourceType.Data))
+        {
             sfdo.PaymentModel = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
             sfdo.Pricing = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
             sfdo.Address = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);

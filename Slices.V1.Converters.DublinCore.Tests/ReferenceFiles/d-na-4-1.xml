@@ -1,0 +1,80 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+    <dc:creator>Raussi, Petra</dc:creator>
+    <dc:creator>Mäki, Kari</dc:creator>
+    <dc:creator>Evens, Coretin</dc:creator>
+    <dc:creator>Grönroos, Eveliina</dc:creator>
+    <dc:creator>Pröstl Andrén, Filip</dc:creator>
+    <dc:creator>Widl, Edmund</dc:creator>
+    <dc:creator>Calin, Mihai</dc:creator>
+    <dc:creator>Strasser, Thomas</dc:creator>
+    <dc:creator>Rikos, Evangelos</dc:creator>
+    <dc:creator>Heussen, Kai</dc:creator>
+    <dc:creator>Gehrke, Oliver</dc:creator>
+    <dc:creator>Jensen, Tue V.</dc:creator>
+    <dc:creator>Nguyen, Ha T.</dc:creator>
+    <dc:creator>van der Meer, Arjen</dc:creator>
+    <dc:creator>Subramaniam Rajkumar, Vetrivel</dc:creator>
+    <dc:creator>Khavari, Ata</dc:creator>
+    <dc:creator>Anastasakis, Konstantinos</dc:creator>
+    <dc:creator>Kontou, Alkistis</dc:creator>
+    <dc:creator>Orue, Inaki</dc:creator>
+    <dc:creator>Taxt, Henning</dc:creator>
+    <dc:creator>D'Acro, Salvatore</dc:creator>
+    <dc:creator>Rodríguez Seco, J. Emilio</dc:creator>
+    <dc:creator>Merino, Julia</dc:creator>
+    <dc:creator>Felipe Cortes, Andrés</dc:creator>
+    <dc:creator>Efthymiou, Venizelos</dc:creator>
+    <dc:creator>Venizelou, Venizelos</dc:creator>
+    <dc:creator>Kynigos, Marios</dc:creator>
+    <dc:creator>Theocharides, Spyros</dc:creator>
+    <dc:date>2020-08-19</dc:date>
+    <dc:description>This deliverable describes the work conducted in ERIGrid 2.0 task NA4.1 ’Definition of Functional Scenarios’. The work has been conducted via a survey and a brainstorming workshop. The results are six Functional Scenarios:
+
+
+        Ancillary services provided by Distributed Energy Resources (DERs) and active grid assets,
+        Microgrids &amp; energy communities,
+        Sector coupling,
+        Frequency and voltage stability in inverter dominated power systems,
+        Aggregation and flexibility management, and
+        Digitalisation,
+
+
+        which describe the overarching topics within ERIGrid 2.0. The Functional Scenarios will be used as an input in further ERIGrid 2.0 work.
+
+        Smart grid and smart energy systems solutions have become complex and multidisciplinary. With the further integration of Information and Communication Technology (ICT) and other energy systems new testing scenarios, profiles, and processes must be defined. In order to achieve this, big trends affecting research, testing, and validation processes have been reviewed, with a special focus on new aspects such as interoperability testing or digitalisation. The scenario descriptions define requirements, actors, etc. on a functional level. ERIGrid 2.0 work package NA4 ’Iterative Creation of Scenarios and Test Case Profiles’ addresses these needs. This work has been conducted with emphasis on the alignment with the European Green Deal, further support on the technology validation and roll-out phases, and further integration of the research infrastructures.
+
+        A Functional Scenario has been defined as an umbrella term comprising of motivation and relevance for ERIGrid 2.0, system descriptions, use case and test case descriptions, and experimental setup descriptions. Each scenario has a single core idea and is formed on the basis of inclusiveness. Functional Scenarios consider several high-level scenarios in other projects and networks as a background forming the overall circumstances in which the Functional Scenario is considered. The high-level scenarios provide a holistic understanding of the current status and development while also highlighting future visions and requirements impacting the Functional Scenarios. The high-level scenarios also address the high-level drivers for the Functional Scenarios, such as needs for digitalisation of the smart energy systems. Furthermore, Functional Scenarios are related to the generic system configurations developed in ERIGrid and consider the work conducted in ERIGrid as a strong background for ERIGrid 2.0.
+
+        The necessity for a mutual understanding of scenarios which are of interest to the ERIGrid 2.0 partners and their research infrastructures and in alignment of the project objectives, led to conducting a survey regarding the first actions of the NA4.1 work. The purpose of this survey was to gather inputs on a set of Functional Scenarios that were analysed in more detail to deduce the most relevant approaches for ERIGrid 2.0. Overall, 15 partners participated in the survey and submitted 35 scenarios. The survey results include scenarios on sector coupling, multi-energy systems, ICT and automation, energy communities, microgrids and low-
+        inertia grids, and stability, control and grid code challenges. Detailed descriptions of Functional Scenarios submitted to the survey are presented in Appendix A: Functional Scenario Survey Data of this deliverable.
+
+        The formation of the Functional Scenarios was organised in six working groups, each of which focused on a single Functional Scenario. The decision on the six Functional Scenario was taken during the NA4 regular meetings and the brainstorming workshop itself based on the results of the Functional Scenario survey.
+
+        The focus of the first working group has been on a component focused scenario developed based on the survey results on DERs and inverters. The resulting Functional Scenario 1 integrates key components, such as DER inverters and controllers with ICT, control and automation architectures to enable new grid services with the development of interfaces between the active components. The second working group has been focused on topics related to microgrids and energy communities forming Functional Scenario 2 to support the local microgrid and energy community development by enabling flexibility services locally with ICT and control including exploitation of grid intelligence. While the third working group has been working on the survey results on sector coupling and multi-energy systems with Functional Scenario 3 anticipating a massive roll-out of power-to-X components in the near future by developing system level understanding of the impacts on the electrical domain. The fourth working group has been focused on grid management and overall the perspectives of Distribution System Operators (DSOs) and Transmission System Operators (TSOs) resulting in Functional Scenario 4 assuring frequency and voltage stability in low inertia systems through capabilities of Renewable Energy Sources (RES), Distributed Generation (DG), controllable loads and storage systems as well as ICT and control systems. The fifth working group has been based on the survey results comprising of aggregation, flexibility, market and reserve topics and defined Functional Scenario 5 to focus on communication functionality for aggregation, service matching, fail-over, configuration, and interoperability addressing scale-related properties of aggregation and control solutions. Lastly, the sixth working group has been focused on digitalisation including wide range of topics such as ICT infrastructure, communication, automation, control and monitoring. Functional Scenario 6 explores the impact of ICT solutions on the physical (electrical power) system covering new applications of data and data processing as well as new paths for exchanging data.
+
+        The Functional Scenario templates used during the brainstorming workshop have been included in the Appendix B: Functional Scenario Templates.
+
+        The work started in NA4.1 will continue in NA4.2 and NA4.4 with discussions on more detailed definitions of the test cases which will initially provide the inputs for other project activities. The discourse on the Functional Scenarios is also assumed to support ERIGrid 2.0 physical lab and virtual access work and decision-making beyond ERIGrid 2.0.</dc:description>
+    <dc:identifier>https://zenodo.org/record/3991723</dc:identifier>
+    <dc:identifier>10.5281/zenodo.3991723</dc:identifier>
+    <dc:identifier>oai:zenodo.org:3991723</dc:identifier>
+    <dc:language>eng</dc:language>
+    <dc:relation>info:eu-repo/grantAgreement/EC/H2020/870620/</dc:relation>
+    <dc:relation>doi:10.5281/zenodo.3991722</dc:relation>
+    <dc:relation>url:https://zenodo.org/communities/erigrid2</dc:relation>
+    <dc:rights>info:eu-repo/semantics/openAccess</dc:rights>
+    <dc:rights>https://creativecommons.org/licenses/by/4.0/legalcode</dc:rights>
+    <dc:subject>Scenarios</dc:subject>
+    <dc:subject>Test Cases</dc:subject>
+    <dc:subject>Use Cases</dc:subject>
+    <dc:subject>Deliverable</dc:subject>
+    <dc:subject>European Union (EU)</dc:subject>
+    <dc:subject>H2020</dc:subject>
+    <dc:subject>Project</dc:subject>
+    <dc:subject>ERIGrid 2.0</dc:subject>
+    <dc:subject>GA 870620</dc:subject>
+    <dc:title>D-NA4.1 Functional Scenarios</dc:title>
+    <dc:type>info:eu-repo/semantics/report</dc:type>
+    <dc:type>publication-deliverable</dc:type>
+</oai_dc:dc>
