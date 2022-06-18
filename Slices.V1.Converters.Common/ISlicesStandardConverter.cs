@@ -78,10 +78,10 @@ public interface ISlicesStandardConverter<TExternalModel> : ISlicesStandardConve
     /// </summary>
     /// <remarks>
     /// Implementations should be pure and safe to be called from multiple threads.
-    /// <paramref name="digitalObject"/> graph should not be modified until this method returns.
+    /// <paramref name="sfdo"/> graph should not be modified until this method returns.
     /// </remarks>
-    /// <param name="digitalObject">The record to convert</param>
+    /// <param name="sfdo">The record to convert</param>
     /// <returns>Record represented in the external standard</returns>
     [Pure]
-    TExternalModel ToExternal(SfdoResource digitalObject);
+    TExternalModel ToExternal(SfdoResource sfdo);
 }
