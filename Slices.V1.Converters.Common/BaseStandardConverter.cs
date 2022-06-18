@@ -42,7 +42,7 @@ public abstract class BaseXmlStandardConverter<T> : BaseStandardConverter<T>
         Serializer = serializer;
     }
     
-    public override SfdoResource FromSerializedExternal(TextReader serializedReader, string? format)
+    public sealed override SfdoResource FromSerializedExternal(TextReader serializedReader, string? format)
     {
         if (format == null) format = "xml";
 
@@ -54,7 +54,7 @@ public abstract class BaseXmlStandardConverter<T> : BaseStandardConverter<T>
         return FromExternal(Serializer.FromXml(serializedReader));
     }
     
-    public override void ToSerializedExternal(SfdoResource sfdo, string? format, TextWriter serializedWriter)
+    public sealed override void ToSerializedExternal(SfdoResource sfdo, string? format, TextWriter serializedWriter)
     {
         if (format == null) format = "xml";
 
