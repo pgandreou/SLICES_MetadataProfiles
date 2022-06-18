@@ -11,6 +11,7 @@ public struct SfdoOptional<T>
     public string? AbsenceReason { get; private set; } = null;
 
     private T? _value = default;
+
     public T Value
     {
         get
@@ -21,7 +22,7 @@ public struct SfdoOptional<T>
                     $"Cannot retrieve {nameof(SfdoOptional<T>)}.{nameof(Value)} when {nameof(IsSet)} is false"
                 );
             }
-            
+
             return _value!;
         }
     }
@@ -45,6 +46,28 @@ public struct SfdoOptional<T>
         IsSet = false;
         AbsenceReason = reason;
     }
+
+    public override string ToString()
+    {
+        if (IsSet)
+        {
+            return _value?.ToString() ?? "";
+        }
+        
+        return AbsenceReason ?? "";
+    }
+
+    public static implicit operator SfdoOptional<T>(SfdoAbsentOptional absentOptional)
+        => SfdoOptional.WithAbsent<T>(absentOptional.AbsenceReason);
+}
+
+/// <summary>
+/// A version of <see cref="SfdoOptional{T}"/> that is always absent/unset (potentially with a reason)
+/// and can be implicitly converted to <see cref="SfdoOptional{T}"/> of any type.  
+/// </summary>
+public struct SfdoAbsentOptional
+{
+    public string? AbsenceReason { get; set; }
 }
 
 public static class SfdoOptional
@@ -64,4 +87,6 @@ public static class SfdoOptional
 
         return optional;
     }
+
+    public static SfdoAbsentOptional WithAbsent(string? reason) => new() { AbsenceReason = reason };
 }

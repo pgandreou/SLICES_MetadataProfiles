@@ -110,10 +110,37 @@ public class DublinCoreConverter : ISlicesStandardConverter<DublinCoreResource>
             sfdo.Rights = externalModel.Rights.FirstOrDefault()?.Value!;
         }
 
+        if (externalModel.Types.Any(t => t.Value == "dataset"))
+        {
+            sfdo.ResourceTypes.Add(SfdoResourceType.Data);
+        }
+
+        if (sfdo.ResourceTypes.Contains(SfdoResourceType.Data))
+        {
+            sfdo.ScientificDomains = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.ScientificSubdomains = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.PaymentModel = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.Pricing = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.Address = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            
+            // TODO: there is "date"s, but we don't know which one is which
+            sfdo.DateTimeStart = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.DateTimeEnd = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            
+            sfdo.Locations = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.Size = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.Duration = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.Formats = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.Mediums = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.CompressionFormats = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.FileInfo = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+            sfdo.DataStandard = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        }
+        
         return sfdo;
     }
 
-    private static readonly IReadOnlySet<string> SupportedIdentifiderTypes = new HashSet<string>
+    private static readonly IReadOnlySet<string> SupportedIdentifierTypes = new HashSet<string>
     {
         SfdoIdentifierTypes.Doi,
         SfdoIdentifierTypes.Url,
@@ -125,7 +152,7 @@ public class DublinCoreConverter : ISlicesStandardConverter<DublinCoreResource>
     {
         if (string.IsNullOrWhiteSpace(originalIdentifier)) return null;
 
-        foreach (string identifierType in SupportedIdentifiderTypes)
+        foreach (string identifierType in SupportedIdentifierTypes)
         {
             string identifierPrefix = identifierType + ":";
 

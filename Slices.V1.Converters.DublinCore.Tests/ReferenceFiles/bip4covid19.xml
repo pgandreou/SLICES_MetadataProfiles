@@ -1,0 +1,66 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+    <dc:creator>Thanasis Vergoulis</dc:creator>
+    <dc:creator>Ilias Kanellos</dc:creator>
+    <dc:creator>Serafeim Chatzopoulos</dc:creator>
+    <dc:creator>Danae Pla Karidi</dc:creator>
+    <dc:creator>Theodore Dalamagas</dc:creator>
+    <dc:date>2022-06-07</dc:date>
+    <dc:description>This dataset contains impact metrics and indicators for a set of publications that are related to the COVID-19 infectious disease and the coronavirus that causes it. It is based on:
+
+
+        Τhe CORD-19 dataset released by the team of Semantic Scholar1 and
+        Τhe curated data provided by the LitCovid hub2.
+
+
+        These data have been cleaned and integrated with data from COVID-19-TweetIDs and from other sources (e.g., PMC). The result was dataset of 550,214 unique articles along with relevant metadata (e.g., the underlying citation network). We utilized this dataset to produce, for each article, the values of the following impact measures:
+
+
+        Influence: Citation-based measure reflecting the total impact of an article. This is based on the PageRank3 network analysis method. In the context of citation networks, it estimates the importance of each article based on its centrality in the whole network. This measure was calculated using the PaperRanking (https://github.com/diwis/PaperRanking) library4.
+        Influence_alt: Citation-based measure reflecting the total impact of an article. This is the Citation Count of each article, calculated based on the citation network between the articles contained in the BIP4COVID19 dataset.
+        Popularity: Citation-based measure reflecting the current impact of an article. This is based on the AttRank5 citation network analysis method. Methods like PageRank are biased against recently published articles (new articles need time to receive their first citations). AttRank alleviates this problem incorporating an attention-based mechanism, akin to a time-restricted version of preferential attachment, to explicitly capture a researcher's preference to read papers which received a lot of attention recently. This is why it is more suitable to capture the current "hype" of an article.
+        Popularity alternative: An alternative citation-based measure reflecting the current impact of an article (this was the basic popularity measured provided by BIP4COVID19 until version 26). This is based on the RAM6 citation network analysis method. Methods like PageRank are biased against recently published articles (new articles need time to receive their first citations). RAM alleviates this problem using an approach known as "time-awareness". This is why it is more suitable to capture the current "hype" of an article. This measure was calculated using the PaperRanking (https://github.com/diwis/PaperRanking) library4.
+        Social Media Attention: The number of tweets related to this article. Relevant data were collected from the COVID-19-TweetIDs dataset. In this version, tweets between 5/5/22-15/5/22 have been considered from the previous dataset.
+
+
+        We provide five CSV files, all containing the same information, however each having its entries ordered by a different impact measure. All CSV files are tab separated and have the same columns (PubMed_id, PMC_id, DOI, influence_score, popularity_alt_score, popularity score, influence_alt score, tweets count).
+
+        The work is based on the following publications:
+
+
+
+        COVID-19 Open Research Dataset (CORD-19). 2020. Version 2022-05-31 Retrieved from https://pages.semanticscholar.org/coronavirus-research. Accessed 2022-05-31. doi:10.5281/zenodo.3715506
+        Chen Q, Allot A, &amp; Lu Z. (2020) Keep up with the latest coronavirus research, Nature 579:193 (version 2022-05-31)
+        R. Motwani L. Page, S. Brin and T. Winograd. 1999. The PageRank Citation Ranking: Bringing Order to the Web. Technical Report. Stanford InfoLab.
+        I. Kanellos, T. Vergoulis, D. Sacharidis, T. Dalamagas, Y. Vassiliou: Impact-Based Ranking of Scientific Publications: A Survey and Experimental Evaluation. TKDE 2019
+        I. Kanellos, T. Vergoulis, D. Sacharidis, T. Dalamagas, Y. Vassiliou: Ranking Papers by their Short-Term Scientific Impact. CoRR abs/2006.00951 (2020)
+        Rumi Ghosh, Tsung-Ting Kuo, Chun-Nan Hsu, Shou-De Lin, and Kristina Lerman. 2011. Time-Aware Ranking in Dynamic Citation Networks. In Data Mining Workshops (ICDMW). 373–380
+
+
+
+        A Web user interface that uses these data to facilitate the COVID-19 literature exploration, can be found here. More details in our peer-reviewed publication here (also here there is an outdated preprint version).
+
+        Funding: We acknowledge support of this work by the project "Moving from Big Data Management to Data Science" (MIS 5002437/3) which is implemented under the Action "Reinforcement of the Research and Innovation Infrastructure", funded by the Operational Programme "Competitiveness, Entrepreneurship and Innovation" (NSRF 2014-2020) and co-financed by Greece and the European Union (European Regional Development Fund).
+
+        Terms of use: These data are provided "as is", without any warranties of any kind. The data are provided under the Creative Commons Attribution 4.0 International license.</dc:description>
+    <dc:description>Please cite: Thanasis Vergoulis, Ilias Kanellos, Serafeim Chatzopoulos, Danae Pla Karidi, Theodore Dalamagas. "BIP4COVID19: Releasing impact measures for articles relevant to COVID-19".  Quantitative Science Studies
+        2022-01-24; doi: https://doi.org/10.1162/qss_a_00169</dc:description>
+    <dc:identifier>https://zenodo.org/record/6618817</dc:identifier>
+    <dc:identifier>10.5281/zenodo.6618817</dc:identifier>
+    <dc:identifier>oai:zenodo.org:6618817</dc:identifier>
+    <dc:relation>url:https://pages.semanticscholar.org/coronavirus-research</dc:relation>
+    <dc:relation>handle:www.biorxiv.org/content/10.1101/2020.04.11.037093v2</dc:relation>
+    <dc:relation>url:https://github.com/diwis/PaperRanking</dc:relation>
+    <dc:relation>doi:10.5281/zenodo.3723281</dc:relation>
+    <dc:relation>url:https://zenodo.org/communities/covid-19</dc:relation>
+    <dc:relation>url:https://zenodo.org/communities/zenodo</dc:relation>
+    <dc:rights>info:eu-repo/semantics/openAccess</dc:rights>
+    <dc:rights>https://creativecommons.org/licenses/by/4.0/legalcode</dc:rights>
+    <dc:subject>COVID-19</dc:subject>
+    <dc:subject>coronavirus</dc:subject>
+    <dc:subject>scientometrics</dc:subject>
+    <dc:subject>bibliometrics</dc:subject>
+    <dc:title>BIP4COVID19: Impact metrics and indicators for coronavirus related publications</dc:title>
+    <dc:type>info:eu-repo/semantics/other</dc:type>
+    <dc:type>dataset</dc:type>
+</oai_dc:dc>

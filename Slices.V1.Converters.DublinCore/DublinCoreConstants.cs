@@ -2,5 +2,6 @@
 
 public static class DublinCoreConstants
 {
-    public static readonly string StandardId = "DublinCore";
+    public const string StandardId = "DublinCore";
+    public const string CannotImportReason = "Cannot be imported from Dublin Core";
 }

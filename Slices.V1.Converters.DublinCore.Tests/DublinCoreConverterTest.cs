@@ -6,7 +6,7 @@ namespace Slices.V1.Converters.DublinCore.Tests;
 public class DublinCoreConverterTest
 {
     [Fact]
-    public void FromExtrenal1()
+    public void FromExternal1()
     {
         using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\immunarch-0-6-9.xml");
 
@@ -20,7 +20,7 @@ public class DublinCoreConverterTest
     }
 
     [Fact]
-    public void FromExtrenalSerialized1()
+    public void FromExternalSerialized1()
     {
         using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\immunarch-0-6-9.xml");
         DublinCoreConverter converter = new(new DublinCoreSerializer());
@@ -29,9 +29,20 @@ public class DublinCoreConverterTest
 
         Assert.NotNull(slicesObject);
     }
+    
+    [Fact]
+    public void FromExternalSerialized2()
+    {
+        using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\bip4covid19.xml");
+        DublinCoreConverter converter = new(new DublinCoreSerializer());
+
+        SfdoResource slicesObject = converter.FromSerializedExternal(textReader, null);
+
+        Assert.NotNull(slicesObject);
+    }
 
     [Fact]
-    public void FromToExtrenalSerialized1()
+    public void FromToExternalSerialized1()
     {
         using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\immunarch-0-6-9.xml");
         DublinCoreConverter converter = new(new DublinCoreSerializer());
