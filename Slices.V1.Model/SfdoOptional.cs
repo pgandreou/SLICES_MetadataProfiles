@@ -59,6 +59,9 @@ public struct SfdoOptional<T>
 
     public static implicit operator SfdoOptional<T>(SfdoAbsentOptional absentOptional)
         => SfdoOptional.WithAbsent<T>(absentOptional.AbsenceReason);
+    
+    public static implicit operator SfdoOptional<T>(T value)
+        => SfdoOptional.WithValue(value);
 }
 
 /// <summary>

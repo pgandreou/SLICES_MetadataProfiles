@@ -2,5 +2,6 @@
 
 public static class DataCiteConstants
 {
-    public static readonly string StandardId = "DataCite";
+    public const string StandardId = "DataCite";
+    public const string CannotImportReason = "Cannot be imported from Data Cite";
 }
