@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
+﻿using System.Globalization;
 using Slices.V1.Converters.Common;
 using Slices.V1.Converters.DataCite.Model;
 using Slices.V1.Model;
@@ -10,6 +9,12 @@ public class DataCiteImporter : ISlicesImporter<DataCiteResource>
 {
     public SfdoResource FromExternal(DataCiteResource externalModel)
     {
+        LocalizedVariationSelector localizedSelector = new()
+        {
+            ResourceLang = externalModel.language,
+            GeneralizeLanguageCallback = GeneralizeLang,
+        };
+        
         SfdoResource sfdo = new();
 
         sfdo.Identifier = new()
@@ -30,17 +35,17 @@ public class DataCiteImporter : ISlicesImporter<DataCiteResource>
             })
             .ToList();
 
-        if (PickBestByLang(externalModel.language, externalModel.titles, t => t.lang, out DataCiteResourceTitle? title))
+        if (localizedSelector.PickBest(externalModel.titles, t => t.lang, out DataCiteResourceTitle? title))
         {
             sfdo.Name = title.Value;
         }
 
-        if (PickBestByLang(externalModel.language, externalModel.descriptions, t => t.lang, out DataCiteResourceDescription? description))
+        if (localizedSelector.PickBest(externalModel.descriptions, t => t.lang, out DataCiteResourceDescription? description))
         {
             sfdo.Description = description.Text;
         }
 
-        sfdo.Subjects = PickBestByLang(externalModel.language, externalModel.subjects, s => s.lang)
+        sfdo.Subjects = localizedSelector.PickBest(externalModel.subjects, s => s.lang)
             .Select(s => s.Value)
             .ToList();
 
@@ -83,7 +88,7 @@ public class DataCiteImporter : ISlicesImporter<DataCiteResource>
             }
         }
 
-        if (PickBestByLang(externalModel.language, externalModel.rightsList, t => t.lang, out DataCiteResourceRights? rights))
+        if (localizedSelector.PickBest(externalModel.rightsList, t => t.lang, out DataCiteResourceRights? rights))
         {
             sfdo.Rights = rights.Value;
             sfdo.RightsURI = new Uri(rights.rightsURI);
@@ -115,70 +120,9 @@ public class DataCiteImporter : ISlicesImporter<DataCiteResource>
         };
     }
 
-    private static bool PickBestByLang<TItem>(
-        string? resourceLang,
-        IEnumerable<TItem> items,
-        Func<TItem, string> langSelector,
-        [NotNullWhen(true)] out TItem? selectedItem
-    )
-        where TItem : class
+    private static string GeneralizeLang(string lang)
     {
-        selectedItem = PickBestByLang(resourceLang, items, langSelector).FirstOrDefault();
-
-        return selectedItem != null;
-    }
-
-    private static IEnumerable<TItem> PickBestByLang<TItem>(
-        string? resourceLang,
-        IEnumerable<TItem> items,
-        Func<TItem, string> langSelector
-    )
-        where TItem : class
-    {
-        if (!items.Any()) return Array.Empty<TItem>();
-
-        (string? Lang, TItem Item)[] langedItems = DeriveItemLangs(items, langSelector).ToArray();
-
-        // Prefer English
-        IEnumerable<(string? Lang, TItem Item)> selectedTuples = langedItems.Where(t => t.Lang == "en");
-
-        // Otherwise prefer the resource lang
-        if (!selectedTuples.Any())
-        {
-            resourceLang = GeneralizeLang(resourceLang);
-
-            if (!string.IsNullOrWhiteSpace(resourceLang))
-            {
-                selectedTuples = langedItems.Where(t => t.Lang == resourceLang);
-            }
-        }
-
-        // Otherwise try to find something that has a lang set
-        if (!selectedTuples.Any())
-        {
-            selectedTuples = langedItems.Where(t => !string.IsNullOrWhiteSpace(t.Lang));
-        }
-
-        // Otherwise just pick all
-        if (!selectedTuples.Any())
-        {
-            selectedTuples = langedItems;
-        }
-
-        return selectedTuples.Select(t => t.Item);
-    }
-
-    private static IEnumerable<(string? Lang, TItem Item)> DeriveItemLangs<TItem>(
-        IEnumerable<TItem> items,
-        Func<TItem, string> langSelector
-    )
-        => items.Select(item => (GeneralizeLang(langSelector(item)), item));
-
-    private static string? GeneralizeLang(string? lang)
-    {
-        if (lang == null) return null;
-
-        int separatorIndex = lang.IndexOf("-");
+        int separatorIndex = lang.IndexOf("-", StringComparison.Ordinal);
 
         if (separatorIndex > 0)
         {
