@@ -41,8 +41,42 @@ public class EoscProviderImporter : ISlicesImporter<EoscProviderRecord>
         sfdo.ScientificSubdomains = providerProfile.ScientificSubdomains.ToList();
 
         sfdo.HelpdeskEmail = SfdoOptional.WithAbsent(EoscProviderConstants.CannotImportReason);
+        sfdo.SecurityContactEmail = SfdoOptional.WithAbsent(EoscProviderConstants.CannotImportReason);
 
-        sfdo.SecurityContactEmail = providerProfile.MainContactEmail; // TODO
+        sfdo.Abbreviation = providerProfile.Abbreviation;
+        sfdo.LegalEntity = providerProfile.LegalEntity;
+        sfdo.LegalStatus = providerProfile.LegalStatus;
+        sfdo.Multimedia = providerProfile.Multimedia.ToList();
+        sfdo.Tags = providerProfile.Tags.ToList();
+        sfdo.StreetNameNumber = providerProfile.StreetNameNumber;
+        sfdo.PostalCode = providerProfile.PostalCode;
+        sfdo.City = providerProfile.City;
+        sfdo.Region = providerProfile.Region;
+        sfdo.Country = providerProfile.Country;
+        sfdo.MainContactFirstName = providerProfile.MainContactFirstName;
+        sfdo.MainContactLastName = providerProfile.MainContactLastName;
+        sfdo.MainContactEmail = providerProfile.MainContactEmail;
+        sfdo.MainContactPhone = providerProfile.MainContactPhone;
+        sfdo.MainContactPosition = providerProfile.MainContactPosition;
+        sfdo.PublicContactFirstName = providerProfile.PublicContactFirstName;
+        sfdo.PublicContactLastName = providerProfile.PublicContactLastName;
+        sfdo.PublicContactEmail = providerProfile.PublicContactEmail;
+        sfdo.PublicContactPhone = providerProfile.PublicContactPhone;
+        sfdo.PublicContactPosition = providerProfile.PublicContactPosition;
+        sfdo.LifeCycleStatus = providerProfile.LifeCycleStatus;
+        sfdo.Certifications = providerProfile.Certifications.ToList();
+        sfdo.HostingLegalEntity = providerProfile.HostingLegalEntity;
+        sfdo.ParticipatingCountries = providerProfile.ParticipatingCountries.ToList();
+        sfdo.Affiliations = providerProfile.Affiliations.ToList();
+        sfdo.Networks = providerProfile.Networks.ToList();
+        sfdo.StructureTypes = providerProfile.StructureTypes.ToList();
+        sfdo.EsfriDomains = providerProfile.EsfriDomains.ToList();
+        sfdo.EsfriType = providerProfile.EsfriType;
+        sfdo.MerilScientificDomains = providerProfile.MerilScientificDomains.ToList();
+        sfdo.MerilScientificSubdomains = providerProfile.MerilScientificSubdomains.ToList();
+        sfdo.AreasOfActivity = providerProfile.AreasOfActivity.ToList();
+        sfdo.SocietalGrandChallenges = providerProfile.SocietalGrandChallenges.ToList();
+        sfdo.NationalRoadmaps = providerProfile.NationalRoadmaps.ToList();
         
         return sfdo;
     }

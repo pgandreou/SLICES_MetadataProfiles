@@ -90,6 +90,8 @@ public enum SlicesFieldCategory
     /// programming language used to develop the software
     /// </summary>
     Software,
+    
+    Eosc,
 };
 
 [AttributeUsage(AttributeTargets.Property)]
@@ -130,6 +132,7 @@ public static class SlicesCodeExtensions
         SlicesFieldCategory.GeographicInformation => "GE",
         SlicesFieldCategory.DatasetInformation => "DA",
         SlicesFieldCategory.Software => "SW",
+        SlicesFieldCategory.Eosc => "EO",
 
         _ => throw new ArgumentOutOfRangeException(nameof(category), category, "Unhanded field category"),
     };

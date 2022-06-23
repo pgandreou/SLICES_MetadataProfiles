@@ -596,4 +596,212 @@ public sealed class SfdoResource
     public string? Provenance { get; set; }
 
     #endregion RightsAndTerms
+
+    #region EOSC
+
+    [SlicesCode(SlicesFieldCategory.Eosc, 1)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> Abbreviation { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 2)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<bool> LegalEntity { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 2)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> LegalStatus { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 3)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> Multimedia { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 4)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> Tags { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 5)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> StreetNameNumber { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 6)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> PostalCode { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 7)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> City { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 8)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> Region { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 9)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> Country { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 10)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> MainContactFirstName { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 11)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> MainContactLastName { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 12)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> MainContactEmail { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 13)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> MainContactPhone { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 14)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> MainContactPosition { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 15)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> PublicContactFirstName { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 16)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> PublicContactLastName { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 17)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> PublicContactEmail { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 18)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> PublicContactPhone { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 19)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> PublicContactPosition { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 20)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> LifeCycleStatus { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 21)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> Certifications { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 22)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> HostingLegalEntity { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 23)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> ParticipatingCountries { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 24)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> Affiliations { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 25)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> Networks { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 26)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> StructureTypes { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 27)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> EsfriDomains { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 28)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<string> EsfriType { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 29)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessMod7iferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> MerilScientificDomains { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 30)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> MerilScientificSubdomains { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 31)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> AreasOfActivity { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 32)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> SocietalGrandChallenges { get; set; }
+    
+    [SlicesCode(SlicesFieldCategory.Eosc, 33)]
+    // [SlicesParticipation(SlicesParticipationType.Required)]
+    // [SlicesAccessModifer(SlicesAccessModiferType.PR)]
+    [SlicesAssociatedResourceTypes(SfdoResourceType.Provider)]
+    public SfdoOptional<List<string>> NationalRoadmaps { get; set; }
+
+    #endregion
 }
