@@ -53,13 +53,13 @@ public struct SfdoOptional<T>
         {
             return _value?.ToString() ?? "";
         }
-        
+
         return AbsenceReason ?? "";
     }
 
     public static implicit operator SfdoOptional<T>(SfdoAbsentOptional absentOptional)
         => SfdoOptional.WithAbsent<T>(absentOptional.AbsenceReason);
-    
+
     public static implicit operator SfdoOptional<T>(T value)
         => SfdoOptional.WithValue(value);
 }
@@ -92,4 +92,7 @@ public static class SfdoOptional
     }
 
     public static SfdoAbsentOptional WithAbsent(string? reason) => new() { AbsenceReason = reason };
+
+    public static T? ValueOrDefault<T>(this SfdoOptional<T> optional)
+        => optional.IsSet ? optional.Value : default;
 }
