@@ -1,0 +1,90 @@
+﻿{
+  "id": "SLICES",
+  "name": "Scientific Large Scale Infrastructure for Computing/Communication Experimental Studies",
+  "abbreviation": "SLICES",
+  "website": "https://slices-ri.eu/",
+  "legal_entity": false,
+  "legal_status": "",
+  "description": "SLICES will make a fundamental contribution to research and innovation in Digital Sciences and Infrastructures, future Internet technologies, future smart networks and services. This encompasses the full range of network, computing, and storage functions required for “on-demand” services across many verticals, and addresses new complex research challenges, supporting disruptive science in IoT, networks and distributed systems such as, e.g., 5G & beyond, NFV, IoT, Cloud/Edge.",
+  "logo": "https://slices-ri.eu/wp-content/uploads/%CE%86%CF%84%CE%B9%CF%84%CE%BB%CE%BF.png",
+  "multimedia": [
+    "https://www.youtube.com/watch?v=-zkOA9nviSo"
+  ],
+  "scientific_domains": [
+    "Natural Sciences"
+  ],
+  "scientific_subdomains": [
+    "Computer and Information Sciences"
+  ],
+  "tags": [
+    "research infrastructure",
+    "experimental research",
+    "data catalogue",
+    "resource provision"
+  ],
+  "street_name_number": "15-21 Rue de l'École de Médecine",
+  "postal_code": "75006",
+  "city": "Paris",
+  "region": "",
+  "country": "France",
+  "main_contact_first_name": "Serge",
+  "main_contact_last_name": null,
+  "main_contact_email": "serge.fdida@sorbonne-universite.fr",
+  "main_contact_phone": "+33 (0) 1 44 27 30 58",
+  "main_contact_position": "Coordinator",
+  "public_contact_first_name": "Serge",
+  "public_contact_last_name": "Fdifa",
+  "public_contact_email": "serge.fdida@sorbonne-universite.fr",
+  "public_contact_phone": "+33 (0) 1 44 27 30 58",
+  "public_contact_position": "Coordinator",
+  "life_cycle_status": "Under Construction",
+  "certifications": [],
+  "hosting_legal_entity": "",
+  "participating_countries": [
+    "Belgium",
+    "Cyprus",
+    "France",
+    "Germany",
+    "Hungary",
+    "Italy",
+    "Netherlands",
+    "Norway",
+    "Spain",
+    "Sweden",
+    "Finland",
+    "Greece",
+    "Luxembourg"
+  ],
+  "affiliations": [
+    "EGI",
+    "EUDAT",
+    "GEANT",
+    "OpenAIRE",
+    "etc"
+  ],
+  "networks": [
+    "Pan-European Research and Education Network (GÉANT)"
+  ],
+  "structure_types": [
+    "Distributed"
+  ],
+  "esfri_domains": [
+    "Data, Computing and Digital Research Infrastructures"
+  ],
+  "esfri_type": "Project",
+  "meril_scientific_domains": [
+    "Information Science & Technology"
+  ],
+  "meril_scientific_subdomains": [
+    "Distributed Computing Facilities"
+  ],
+  "areas_of_activity": [
+    "Basic research",
+    "Applied research",
+    "Technological development"
+  ],
+  "societal_grand_challenges": [
+    "Europe in a changing world"
+  ],
+  "national_roadmaps": []
+}

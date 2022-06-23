@@ -3,6 +3,9 @@ using Slices.V1.Model;
 
 namespace Slices.V1.Converters.Common;
 
+// TODO: Convert from sync to ValueTask
+// TODO: Failure exceptions (e.g. failed to parse)
+
 public interface ISlicesStandardConverter
 {
     /// <summary>

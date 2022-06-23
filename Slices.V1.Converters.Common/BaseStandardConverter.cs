@@ -16,7 +16,7 @@ public abstract class BaseStandardConverter<T> : ISlicesStandardConverter<T>
     public abstract string ExternalStandard { get; }
     public abstract SfdoResource FromSerializedExternal(TextReader serializedReader, string? format);
     public abstract void ToSerializedExternal(SfdoResource digitalObject, string? format, TextWriter serializedWriter);
-    
+
     public SfdoResource FromExternal(T externalModel)
     {
         return Importer.FromExternal(externalModel);
@@ -41,7 +41,7 @@ public abstract class BaseXmlStandardConverter<T> : BaseStandardConverter<T>
     {
         Serializer = serializer;
     }
-    
+
     public sealed override SfdoResource FromSerializedExternal(TextReader serializedReader, string? format)
     {
         if (format == null) format = "xml";
@@ -53,7 +53,7 @@ public abstract class BaseXmlStandardConverter<T> : BaseStandardConverter<T>
 
         return FromExternal(Serializer.FromXml(serializedReader));
     }
-    
+
     public sealed override void ToSerializedExternal(SfdoResource sfdo, string? format, TextWriter serializedWriter)
     {
         if (format == null) format = "xml";
@@ -64,5 +64,43 @@ public abstract class BaseXmlStandardConverter<T> : BaseStandardConverter<T>
         }
 
         Serializer.ToXml(ToExternal(sfdo), serializedWriter);
+    }
+}
+
+public abstract class BaseJsonStandardConverter<T> : BaseStandardConverter<T>
+{
+    protected readonly IStandardJsonSerializer<T> Serializer;
+
+    protected BaseJsonStandardConverter(
+        ISlicesImporter<T> importer,
+        ISlicesExporter<T> exporter,
+        IStandardJsonSerializer<T> serializer
+    ) : base(importer, exporter)
+    {
+        Serializer = serializer;
+    }
+
+    public sealed override SfdoResource FromSerializedExternal(TextReader serializedReader, string? format)
+    {
+        if (format == null) format = "json";
+
+        if (format != "xml")
+        {
+            throw new ArgumentOutOfRangeException(nameof(format), "Only \"json\" is supported");
+        }
+
+        return FromExternal(Serializer.FromJson(serializedReader));
+    }
+
+    public sealed override void ToSerializedExternal(SfdoResource sfdo, string? format, TextWriter serializedWriter)
+    {
+        if (format == null) format = "json";
+
+        if (format != "json")
+        {
+            throw new ArgumentOutOfRangeException(nameof(format), "Only \"json\" is supported");
+        }
+
+        Serializer.ToJson(ToExternal(sfdo), serializedWriter);
     }
 }
