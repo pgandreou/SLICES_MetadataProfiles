@@ -1,5 +1,6 @@
 ﻿using Moq;
 using Slices.TestsSupport;
+using Slices.V1.Converters.Common.Exceptions;
 using Slices.V1.Model;
 
 namespace Slices.V1.Converters.Common.Tests;
@@ -86,6 +87,8 @@ public class BaseXmlStandardConverterTest
         importerMock.Setup(importer => importer.FromExternal(externalModel)).Returns(sfdo);
 
         converterMock.SetupGet(converter => converter.SupportedFormats).CallBase();
+        converterMock.SetupGet(converter => converter.ExternalStandard).Returns("test");
+        
         converterMock.Setup(converter => converter.FromSerializedExternalAsync(stream, null)).CallBase();
         converterMock.Setup(converter => converter.FromSerializedExternalAsync(stream, "xml")).CallBase();
         converterMock.Setup(converter => converter.FromSerializedExternalAsync(stream, "invalid")).CallBase();
@@ -93,9 +96,12 @@ public class BaseXmlStandardConverterTest
         Assert.Same(sfdo, await converterMock.Object.FromSerializedExternalAsync(stream, null));
         Assert.Same(sfdo, await converterMock.Object.FromSerializedExternalAsync(stream, "xml"));
 
-        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(
+        UnsupportedExternalFormatException exception = await Assert.ThrowsAsync<UnsupportedExternalFormatException>(
             () => converterMock.Object.FromSerializedExternalAsync(stream, "invalid")
         );
+        
+        Assert.Equal("test", exception.ExternalStandard);
+        Assert.Equal("invalid", exception.Format);
     }
 
     [Fact]
@@ -125,6 +131,8 @@ public class BaseXmlStandardConverterTest
             });
 
         converterMock.SetupGet(converter => converter.SupportedFormats).CallBase();
+        converterMock.SetupGet(converter => converter.ExternalStandard).Returns("test");
+
         converterMock.Setup(converter => converter.ToSerializedExternalAsync(sfdo, null, stream)).CallBase();
         converterMock.Setup(converter => converter.ToSerializedExternalAsync(sfdo, "xml", stream)).CallBase();
         converterMock.Setup(converter => converter.ToSerializedExternalAsync(sfdo, "invalid", stream)).CallBase();
@@ -139,8 +147,11 @@ public class BaseXmlStandardConverterTest
         Assert.Equal(1, stream.Length);
         stream.Clear();
 
-        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(
+        UnsupportedExternalFormatException exception = await Assert.ThrowsAsync<UnsupportedExternalFormatException>(
             () => converterMock.Object.ToSerializedExternalAsync(sfdo, "invalid", stream)
         );
+        
+        Assert.Equal("test", exception.ExternalStandard);
+        Assert.Equal("invalid", exception.Format);
     }
 }

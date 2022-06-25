@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Slices.V1.Converters.Common.Exceptions;
 using Slices.V1.Model;
 
 namespace Slices.V1.Converters.Common;
@@ -41,7 +42,11 @@ public abstract class BaseStandardConverter<T> : ISlicesStandardConverter<T>
         
         if (format != supportedFormat)
         {
-            throw new ArgumentOutOfRangeException(nameof(format), $"Only \"{supportedFormat}\" is supported");
+            throw new UnsupportedExternalFormatException($"Only \"{supportedFormat}\" is supported")
+            {
+                Format = format,
+                ExternalStandard = ExternalStandard,
+            };
         }
     }
 }

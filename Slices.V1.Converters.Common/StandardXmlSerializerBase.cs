@@ -1,12 +1,29 @@
 ﻿using System.Xml;
 using System.Xml.Serialization;
+using Slices.V1.Converters.Common.Exceptions;
 
 namespace Slices.V1.Converters.Common;
 
 public interface IStandardXmlSerializer<TModel>
     where TModel : class
 {
+    /// <summary>
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <exception cref="StandardSerializationException">
+    /// Thrown if the deserialization has failed. 
+    /// </exception>
+    /// <returns></returns>
     Task<TModel> FromXmlAsync(Stream stream);
+    
+    /// <summary>
+    /// </summary>
+    /// <param name="record"></param>
+    /// <param name="stream"></param>
+    /// <exception cref="StandardSerializationException">
+    /// Thrown if the serialization has failed. 
+    /// </exception>
+    /// <returns></returns>
     Task ToXmlAsync(TModel record, Stream stream);
 }
 
@@ -23,11 +40,19 @@ public abstract class StandardXmlSerializerBase<TModel> : IStandardXmlSerializer
     {
         return Task.Run(() =>
         {
-            TModel? deserialized = (TModel?)XmlSerializer.Deserialize(stream);
+            TModel? deserialized;
+            try
+            {
+                deserialized = (TModel?)XmlSerializer.Deserialize(stream);
+            }
+            catch (Exception e)
+            {
+                throw new StandardSerializationException("XmlSerializer.Deserialize threw an exception", e);
+            }
 
             if (deserialized == null)
             {
-                throw new Exception("xmlSerializer.Deserialize returned null - this should not happen");
+                throw new StandardSerializationException("xmlSerializer.Deserialize returned null");
             }
 
             return deserialized;
@@ -43,7 +68,14 @@ public abstract class StandardXmlSerializerBase<TModel> : IStandardXmlSerializer
                 Indent = true,
             });
 
-            XmlSerializer.Serialize(xmlWriter, record);
+            try
+            {
+                XmlSerializer.Serialize(xmlWriter, record);
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new StandardSerializationException("XmlSerializer.Serialize threw an exception", e);
+            }
         });
     }
 }

@@ -1,11 +1,11 @@
-﻿namespace Slices.V1.Converters.Common;
+﻿namespace Slices.V1.Converters.Common.Exceptions;
 
 public class UnsupportedExternalFormatException : Exception
 {
-    public string Format { get; set; } = null!;
-    public string ExternalStandard { get; set; } = null!;
+    public string? Format { get; init; }
+    public string? ExternalStandard { get; init; }
 
-    public UnsupportedExternalFormatException() : base()
+    public UnsupportedExternalFormatException()
     {
     }
 

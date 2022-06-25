@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics.Contracts;
+using Slices.V1.Converters.Common.Exceptions;
 using Slices.V1.Model;
 
 namespace Slices.V1.Converters.Common;
-
-// TODO: Failure exceptions (e.g. failed to parse)
 
 public interface ISlicesStandardConverter
 {
@@ -33,6 +32,9 @@ public interface ISlicesStandardConverter
     /// Thrown if <paramref name="format"/> is not supported by the implementation.
     /// Not thrown if the format is null.
     /// </exception>
+    /// <exception cref="StandardSerializationException">
+    /// Thrown if the deserialization has failed. 
+    /// </exception>
     /// <returns>The SLICES version of the record</returns>
     Task<SfdoResource> FromSerializedExternalAsync(Stream serializedStream, string? format);
 
@@ -55,6 +57,9 @@ public interface ISlicesStandardConverter
     /// <exception cref="UnsupportedExternalFormatException">
     /// Thrown if <paramref name="format"/> is not supported by the implementation.
     /// Not thrown if the format is null.
+    /// </exception>
+    /// <exception cref="StandardSerializationException">
+    /// Thrown if the serialization has failed. 
     /// </exception>
     Task ToSerializedExternalAsync(SfdoResource sfdo, string? format, Stream serializedStream);
 }
