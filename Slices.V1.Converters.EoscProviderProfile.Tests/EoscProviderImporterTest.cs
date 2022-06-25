@@ -6,24 +6,26 @@ namespace Slices.V1.Converters.EoscProviderProfile.Tests;
 public class EoscProviderImporterTest
 {
     [Fact]
-    public void Slices()
+    public async Task Slices()
     {
-        SfdoResource sfdo = ImportFromCopiedExternal("ReferenceFiles\\slices.json");
-        
+        SfdoResource sfdo = await ImportFromCopiedExternal("ReferenceFiles\\slices.json");
+
         Assert.NotNull(sfdo);
     }
 
-    private SfdoResource ImportFromCopiedExternal(string pathRelativeToAssemblyRoot)
+    private async Task<SfdoResource> ImportFromCopiedExternal(string pathRelativeToAssemblyRoot)
     {
-        EoscProviderRecord dublinCoreResource = GetCopiedDublinCoreResource(pathRelativeToAssemblyRoot);
-        
+        EoscProviderRecord dublinCoreResource = await GetCopiedDublinCoreResource(pathRelativeToAssemblyRoot);
+
         return new EoscProviderImporter().FromExternal(dublinCoreResource);
     }
 
-    private EoscProviderRecord GetCopiedDublinCoreResource(string pathRelativeToAssemblyRoot)
+    private async Task<EoscProviderRecord> GetCopiedDublinCoreResource(string pathRelativeToAssemblyRoot)
     {
-        using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), pathRelativeToAssemblyRoot);
+        await using FileStream stream = SlicesTestHelpers.GetCopiedFileReadStream(
+            GetType(), pathRelativeToAssemblyRoot
+        );
 
-        return new EoscProviderSerializer().FromJsonAsync(textReader);
+        return await new EoscProviderSerializer().FromJsonAsync(stream);
     }
 }

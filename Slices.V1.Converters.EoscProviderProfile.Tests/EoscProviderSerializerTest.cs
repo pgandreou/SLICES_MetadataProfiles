@@ -5,10 +5,14 @@ namespace Slices.V1.Converters.EoscProviderProfile.Tests;
 public class EoscProviderSerializerTest
 {
     [Fact]
-    public void Test1()
+    public async Task Test1()
     {
-        using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\slices.json");
+        await using FileStream stream = SlicesTestHelpers.GetCopiedFileReadStream(
+            GetType(), "ReferenceFiles\\slices.json"
+        );
 
-        EoscProviderRecord record = new EoscProviderSerializer().FromJsonAsync(textReader);
+        EoscProviderRecord record = await new EoscProviderSerializer().FromJsonAsync(stream);
+        
+        Assert.NotNull(record);
     }
 }
