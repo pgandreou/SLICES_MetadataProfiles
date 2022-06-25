@@ -14,24 +14,21 @@ public static class SlicesTestHelpers
     }
 
     [Pure]
-    public static StreamReader GetCopiedFileReader(Type testType, string pathRelativeToAssemblyRoot)
+    public static FileStream GetCopiedFileReadStream(Type testType, string pathRelativeToAssemblyRoot)
     {
         string path = GetCopiedFilePath(testType, pathRelativeToAssemblyRoot);
-        FileStream fs = new(path, new FileStreamOptions
+        
+        return new FileStream(path, new FileStreamOptions
         {
             Mode = FileMode.Open,
             Access = FileAccess.Read,
             Share = FileShare.Read,
         });
-
-        return new StreamReader(fs);
     }
     
-    // https://stackoverflow.com/questions/2462391/reset-or-clear-net-memorystream
-    public static void Clear(this MemoryStream ms)
+    [Pure]
+    public static StreamReader GetCopiedFileReader(Type testType, string pathRelativeToAssemblyRoot)
     {
-        ms.Position = 0;
-        ms.SetLength(0);
-        ms.Capacity = 0;
+        return new StreamReader(GetCopiedFileReadStream(testType, pathRelativeToAssemblyRoot));
     }
 }

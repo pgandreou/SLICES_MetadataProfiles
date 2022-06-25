@@ -1,3 +1,4 @@
+using Slices.Common;
 using Slices.TestsSupport;
 using Slices.V1.Converters.DataCite.Model;
 
@@ -6,18 +7,21 @@ namespace Slices.V1.Converters.DataCite.Tests;
 public class DataCiteSerializerTest
 {
     [Fact]
-    public void Test1()
+    public async Task Test1()
     {
-        using StreamReader reader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\datacite-example-full-v4.xml");
+        await using FileStream stream = SlicesTestHelpers.GetCopiedFileReadStream(
+            GetType(),
+            "ReferenceFiles\\datacite-example-full-v4.xml"
+        );
+        
         DataCiteSerializer serializer = new();
-
-        DataCiteResource resource = serializer.FromXmlAsync(reader);
+        DataCiteResource resource = await serializer.FromXmlAsync(stream);
 
         Assert.NotNull(resource);
     }
 
     [Fact]
-    public void Experiment1()
+    public async Task Experiment1()
     {
         DataCiteResource resource = new();
 
@@ -39,10 +43,10 @@ public class DataCiteSerializerTest
         };
 
         DataCiteSerializer serializer = new();
-        StringWriter writer = new();
+        MemoryStream stream = new();
 
-        serializer.ToXmlAsync(resource, writer);
-        string result = writer.ToString();
+        await serializer.ToXmlAsync(resource, stream);
+        string result = stream.ReadAsStringFromStart();
 
         Assert.NotNull(result);
     }

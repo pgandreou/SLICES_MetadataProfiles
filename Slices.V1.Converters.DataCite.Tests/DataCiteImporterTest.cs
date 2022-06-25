@@ -7,48 +7,50 @@ namespace Slices.V1.Converters.DataCite.Tests;
 public class DataCiteImporterTest
 {
     [Fact]
-    public void DataCiteExample()
+    public async Task DataCiteExample()
     {
-        SfdoResource sfdo = ImportFromCopiedExternal("ReferenceFiles\\datacite-example-full-v4.xml");
+        SfdoResource sfdo = await ImportFromCopiedExternal("ReferenceFiles\\datacite-example-full-v4.xml");
         
         Assert.NotNull(sfdo);
     }
     
     [Fact]
-    public void DataCiteExample_4_4()
+    public async Task DataCiteExample_4_4()
     {
-        SfdoResource sfdo = ImportFromCopiedExternal("ReferenceFiles\\datacite-example-full-v4-4.xml");
+        SfdoResource sfdo = await ImportFromCopiedExternal("ReferenceFiles\\datacite-example-full-v4-4.xml");
         
         Assert.NotNull(sfdo);
     }
     
     [Fact]
-    public void Bip_4_Covid_19()
+    public async Task Bip_4_Covid_19()
     {
-        SfdoResource sfdo = ImportFromCopiedExternal("ReferenceFiles\\bip4covid19.xml");
+        SfdoResource sfdo = await ImportFromCopiedExternal("ReferenceFiles\\bip4covid19.xml");
         
         Assert.NotNull(sfdo);
     }
     
     [Fact]
-    public void D_na_4_1()
+    public async Task D_na_4_1()
     {
-        SfdoResource sfdo = ImportFromCopiedExternal("ReferenceFiles\\d-na-4-1.xml");
+        SfdoResource sfdo = await ImportFromCopiedExternal("ReferenceFiles\\d-na-4-1.xml");
         
         Assert.NotNull(sfdo);
     }
     
-    private SfdoResource ImportFromCopiedExternal(string pathRelativeToAssemblyRoot)
+    private async Task<SfdoResource> ImportFromCopiedExternal(string pathRelativeToAssemblyRoot)
     {
-        DataCiteResource dublinCoreResource = GetCopiedDublinCoreResource(pathRelativeToAssemblyRoot);
+        DataCiteResource dublinCoreResource = await GetCopiedDublinCoreResource(pathRelativeToAssemblyRoot);
         
         return new DataCiteImporter().FromExternal(dublinCoreResource);
     }
 
-    private DataCiteResource GetCopiedDublinCoreResource(string pathRelativeToAssemblyRoot)
+    private async Task<DataCiteResource> GetCopiedDublinCoreResource(string pathRelativeToAssemblyRoot)
     {
-        using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), pathRelativeToAssemblyRoot);
+        await using FileStream stream = SlicesTestHelpers.GetCopiedFileReadStream(
+            GetType(), pathRelativeToAssemblyRoot
+        );
 
-        return new DataCiteSerializer().FromXmlAsync(textReader);
+        return await new DataCiteSerializer().FromXmlAsync(stream);
     }
 }
