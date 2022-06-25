@@ -6,40 +6,42 @@ namespace Slices.V1.Converters.DublinCore.Tests;
 public class DublinCoreImporterTest
 {
     [Fact]
-    public void Immunarch_0_6_9()
+    public async Task Immunarch_0_6_9()
     {
-        SfdoResource sfdo = ImportFromCopiedExternal("ReferenceFiles\\immunarch-0-6-9.xml");
+        SfdoResource sfdo = await ImportFromCopiedExternal("ReferenceFiles\\immunarch-0-6-9.xml");
         
         Assert.NotNull(sfdo);
     }
     
     [Fact]
-    public void Bip_4_Covid_19()
+    public async Task Bip_4_Covid_19()
     {
-        SfdoResource sfdo = ImportFromCopiedExternal("ReferenceFiles\\bip4covid19.xml");
+        SfdoResource sfdo = await ImportFromCopiedExternal("ReferenceFiles\\bip4covid19.xml");
         
         Assert.NotNull(sfdo);
     }
     
     [Fact]
-    public void D_na_4_1()
+    public async Task D_na_4_1()
     {
-        SfdoResource sfdo = ImportFromCopiedExternal("ReferenceFiles\\d-na-4-1.xml");
+        SfdoResource sfdo = await ImportFromCopiedExternal("ReferenceFiles\\d-na-4-1.xml");
         
         Assert.NotNull(sfdo);
     }
 
-    private SfdoResource ImportFromCopiedExternal(string pathRelativeToAssemblyRoot)
+    private async Task<SfdoResource> ImportFromCopiedExternal(string pathRelativeToAssemblyRoot)
     {
-        DublinCoreResource dublinCoreResource = GetCopiedDublinCoreResource(pathRelativeToAssemblyRoot);
+        DublinCoreResource dublinCoreResource = await GetCopiedDublinCoreResource(pathRelativeToAssemblyRoot);
         
         return new DublinCoreImporter().FromExternal(dublinCoreResource);
     }
 
-    private DublinCoreResource GetCopiedDublinCoreResource(string pathRelativeToAssemblyRoot)
+    private async Task<DublinCoreResource> GetCopiedDublinCoreResource(string pathRelativeToAssemblyRoot)
     {
-        using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), pathRelativeToAssemblyRoot);
+        await using FileStream stream = SlicesTestHelpers.GetCopiedFileReadStream(
+            GetType(), pathRelativeToAssemblyRoot
+        );
 
-        return new DublinCoreSerializer().FromXmlAsync(textReader);
+        return await new DublinCoreSerializer().FromXmlAsync(stream);
     }
 }

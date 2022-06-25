@@ -1,3 +1,4 @@
+using Slices.Common;
 using Slices.TestsSupport;
 
 namespace Slices.V1.Converters.DublinCore.Tests;
@@ -5,10 +6,10 @@ namespace Slices.V1.Converters.DublinCore.Tests;
 public class DublinCoreSerializerTest
 {
     [Fact]
-    public void Test2()
+    public async Task Test2()
     {
         DublinCoreSerializer serializer = new();
-        StringWriter writer = new();
+        MemoryStream stream = new();
 
         DublinCoreResource record = new()
         {
@@ -29,19 +30,21 @@ public class DublinCoreSerializerTest
             Rights = new[] { new DublinCoreElement("Rights 1") },
         };
 
-        serializer.ToXmlAsync(record, writer);
-        string s = writer.ToString();
+        await serializer.ToXmlAsync(record, stream);
+        string s = stream.ReadAsStringFromStart();
 
         Assert.NotEmpty(s);
     }
 
     [Fact]
-    public void Test3()
+    public async Task Test3()
     {
-        using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\immunarch-0-6-9.xml");
+        await using FileStream stream = SlicesTestHelpers.GetCopiedFileReadStream(
+            GetType(), "ReferenceFiles\\immunarch-0-6-9.xml"
+        );
 
         DublinCoreSerializer serializer = new();
-        DublinCoreResource result = serializer.FromXmlAsync(textReader);
+        DublinCoreResource result = await serializer.FromXmlAsync(stream);
 
         Assert.NotNull(result);
 
