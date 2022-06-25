@@ -49,6 +49,6 @@ public class DataCiteImporterTest
     {
         using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), pathRelativeToAssemblyRoot);
 
-        return new DataCiteSerializer().FromXml(textReader);
+        return new DataCiteSerializer().FromXmlAsync(textReader);
     }
 }

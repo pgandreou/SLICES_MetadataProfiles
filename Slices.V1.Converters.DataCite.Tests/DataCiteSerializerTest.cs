@@ -11,7 +11,7 @@ public class DataCiteSerializerTest
         using StreamReader reader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\datacite-example-full-v4.xml");
         DataCiteSerializer serializer = new();
 
-        DataCiteResource resource = serializer.FromXml(reader);
+        DataCiteResource resource = serializer.FromXmlAsync(reader);
 
         Assert.NotNull(resource);
     }
@@ -41,7 +41,7 @@ public class DataCiteSerializerTest
         DataCiteSerializer serializer = new();
         StringWriter writer = new();
 
-        serializer.ToXml(resource, writer);
+        serializer.ToXmlAsync(resource, writer);
         string result = writer.ToString();
 
         Assert.NotNull(result);

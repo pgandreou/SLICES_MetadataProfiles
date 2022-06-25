@@ -1,4 +1,5 @@
-﻿using Slices.V1.Model;
+﻿using System.Diagnostics;
+using Slices.V1.Model;
 
 namespace Slices.V1.Converters.Common;
 
@@ -14,8 +15,10 @@ public abstract class BaseStandardConverter<T> : ISlicesStandardConverter<T>
     }
 
     public abstract string ExternalStandard { get; }
-    public abstract SfdoResource FromSerializedExternal(TextReader serializedReader, string? format);
-    public abstract void ToSerializedExternal(SfdoResource digitalObject, string? format, TextWriter serializedWriter);
+    public abstract StandardSerializationSupportedFormats SupportedFormats { get; }
+
+    public abstract Task<SfdoResource> FromSerializedExternalAsync(Stream serializedStream, string? format);
+    public abstract Task ToSerializedExternalAsync(SfdoResource sfdo, string? format, Stream serializedStream);
 
     public SfdoResource FromExternal(T externalModel)
     {
@@ -26,11 +29,29 @@ public abstract class BaseStandardConverter<T> : ISlicesStandardConverter<T>
     {
         return Exporter.ToExternal(sfdo);
     }
+
+    protected void ValidateSingleFormatSupported(string? format)
+    {
+        Debug.Assert(SupportedFormats.AdditionalFormats.Count == 0);
+        
+        // Unspecified = default
+        if (format == null) return;
+        
+        string supportedFormat = SupportedFormats.DefaultFormat.FormatId;
+        
+        if (format != supportedFormat)
+        {
+            throw new ArgumentOutOfRangeException(nameof(format), $"Only \"{supportedFormat}\" is supported");
+        }
+    }
 }
 
 public abstract class BaseXmlStandardConverter<T> : BaseStandardConverter<T>
     where T : class
 {
+    public override StandardSerializationSupportedFormats SupportedFormats
+        => StandardSerializationSupportedFormats.Common.XmlOnly;
+
     protected readonly IStandardXmlSerializer<T> Serializer;
 
     protected BaseXmlStandardConverter(
@@ -42,33 +63,26 @@ public abstract class BaseXmlStandardConverter<T> : BaseStandardConverter<T>
         Serializer = serializer;
     }
 
-    public sealed override SfdoResource FromSerializedExternal(TextReader serializedReader, string? format)
+    public override async Task<SfdoResource> FromSerializedExternalAsync(Stream serializedStream, string? format)
     {
-        if (format == null) format = "xml";
+        ValidateSingleFormatSupported(format);
 
-        if (format != "xml")
-        {
-            throw new ArgumentOutOfRangeException(nameof(format), "Only \"xml\" is supported");
-        }
-
-        return FromExternal(Serializer.FromXml(serializedReader));
+        return FromExternal(await Serializer.FromXmlAsync(serializedStream));
     }
 
-    public sealed override void ToSerializedExternal(SfdoResource sfdo, string? format, TextWriter serializedWriter)
+    public override async Task ToSerializedExternalAsync(SfdoResource sfdo, string? format, Stream serializedStream)
     {
-        if (format == null) format = "xml";
-
-        if (format != "xml")
-        {
-            throw new ArgumentOutOfRangeException(nameof(format), "Only \"xml\" is supported");
-        }
-
-        Serializer.ToXml(ToExternal(sfdo), serializedWriter);
+        ValidateSingleFormatSupported(format);
+        
+        await Serializer.ToXmlAsync(ToExternal(sfdo), serializedStream);
     }
 }
 
 public abstract class BaseJsonStandardConverter<T> : BaseStandardConverter<T>
 {
+    public override StandardSerializationSupportedFormats SupportedFormats
+        => StandardSerializationSupportedFormats.Common.JsonOnly;
+    
     protected readonly IStandardJsonSerializer<T> Serializer;
 
     protected BaseJsonStandardConverter(
@@ -80,27 +94,17 @@ public abstract class BaseJsonStandardConverter<T> : BaseStandardConverter<T>
         Serializer = serializer;
     }
 
-    public sealed override SfdoResource FromSerializedExternal(TextReader serializedReader, string? format)
+    public override async Task<SfdoResource> FromSerializedExternalAsync(Stream serializedStream, string? format)
     {
-        if (format == null) format = "json";
+        ValidateSingleFormatSupported(format);
 
-        if (format != "xml")
-        {
-            throw new ArgumentOutOfRangeException(nameof(format), "Only \"json\" is supported");
-        }
-
-        return FromExternal(Serializer.FromJson(serializedReader));
+        return FromExternal(await Serializer.FromJsonAsync(serializedStream));
     }
 
-    public sealed override void ToSerializedExternal(SfdoResource sfdo, string? format, TextWriter serializedWriter)
+    public override async Task ToSerializedExternalAsync(SfdoResource sfdo, string? format, Stream serializedStream)
     {
-        if (format == null) format = "json";
-
-        if (format != "json")
-        {
-            throw new ArgumentOutOfRangeException(nameof(format), "Only \"json\" is supported");
-        }
-
-        Serializer.ToJson(ToExternal(sfdo), serializedWriter);
+        ValidateSingleFormatSupported(format);
+        
+        await Serializer.ToJsonAsync(ToExternal(sfdo), serializedStream);
     }
 }

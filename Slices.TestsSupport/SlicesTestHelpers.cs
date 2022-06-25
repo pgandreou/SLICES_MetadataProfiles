@@ -26,4 +26,12 @@ public static class SlicesTestHelpers
 
         return new StreamReader(fs);
     }
+    
+    // https://stackoverflow.com/questions/2462391/reset-or-clear-net-memorystream
+    public static void Clear(this MemoryStream ms)
+    {
+        ms.Position = 0;
+        ms.SetLength(0);
+        ms.Capacity = 0;
+    }
 }

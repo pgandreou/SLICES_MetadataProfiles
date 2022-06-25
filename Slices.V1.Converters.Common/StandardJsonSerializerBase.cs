@@ -4,16 +4,15 @@ namespace Slices.V1.Converters.Common;
 
 public interface IStandardJsonSerializer<TModel>
 {
-    TModel FromJson(TextReader reader);
-    void ToJson(TModel record, TextWriter writer);
+    Task<TModel> FromJsonAsync(Stream stream);
+    Task ToJsonAsync(TModel record, Stream stream);
 }
 
-// STJ doesn't support TextReader/Writer :(
 public abstract class StandardJsonSerializerBase<TModel> : IStandardJsonSerializer<TModel>
 {
-    public virtual TModel FromJson(TextReader reader)
+    public virtual async Task<TModel> FromJsonAsync(Stream stream)
     {
-        TModel? model = JsonSerializer.Deserialize<TModel>(reader.ReadToEnd());
+        TModel? model = await JsonSerializer.DeserializeAsync<TModel>(stream);
 
         if (model == null)
         {
@@ -23,14 +22,12 @@ public abstract class StandardJsonSerializerBase<TModel> : IStandardJsonSerializ
         return model;
     }
 
-    public virtual void ToJson(TModel record, TextWriter writer)
+    public virtual async Task ToJsonAsync(TModel record, Stream stream)
     {
-        string json = JsonSerializer.Serialize(record, new JsonSerializerOptions
+        await JsonSerializer.SerializeAsync(stream, record, new JsonSerializerOptions
         {
             WriteIndented = true,
             // PropertyNamingPolicy = JsonNamingPolicy.
         });
-        
-        writer.Write(json);
     }
 }

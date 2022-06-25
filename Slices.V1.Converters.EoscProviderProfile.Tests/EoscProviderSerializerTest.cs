@@ -9,6 +9,6 @@ public class EoscProviderSerializerTest
     {
         using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\slices.json");
 
-        EoscProviderRecord record = new EoscProviderSerializer().FromJson(textReader);
+        EoscProviderRecord record = new EoscProviderSerializer().FromJsonAsync(textReader);
     }
 }

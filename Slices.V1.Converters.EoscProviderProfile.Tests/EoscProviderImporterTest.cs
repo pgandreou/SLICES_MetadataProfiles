@@ -24,6 +24,6 @@ public class EoscProviderImporterTest
     {
         using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), pathRelativeToAssemblyRoot);
 
-        return new EoscProviderSerializer().FromJson(textReader);
+        return new EoscProviderSerializer().FromJsonAsync(textReader);
     }
 }

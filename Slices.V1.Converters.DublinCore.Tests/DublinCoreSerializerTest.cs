@@ -29,7 +29,7 @@ public class DublinCoreSerializerTest
             Rights = new[] { new DublinCoreElement("Rights 1") },
         };
 
-        serializer.ToXml(record, writer);
+        serializer.ToXmlAsync(record, writer);
         string s = writer.ToString();
 
         Assert.NotEmpty(s);
@@ -41,7 +41,7 @@ public class DublinCoreSerializerTest
         using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), "ReferenceFiles\\immunarch-0-6-9.xml");
 
         DublinCoreSerializer serializer = new();
-        DublinCoreResource result = serializer.FromXml(textReader);
+        DublinCoreResource result = serializer.FromXmlAsync(textReader);
 
         Assert.NotNull(result);
 

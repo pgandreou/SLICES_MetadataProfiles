@@ -40,6 +40,6 @@ public class DublinCoreImporterTest
     {
         using TextReader textReader = SlicesTestHelpers.GetCopiedFileReader(GetType(), pathRelativeToAssemblyRoot);
 
-        return new DublinCoreSerializer().FromXml(textReader);
+        return new DublinCoreSerializer().FromXmlAsync(textReader);
     }
 }

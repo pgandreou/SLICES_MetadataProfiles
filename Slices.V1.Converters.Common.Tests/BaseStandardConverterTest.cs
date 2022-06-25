@@ -1,4 +1,5 @@
 ﻿using Moq;
+using Slices.TestsSupport;
 using Slices.V1.Model;
 
 namespace Slices.V1.Converters.Common.Tests;
@@ -61,7 +62,7 @@ public class BaseXmlStandardConverterTest
     }
 
     [Fact]
-    public void FromExternalPassthrough()
+    public async Task FromExternalPassthrough()
     {
         Mock<ISlicesImporter<DummyModel>> importerMock = new(MockBehavior.Strict);
         Mock<ISlicesExporter<DummyModel>> exporterMock = new(MockBehavior.Strict);
@@ -74,27 +75,31 @@ public class BaseXmlStandardConverterTest
             CallBase = true
         };
 
-        StringReader reader = new("text");
+        // Since the serializer is stubbed, the stream should never be actually used.
+        // MockBehavior.Strict will let us know if that's not the case.
+        Stream stream = new Mock<Stream>(MockBehavior.Strict).Object;
+        
         DummyModel externalModel = new();
         SfdoResource sfdo = new();
 
-        serializerMock.Setup(serializer => serializer.FromXml(reader)).Returns(externalModel);
+        serializerMock.Setup(serializer => serializer.FromXmlAsync(stream)).Returns(Task.FromResult(externalModel));
         importerMock.Setup(importer => importer.FromExternal(externalModel)).Returns(sfdo);
 
-        converterMock.Setup(converter => converter.FromSerializedExternal(reader, null)).CallBase();
-        converterMock.Setup(converter => converter.FromSerializedExternal(reader, "xml")).CallBase();
-        converterMock.Setup(converter => converter.FromSerializedExternal(reader, "invalid")).CallBase();
+        converterMock.SetupGet(converter => converter.SupportedFormats).CallBase();
+        converterMock.Setup(converter => converter.FromSerializedExternalAsync(stream, null)).CallBase();
+        converterMock.Setup(converter => converter.FromSerializedExternalAsync(stream, "xml")).CallBase();
+        converterMock.Setup(converter => converter.FromSerializedExternalAsync(stream, "invalid")).CallBase();
 
-        Assert.Same(sfdo, converterMock.Object.FromSerializedExternal(reader, null));
-        Assert.Same(sfdo, converterMock.Object.FromSerializedExternal(reader, "xml"));
+        Assert.Same(sfdo, await converterMock.Object.FromSerializedExternalAsync(stream, null));
+        Assert.Same(sfdo, await converterMock.Object.FromSerializedExternalAsync(stream, "xml"));
 
-        Assert.Throws<ArgumentOutOfRangeException>(
-            () => converterMock.Object.FromSerializedExternal(reader, "invalid")
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(
+            () => converterMock.Object.FromSerializedExternalAsync(stream, "invalid")
         );
     }
-    
+
     [Fact]
-    public void ToExternalPassthrough()
+    public async Task ToExternalPassthrough()
     {
         Mock<ISlicesImporter<DummyModel>> importerMock = new(MockBehavior.Strict);
         Mock<ISlicesExporter<DummyModel>> exporterMock = new(MockBehavior.Strict);
@@ -107,29 +112,35 @@ public class BaseXmlStandardConverterTest
             CallBase = true
         };
 
+        MemoryStream stream = new();
         DummyModel externalModel = new();
-        StringWriter writer = new();
         SfdoResource sfdo = new();
 
         exporterMock.Setup(exporter => exporter.ToExternal(sfdo)).Returns(externalModel);
-        serializerMock.Setup(serializer => serializer.ToXml(externalModel, writer))
-            .Callback<DummyModel, TextWriter>((r, w) => w.Write("test"));
-        
-        converterMock.Setup(converter => converter.ToSerializedExternal(sfdo, null, writer)).CallBase();
-        converterMock.Setup(converter => converter.ToSerializedExternal(sfdo, "xml", writer)).CallBase();
-        converterMock.Setup(converter => converter.ToSerializedExternal(sfdo, "invalid", writer)).CallBase();
-        
-        Assert.Same(externalModel, converterMock.Object.ToExternal(sfdo));
-        
-        converterMock.Object.ToSerializedExternal(sfdo, null, writer);
-        Assert.Equal("test", writer.ToString());
-        writer.GetStringBuilder().Clear();
-        
-        converterMock.Object.ToSerializedExternal(sfdo, "xml", writer);
-        Assert.Equal("test", writer.ToString());
+        serializerMock.Setup(serializer => serializer.ToXmlAsync(externalModel, stream))
+            .Returns<DummyModel, Stream>((r, s) =>
+            {
+                byte[] content = { 0x00 };
+                return Task.Run(() => s.WriteAsync(content, 0, 1));
+            });
 
-        Assert.Throws<ArgumentOutOfRangeException>(
-            () => converterMock.Object.ToSerializedExternal(sfdo, "invalid", writer)
+        converterMock.SetupGet(converter => converter.SupportedFormats).CallBase();
+        converterMock.Setup(converter => converter.ToSerializedExternalAsync(sfdo, null, stream)).CallBase();
+        converterMock.Setup(converter => converter.ToSerializedExternalAsync(sfdo, "xml", stream)).CallBase();
+        converterMock.Setup(converter => converter.ToSerializedExternalAsync(sfdo, "invalid", stream)).CallBase();
+
+        Assert.Same(externalModel, converterMock.Object.ToExternal(sfdo));
+
+        await converterMock.Object.ToSerializedExternalAsync(sfdo, null, stream);
+        Assert.Equal(1, stream.Length);
+        stream.Clear();
+
+        await converterMock.Object.ToSerializedExternalAsync(sfdo, "xml", stream);
+        Assert.Equal(1, stream.Length);
+        stream.Clear();
+
+        await Assert.ThrowsAsync<ArgumentOutOfRangeException>(
+            () => converterMock.Object.ToSerializedExternalAsync(sfdo, "invalid", stream)
         );
     }
 }

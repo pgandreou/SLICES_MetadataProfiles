@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Slices.TestsSupport\Slices.TestsSupport.csproj" />
     <ProjectReference Include="..\Slices.V1.Converters.Common\Slices.V1.Converters.Common.csproj" />
   </ItemGroup>
 

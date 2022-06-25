@@ -40,8 +40,8 @@ Parser.Default.ParseArguments<Options>(args)
             Share = FileShare.Read,
         }));
 
-        SfdoResource sfdo = converterCollection.CovertersByStandard[o.SourceType].FromSerializedExternal(reader, null);
-        converterCollection.CovertersByStandard[o.DestinationType].ToSerializedExternal(sfdo, null, writer);
+        SfdoResource sfdo = converterCollection.CovertersByStandard[o.SourceType].FromSerializedExternalAsync(reader, null);
+        converterCollection.CovertersByStandard[o.DestinationType].ToSerializedExternalAsync(sfdo, null, writer);
 
         Console.WriteLine(writer.ToString());
 

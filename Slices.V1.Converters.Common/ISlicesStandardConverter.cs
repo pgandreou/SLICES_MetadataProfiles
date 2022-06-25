@@ -3,7 +3,6 @@ using Slices.V1.Model;
 
 namespace Slices.V1.Converters.Common;
 
-// TODO: Convert from sync to ValueTask
 // TODO: Failure exceptions (e.g. failed to parse)
 
 public interface ISlicesStandardConverter
@@ -13,14 +12,16 @@ public interface ISlicesStandardConverter
     /// </summary>
     string ExternalStandard { get; }
 
+    StandardSerializationSupportedFormats SupportedFormats { get; }
+
     /// <summary>
     /// Converts a single record from the external standard to SLICES.
     /// </summary>
     /// <remarks>
-    /// Implementations should only mutate <paramref name="serializedReader"/> and be safe to be called from multiple threads
+    /// Implementations should only mutate <paramref name="serializedStream"/> and be safe to be called from multiple threads
     /// </remarks>
-    /// <param name="serializedReader">
-    /// A reader that will provide the serialized representation of the record in the external standard
+    /// <param name="serializedStream">
+    /// A stream that will provide the serialized representation of the record in the external standard
     /// </param>
     /// <param name="format">
     /// The format of <paramref name="serializedValue"/>.
@@ -33,29 +34,29 @@ public interface ISlicesStandardConverter
     /// Not thrown if the format is null.
     /// </exception>
     /// <returns>The SLICES version of the record</returns>
-    SfdoResource FromSerializedExternal(TextReader serializedReader, string? format);
+    Task<SfdoResource> FromSerializedExternalAsync(Stream serializedStream, string? format);
 
     /// <summary>
     /// Converts a single record from SLICES to the external standard.
     /// </summary>
     /// <remarks>
     /// Implementations should only mutate <paramref name="serializedWriter"/> and be safe to be called from multiple threads.
-    /// <paramref name="digitalObject"/> graph should not be modified until this method returns.
+    /// <paramref name="sfdo"/> graph should not be modified until this method returns.
     /// </remarks>
-    /// <param name="digitalObject">The record to convert</param>
+    /// <param name="sfdo">The record to convert</param>
     /// <param name="format">
     /// The format to use for the return value.
     /// 
     /// Null means that the implementation should assume the default format used by the external standard.
     /// </param>
-    /// <param name="serializedWriter">
-    /// A writer which will be fed the serialized record represented in the external standard
+    /// <param name="serializedStream">
+    /// A stream where the serialized record represented in the external standard will be written
     /// </param>
     /// <exception cref="UnsupportedExternalFormatException">
     /// Thrown if <paramref name="format"/> is not supported by the implementation.
     /// Not thrown if the format is null.
     /// </exception>
-    void ToSerializedExternal(SfdoResource digitalObject, string? format, TextWriter serializedWriter);
+    Task ToSerializedExternalAsync(SfdoResource sfdo, string? format, Stream serializedStream);
 }
 
 /// <summary>
