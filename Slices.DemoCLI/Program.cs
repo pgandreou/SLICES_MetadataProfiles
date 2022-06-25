@@ -1,13 +1,15 @@
 ﻿using CommandLine;
+using Slices.Common;
 using Slices.V1.Model;
 using Slices.V1.Converters.Common;
 using Slices.V1.Converters.DataCite;
 using Slices.V1.Converters.DublinCore;
+using Slices.V1.Converters.EoscProviderProfile;
 
 bool success = false;
 
-Parser.Default.ParseArguments<Options>(args)
-    .WithParsed(o =>
+await Parser.Default.ParseArguments<Options>(args)
+    .WithParsedAsync(async o =>
     {
         //Console.WriteLine(Environment.CurrentDirectory);
         //Console.WriteLine(o.SourcePath);
@@ -18,6 +20,7 @@ Parser.Default.ParseArguments<Options>(args)
         {
             new DataCiteConverter(new DataCiteImporter(), new DataCiteExporter(), new DataCiteSerializer()),
             new DublinCoreConverter(new DublinCoreImporter(), new DublinCoreExporter(), new DublinCoreSerializer()),
+            new EoscProviderConverter(new EoscProviderImporter(), new EoscProviderExporter(), new EoscProviderSerializer()),
         });
 
         if (!converterCollection.CovertersByStandard.ContainsKey(o.SourceType))
@@ -32,18 +35,24 @@ Parser.Default.ParseArguments<Options>(args)
             return;
         }
 
-        StringWriter writer = new();
-        using StreamReader reader = new(new FileStream(o.SourcePath, new FileStreamOptions
+        await using FileStream sourceStream = new(o.SourcePath, new FileStreamOptions
         {
             Mode = FileMode.Open,
             Access = FileAccess.Read,
             Share = FileShare.Read,
-        }));
+        });
 
-        SfdoResource sfdo = converterCollection.CovertersByStandard[o.SourceType].FromSerializedExternalAsync(reader, null);
-        converterCollection.CovertersByStandard[o.DestinationType].ToSerializedExternalAsync(sfdo, null, writer);
+        await using MemoryStream destinationStream = new();
 
-        Console.WriteLine(writer.ToString());
+        // From external to SLICES
+        SfdoResource sfdo = await converterCollection.CovertersByStandard[o.SourceType]
+            .FromSerializedExternalAsync(sourceStream, null);
+        
+        // From SLICES to external
+        await converterCollection.CovertersByStandard[o.DestinationType]
+            .ToSerializedExternalAsync(sfdo, null, destinationStream);
+
+        Console.WriteLine(destinationStream.ReadAsStringFromStart());
 
         success = true;
     });

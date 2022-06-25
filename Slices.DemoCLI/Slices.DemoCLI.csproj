@@ -15,6 +15,7 @@
     <ProjectReference Include="..\Slices.V1.Converters.Common\Slices.V1.Converters.Common.csproj" />
     <ProjectReference Include="..\Slices.V1.Converters.DataCite\Slices.V1.Converters.DataCite.csproj" />
     <ProjectReference Include="..\Slices.V1.Converters.DublinCore\Slices.V1.Converters.DublinCore.csproj" />
+    <ProjectReference Include="..\Slices.V1.Converters.EoscProviderProfile\Slices.V1.Converters.EoscProviderProfile.csproj" />
   </ItemGroup>
 
 </Project>

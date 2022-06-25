@@ -2,7 +2,7 @@
   "profiles": {
     "Slices.DemoCLI": {
       "commandName": "Project",
-      "commandLineArgs": "--sourcepath=\"Slices.V1.StandardConverters.DataCite.Tests\\\\ReferenceFiles\\\\bip4covid19.xml\"\r\n--sourcetype=\"DataCite\"\r\n--destinationtype=\"DublinCore\"",
+      "commandLineArgs": "--sourcepath=\"Slices.V1.Converters.DataCite.Tests\\\\ReferenceFiles\\\\bip4covid19.xml\"\r\n--sourcetype=\"DataCite\"\r\n--destinationtype=\"DublinCore\"",
       "workingDirectory": "D:\\Dev\\Projects\\CSharp\\Slices"
     }
   }
