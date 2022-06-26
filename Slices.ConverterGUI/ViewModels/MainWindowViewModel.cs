@@ -1,5 +1,4 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -46,14 +45,13 @@ public class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        foreach (string standardId in _converterCollection.CovertersByStandard.Keys)
-        {
-            Standards.Add(new DropdownOption
+        Standards = _converterCollection.CovertersByStandard.Keys
+            .Select(standardId => new DropdownOption
             {
                 Id = standardId,
                 Label = standardId,
-            });
-        }
+            })
+            .ToArray();
 
         SourceFormatPlaceholder = this.WhenAnyValue(x => x.SelectedSourceStandard)
             .Select(StandardToFormatPlaceholder);
@@ -106,7 +104,7 @@ public class MainWindowViewModel : ViewModelBase
             .ToArray();
     }
 
-    public ObservableCollection<DropdownOption> Standards { get; } = new();
+    public DropdownOption[] Standards { get; }
 
     public IObservable<string> SourceFormatPlaceholder { get; }
 

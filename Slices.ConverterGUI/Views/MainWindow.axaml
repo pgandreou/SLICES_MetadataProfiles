@@ -38,7 +38,7 @@
                                HorizontalAlignment="Right" />
                     <ComboBox Grid.Row="0" Grid.Column="2"
                               PlaceholderText="Click to select"
-                              Items="{Binding Standards}" SelectedItem="{Binding SelectedSourceStandard}">
+                              Items="{Binding Standards, Mode=OneWay}" SelectedItem="{Binding SelectedSourceStandard}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Label}"></TextBlock>
@@ -79,7 +79,8 @@
                                HorizontalAlignment="Right" />
                     <ComboBox Grid.Row="0" Grid.Column="2"
                               PlaceholderText="Click to select"
-                              Items="{Binding Standards}" SelectedItem="{Binding SelectedDestinationStandard}">
+                              Items="{Binding Standards, Mode=OneWay}"
+                              SelectedItem="{Binding SelectedDestinationStandard}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Label}"></TextBlock>
@@ -104,7 +105,8 @@
 
                 <TextBox Margin="0 5 0 0"
                          AcceptsReturn="True" Watermark="Output will be here" IsReadOnly="True"
-                         Text="{Binding DestinationValue}"></TextBox>
+                         Text="{Binding DestinationValue}">
+                </TextBox>
             </DockPanel>
 
         </Grid>
