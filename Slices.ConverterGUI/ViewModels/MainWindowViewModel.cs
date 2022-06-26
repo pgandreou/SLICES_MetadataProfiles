@@ -52,26 +52,26 @@ namespace Slices.ConverterGUI.ViewModels
                 });
             }
 
-            this.WhenAnyValue(x => x.SelectedSourceStandard)
-                .Subscribe(option =>
+            SourceFormatPlaceholder = this.WhenAnyValue(x => x.SelectedSourceStandard)
+                .Select(option => option is null ? "Please select the standard" : "");
+            
+            SourceFormats = this.WhenAnyValue(x => x.SelectedSourceStandard)
+                .Select(standardOption =>
                 {
-                    SourceFormats.Clear();
-                    
-                    if (option is null) return;
+                    if (standardOption is null)
+                    {
+                        return Array.Empty<DropdownOption>();
+                    }
 
-                    IEnumerable<DropdownOption> formatOptions = _converterCollection.CovertersByStandard[option.Id]
+                    return _converterCollection.CovertersByStandard[standardOption.Id]
                         .SupportedFormats.Formats
-                        .Where(descriptor => descriptor.IsText) // Currently we have no way to specify binary data
+                        .Where(descriptor => descriptor.IsText) // Currently we have no way to use binary data in the UI
                         .Select(descriptor => new DropdownOption
                         {
                             Id = descriptor.FormatId,
                             Label = descriptor.FormatId
-                        });
-
-                    foreach (DropdownOption formatOption in formatOptions)
-                    {
-                        SourceFormats.Add(formatOption);
-                    }
+                        })
+                        .ToArray();
                 });
             
             IObservable<bool> convertEnabled = this.WhenAnyValue(x => x.SelectedSourceStandard)
@@ -88,7 +88,9 @@ namespace Slices.ConverterGUI.ViewModels
 
         public ObservableCollection<DropdownOption> Standards { get; } = new();
         
-        public ObservableCollection<DropdownOption> SourceFormats { get; } = new();
+        public IObservable<string> SourceFormatPlaceholder { get; }
+        
+        public IObservable<DropdownOption[]> SourceFormats { get; }
 
         public DropdownOption? SelectedSourceStandard
         {
