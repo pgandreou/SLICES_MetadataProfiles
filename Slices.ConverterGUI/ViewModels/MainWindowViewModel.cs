@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive;
@@ -10,111 +9,110 @@ using Slices.V1.Converters.DataCite;
 using Slices.V1.Converters.DublinCore;
 using Slices.V1.Converters.EoscProviderProfile;
 
-namespace Slices.ConverterGUI.ViewModels
+namespace Slices.ConverterGUI.ViewModels;
+
+public class MainWindowViewModel : ViewModelBase
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class DropdownOption
     {
-        public class DropdownOption
+        public string Id { get; init; } = null!;
+        public string Label { get; init; } = "";
+    }
+
+    private readonly IStandardConverterCollection _converterCollection = new StandardConverterCollection(
+        new ISlicesStandardConverter[]
         {
-            public string Id { get; init; } = null!;
-            public string Label { get; init; } = "";
+            new DataCiteConverter(
+                new DataCiteImporter(), new DataCiteExporter(), new DataCiteSerializer()
+            ),
+
+            new DublinCoreConverter(
+                new DublinCoreImporter(), new DublinCoreExporter(), new DublinCoreSerializer()
+            ),
+
+            new EoscProviderConverter(
+                new EoscProviderImporter(), new EoscProviderExporter(), new EoscProviderSerializer()
+            ),
+        }
+    );
+
+    private DropdownOption? _selectedSourceStandard;
+    private DropdownOption? _selectedSourceFormat;
+
+    private string _destinationValue = "";
+
+    public MainWindowViewModel()
+    {
+        foreach (string standardId in _converterCollection.CovertersByStandard.Keys)
+        {
+            Standards.Add(new DropdownOption
+            {
+                Id = standardId,
+                Label = standardId,
+            });
         }
 
-        private readonly IStandardConverterCollection _converterCollection = new StandardConverterCollection(
-            new ISlicesStandardConverter[]
+        SourceFormatPlaceholder = this.WhenAnyValue(x => x.SelectedSourceStandard)
+            .Select(option => option is null ? "Please select the standard" : "Click to select");
+
+        SourceFormats = this.WhenAnyValue(x => x.SelectedSourceStandard)
+            .Select(standardOption =>
             {
-                new DataCiteConverter(
-                    new DataCiteImporter(), new DataCiteExporter(), new DataCiteSerializer()
-                ),
-
-                new DublinCoreConverter(
-                    new DublinCoreImporter(), new DublinCoreExporter(), new DublinCoreSerializer()
-                ),
-
-                new EoscProviderConverter(
-                    new EoscProviderImporter(), new EoscProviderExporter(), new EoscProviderSerializer()
-                ),
-            }
-        );
-
-        private DropdownOption? _selectedSourceStandard;
-        private DropdownOption? _selectedSourceFormat;
-
-        private string _destinationValue = "";
-
-        public MainWindowViewModel()
-        {
-            foreach (string standardId in _converterCollection.CovertersByStandard.Keys)
-            {
-                Standards.Add(new DropdownOption
+                if (standardOption is null)
                 {
-                    Id = standardId,
-                    Label = standardId,
-                });
-            }
+                    return Array.Empty<DropdownOption>();
+                }
 
-            SourceFormatPlaceholder = this.WhenAnyValue(x => x.SelectedSourceStandard)
-                .Select(option => option is null ? "Please select the standard" : "Click to select");
-
-            SourceFormats = this.WhenAnyValue(x => x.SelectedSourceStandard)
-                .Select(standardOption =>
-                {
-                    if (standardOption is null)
+                return _converterCollection.CovertersByStandard[standardOption.Id]
+                    .SupportedFormats.Formats
+                    .Where(descriptor => descriptor.IsText) // Currently we have no way to use binary data in the UI
+                    .Select(descriptor => new DropdownOption
                     {
-                        return Array.Empty<DropdownOption>();
-                    }
+                        Id = descriptor.FormatId,
+                        Label = descriptor.FormatId
+                    })
+                    .ToArray();
+            });
 
-                    return _converterCollection.CovertersByStandard[standardOption.Id]
-                        .SupportedFormats.Formats
-                        .Where(descriptor => descriptor.IsText) // Currently we have no way to use binary data in the UI
-                        .Select(descriptor => new DropdownOption
-                        {
-                            Id = descriptor.FormatId,
-                            Label = descriptor.FormatId
-                        })
-                        .ToArray();
-                });
-
-            IObservable<bool> convertEnabled = this
-                .WhenAnyValue(
-                    x => x.SelectedSourceStandard,
-                    x => x.SelectedSourceFormat
-                )
-                .Select(tuple =>
-                    tuple.Item1 is not null &&
-                    tuple.Item2 is not null
-                );
-
-            Convert = ReactiveCommand.Create(
-                () => { DestinationValue += "1"; },
-                convertEnabled
+        IObservable<bool> convertEnabled = this
+            .WhenAnyValue(
+                x => x.SelectedSourceStandard,
+                x => x.SelectedSourceFormat
+            )
+            .Select(tuple =>
+                tuple.Item1 is not null &&
+                tuple.Item2 is not null
             );
-        }
 
-        public ObservableCollection<DropdownOption> Standards { get; } = new();
+        Convert = ReactiveCommand.Create(
+            () => { DestinationValue += "1"; },
+            convertEnabled
+        );
+    }
 
-        public IObservable<string> SourceFormatPlaceholder { get; }
+    public ObservableCollection<DropdownOption> Standards { get; } = new();
 
-        public IObservable<DropdownOption[]> SourceFormats { get; }
+    public IObservable<string> SourceFormatPlaceholder { get; }
 
-        public DropdownOption? SelectedSourceStandard
-        {
-            get => _selectedSourceStandard;
-            set => this.RaiseAndSetIfChanged(ref _selectedSourceStandard, value);
-        }
+    public IObservable<DropdownOption[]> SourceFormats { get; }
 
-        public DropdownOption? SelectedSourceFormat
-        {
-            get => _selectedSourceFormat;
-            set => this.RaiseAndSetIfChanged(ref _selectedSourceFormat, value);
-        }
+    public DropdownOption? SelectedSourceStandard
+    {
+        get => _selectedSourceStandard;
+        set => this.RaiseAndSetIfChanged(ref _selectedSourceStandard, value);
+    }
 
-        public ReactiveCommand<Unit, Unit> Convert { get; }
+    public DropdownOption? SelectedSourceFormat
+    {
+        get => _selectedSourceFormat;
+        set => this.RaiseAndSetIfChanged(ref _selectedSourceFormat, value);
+    }
 
-        public string DestinationValue
-        {
-            get => _destinationValue;
-            set => this.RaiseAndSetIfChanged(ref _destinationValue, value);
-        }
+    public ReactiveCommand<Unit, Unit> Convert { get; }
+
+    public string DestinationValue
+    {
+        get => _destinationValue;
+        set => this.RaiseAndSetIfChanged(ref _destinationValue, value);
     }
 }
