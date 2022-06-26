@@ -13,7 +13,7 @@ public interface IStandardJsonSerializer<TModel>
     /// </exception>
     /// <returns></returns>
     Task<TModel> FromJsonAsync(Stream stream);
-    
+
     /// <summary>
     /// </summary>
     /// <param name="record"></param>
@@ -34,7 +34,7 @@ public abstract class StandardJsonSerializerBase<TModel> : IStandardJsonSerializ
         {
             model = await JsonSerializer.DeserializeAsync<TModel>(stream);
         }
-        catch (Exception e) when(e is JsonException or NotSupportedException)
+        catch (Exception e) when (e is JsonException or NotSupportedException)
         {
             throw new StandardSerializationException("JsonSerializer.DeserializeAsync threw an exception", e);
         }
@@ -43,7 +43,7 @@ public abstract class StandardJsonSerializerBase<TModel> : IStandardJsonSerializ
         {
             throw new StandardSerializationException("JsonSerializer.DeserializeAsync returned null");
         }
-        
+
         return model;
     }
 

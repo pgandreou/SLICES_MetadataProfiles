@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using ReactiveUI;
@@ -50,6 +52,28 @@ namespace Slices.ConverterGUI.ViewModels
                 });
             }
 
+            this.WhenAnyValue(x => x.SelectedSourceStandard)
+                .Subscribe(option =>
+                {
+                    SourceFormats.Clear();
+                    
+                    if (option is null) return;
+
+                    IEnumerable<DropdownOption> formatOptions = _converterCollection.CovertersByStandard[option.Id]
+                        .SupportedFormats.Formats
+                        .Where(descriptor => descriptor.IsText) // Currently we have no way to specify binary data
+                        .Select(descriptor => new DropdownOption
+                        {
+                            Id = descriptor.FormatId,
+                            Label = descriptor.FormatId
+                        });
+
+                    foreach (DropdownOption formatOption in formatOptions)
+                    {
+                        SourceFormats.Add(formatOption);
+                    }
+                });
+            
             IObservable<bool> convertEnabled = this.WhenAnyValue(x => x.SelectedSourceStandard)
                 .Select(option => option is not null);
 
@@ -63,6 +87,8 @@ namespace Slices.ConverterGUI.ViewModels
         }
 
         public ObservableCollection<DropdownOption> Standards { get; } = new();
+        
+        public ObservableCollection<DropdownOption> SourceFormats { get; } = new();
 
         public DropdownOption? SelectedSourceStandard
         {

@@ -20,6 +20,7 @@
             Convert
         </Button>
 
+        <!-- The middle column is a workaround for lack of spacing options https://github.com/AvaloniaUI/Avalonia/issues/5152 -->
         <Grid ColumnDefinitions="*, 5, *" RowDefinitions="*">
 
             <!-- Source (left) -->
@@ -30,7 +31,6 @@
                     Source
                 </TextBlock>
 
-                <!-- The middle column/row is a workaround for lack of spacing options https://github.com/AvaloniaUI/Avalonia/issues/5152 -->
                 <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto, 3, Auto" RowDefinitions="Auto, 3, Auto">
                     <TextBlock Text="Standard"
                                Grid.Row="0" Grid.Column="0"
@@ -50,8 +50,13 @@
                                Grid.Row="2" Grid.Column="0"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Right" />
-                    <ComboBox SelectedIndex="0" Grid.Row="2" Grid.Column="2">
-                        <ComboBoxItem>xml</ComboBoxItem>
+                    <ComboBox Grid.Row="2" Grid.Column="2"
+                              SelectedIndex="0" Items="{Binding SourceFormats}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Label}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
                 </Grid>
 
@@ -66,7 +71,6 @@
                     Destination
                 </TextBlock>
 
-                <!-- The middle column/row is a workaround for lack of spacing options https://github.com/AvaloniaUI/Avalonia/issues/5152 -->
                 <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto, 3, Auto" RowDefinitions="Auto, 3, Auto">
                     <TextBlock Text="Standard"
                                Grid.Row="0" Grid.Column="0"
