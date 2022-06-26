@@ -19,15 +19,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.DataCi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.DataCite.Tests", "Slices.V1.Converters.DataCite.Tests\Slices.V1.Converters.DataCite.Tests.csproj", "{48AFBA9A-AB68-4871-9C69-D6675DE1E299}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.DemoCLI", "Slices.DemoCLI\Slices.DemoCLI.csproj", "{1F289ED1-DD12-4135-9156-9F2E4A10213E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.DemoCLI", "Slices.DemoCLI\Slices.DemoCLI.csproj", "{1F289ED1-DD12-4135-9156-9F2E4A10213E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.Model", "Slices.V1.Model\Slices.V1.Model.csproj", "{222BD08D-D4C8-4359-BC2A-72CFAEC7C8A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Model", "Slices.V1.Model\Slices.V1.Model.csproj", "{222BD08D-D4C8-4359-BC2A-72CFAEC7C8A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.Common", "Slices.Common\Slices.Common.csproj", "{45CFFA5F-0F8E-4735-9103-C868C384843C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.Common", "Slices.Common\Slices.Common.csproj", "{45CFFA5F-0F8E-4735-9103-C868C384843C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.Converters.EoscProviderProfile", "Slices.V1.Converters.EoscProviderProfile\Slices.V1.Converters.EoscProviderProfile.csproj", "{333F363C-CBF4-4916-940A-1C3167A29F2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.EoscProviderProfile", "Slices.V1.Converters.EoscProviderProfile\Slices.V1.Converters.EoscProviderProfile.csproj", "{333F363C-CBF4-4916-940A-1C3167A29F2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.V1.Converters.EoscProviderProfile.Tests", "Slices.V1.Converters.EoscProviderProfile.Tests\Slices.V1.Converters.EoscProviderProfile.Tests.csproj", "{96E8F636-2D17-4F83-A4B0-9CD894B6F36A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slices.V1.Converters.EoscProviderProfile.Tests", "Slices.V1.Converters.EoscProviderProfile.Tests\Slices.V1.Converters.EoscProviderProfile.Tests.csproj", "{96E8F636-2D17-4F83-A4B0-9CD894B6F36A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slices.ConverterGUI", "Slices.ConverterGUI\Slices.ConverterGUI.csproj", "{D632457C-8D01-4E1C-82B0-350CACADD9F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{96E8F636-2D17-4F83-A4B0-9CD894B6F36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96E8F636-2D17-4F83-A4B0-9CD894B6F36A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96E8F636-2D17-4F83-A4B0-9CD894B6F36A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D632457C-8D01-4E1C-82B0-350CACADD9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D632457C-8D01-4E1C-82B0-350CACADD9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D632457C-8D01-4E1C-82B0-350CACADD9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D632457C-8D01-4E1C-82B0-350CACADD9F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
