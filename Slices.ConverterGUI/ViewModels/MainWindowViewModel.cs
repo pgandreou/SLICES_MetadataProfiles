@@ -38,6 +38,7 @@ namespace Slices.ConverterGUI.ViewModels
         );
 
         private DropdownOption? _selectedSourceStandard;
+        private DropdownOption? _selectedSourceFormat;
 
         private string _destinationValue = "";
 
@@ -53,8 +54,8 @@ namespace Slices.ConverterGUI.ViewModels
             }
 
             SourceFormatPlaceholder = this.WhenAnyValue(x => x.SelectedSourceStandard)
-                .Select(option => option is null ? "Please select the standard" : "");
-            
+                .Select(option => option is null ? "Please select the standard" : "Click to select");
+
             SourceFormats = this.WhenAnyValue(x => x.SelectedSourceStandard)
                 .Select(standardOption =>
                 {
@@ -73,29 +74,39 @@ namespace Slices.ConverterGUI.ViewModels
                         })
                         .ToArray();
                 });
-            
-            IObservable<bool> convertEnabled = this.WhenAnyValue(x => x.SelectedSourceStandard)
-                .Select(option => option is not null);
+
+            IObservable<bool> convertEnabled = this
+                .WhenAnyValue(
+                    x => x.SelectedSourceStandard,
+                    x => x.SelectedSourceFormat
+                )
+                .Select(tuple =>
+                    tuple.Item1 is not null &&
+                    tuple.Item2 is not null
+                );
 
             Convert = ReactiveCommand.Create(
-                () =>
-                {
-                    DestinationValue += "1";
-                },
+                () => { DestinationValue += "1"; },
                 convertEnabled
             );
         }
 
         public ObservableCollection<DropdownOption> Standards { get; } = new();
-        
+
         public IObservable<string> SourceFormatPlaceholder { get; }
-        
+
         public IObservable<DropdownOption[]> SourceFormats { get; }
 
         public DropdownOption? SelectedSourceStandard
         {
             get => _selectedSourceStandard;
             set => this.RaiseAndSetIfChanged(ref _selectedSourceStandard, value);
+        }
+
+        public DropdownOption? SelectedSourceFormat
+        {
+            get => _selectedSourceFormat;
+            set => this.RaiseAndSetIfChanged(ref _selectedSourceFormat, value);
         }
 
         public ReactiveCommand<Unit, Unit> Convert { get; }

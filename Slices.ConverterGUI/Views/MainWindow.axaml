@@ -52,7 +52,7 @@
                                HorizontalAlignment="Right" />
                     <ComboBox Grid.Row="2" Grid.Column="2"
                               PlaceholderText="{Binding SourceFormatPlaceholder^}"
-                              SelectedIndex="0" Items="{Binding SourceFormats^}">
+                              Items="{Binding SourceFormats^}" SelectedItem="{Binding SelectedSourceFormat}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Label}"></TextBlock>
