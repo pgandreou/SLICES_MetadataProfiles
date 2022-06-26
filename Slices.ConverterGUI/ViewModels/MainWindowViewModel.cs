@@ -1,4 +1,7 @@
+using System;
 using System.Collections.ObjectModel;
+using System.Reactive;
+using System.Reactive.Linq;
 using ReactiveUI;
 using Slices.V1.Converters.Common;
 using Slices.V1.Converters.DataCite;
@@ -14,7 +17,7 @@ namespace Slices.ConverterGUI.ViewModels
             public string Id { get; init; } = null!;
             public string Label { get; init; } = "";
         }
-        
+
         private readonly IStandardConverterCollection _converterCollection = new StandardConverterCollection(
             new ISlicesStandardConverter[]
             {
@@ -34,6 +37,8 @@ namespace Slices.ConverterGUI.ViewModels
 
         private DropdownOption? _selectedSourceStandard;
 
+        private string _destinationValue = "";
+
         public MainWindowViewModel()
         {
             foreach (string standardId in _converterCollection.CovertersByStandard.Keys)
@@ -44,6 +49,17 @@ namespace Slices.ConverterGUI.ViewModels
                     Label = standardId,
                 });
             }
+
+            IObservable<bool> convertEnabled = this.WhenAnyValue(x => x.SelectedSourceStandard)
+                .Select(option => option is not null);
+
+            Convert = ReactiveCommand.Create(
+                () =>
+                {
+                    DestinationValue += "1";
+                },
+                convertEnabled
+            );
         }
 
         public ObservableCollection<DropdownOption> Standards { get; } = new();
@@ -52,6 +68,14 @@ namespace Slices.ConverterGUI.ViewModels
         {
             get => _selectedSourceStandard;
             set => this.RaiseAndSetIfChanged(ref _selectedSourceStandard, value);
+        }
+
+        public ReactiveCommand<Unit, Unit> Convert { get; }
+
+        public string DestinationValue
+        {
+            get => _destinationValue;
+            set => this.RaiseAndSetIfChanged(ref _destinationValue, value);
         }
     }
 }
