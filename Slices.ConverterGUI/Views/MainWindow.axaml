@@ -35,9 +35,14 @@
                                Grid.Row="0" Grid.Column="0"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Right" />
-                    <ComboBox SelectedIndex="0" Grid.Row="0" Grid.Column="2">
-                        <ComboBoxItem>Data Cite</ComboBoxItem>
-                        <ComboBoxItem>Dublin Core</ComboBoxItem>
+                    <ComboBox Grid.Row="0" Grid.Column="2"
+                              PlaceholderText="Click to select"
+                              Items="{Binding Standards}" SelectedItem="{Binding SelectedSourceStandard}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Label}"></TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
 
                     <TextBlock Text="Format"

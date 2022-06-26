@@ -27,4 +27,10 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.14" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Slices.V1.Converters.Common\Slices.V1.Converters.Common.csproj" />
+    <ProjectReference Include="..\Slices.V1.Converters.DataCite\Slices.V1.Converters.DataCite.csproj" />
+    <ProjectReference Include="..\Slices.V1.Converters.DublinCore\Slices.V1.Converters.DublinCore.csproj" />
+    <ProjectReference Include="..\Slices.V1.Converters.EoscProviderProfile\Slices.V1.Converters.EoscProviderProfile.csproj" />
+  </ItemGroup>
 </Project>
