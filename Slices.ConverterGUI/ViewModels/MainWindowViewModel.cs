@@ -116,16 +116,8 @@ public class MainWindowViewModel : ViewModelBase
     {
         DestinationValue = "";
         
-        await using MemoryStream sourceStream = new();
+        await using MemoryStream sourceStream = SourceValueAsStream();
         await using MemoryStream destinationStream = new();
-
-        // ReSharper disable once ConvertToUsingDeclaration - don't want to leak scope
-        await using (StreamWriter writer = new(sourceStream, leaveOpen: true))
-        {
-            // ReSharper disable once MethodHasAsyncOverload - MemoryStream
-            writer.Write(SourceValue);
-        }
-        sourceStream.Seek(0, SeekOrigin.Begin);
 
         SfdoResource sfdo;
         try
@@ -153,6 +145,21 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         DestinationValue = destinationStream.ReadAsStringFromStart();
+    }
+
+    private MemoryStream SourceValueAsStream()
+    {
+        MemoryStream sourceStream = new();
+        
+        using (StreamWriter writer = new(sourceStream, leaveOpen: true))
+        {
+            writer.Write(SourceValue);
+        }
+        
+        // This needs to be called after StreamWriter is disposed - otherwise the position jumps somewhere
+        sourceStream.Seek(0, SeekOrigin.Begin);
+
+        return sourceStream;
     }
 
     public DropdownOption[] Standards { get; }
