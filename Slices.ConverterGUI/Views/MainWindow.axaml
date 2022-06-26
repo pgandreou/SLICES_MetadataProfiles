@@ -61,7 +61,9 @@
                     </ComboBox>
                 </Grid>
 
-                <TextBox Margin="0 5 0 0" AcceptsReturn="True" Watermark="Paste source here"></TextBox>
+                <TextBox Margin="0 5 0 0"
+                         AcceptsReturn="True" Watermark="Paste source here"
+                         Text="{Binding SourceValue}"/>
             </DockPanel>
 
             <!-- Destination (right) -->

@@ -37,11 +37,12 @@ public class MainWindowViewModel : ViewModelBase
 
     private DropdownOption? _selectedSourceStandard;
     private DropdownOption? _selectedSourceFormat;
-    
+
     private DropdownOption? _selectedDestinationStandard;
     private DropdownOption? _selectedDestinationFormat;
 
     private string _destinationValue = "";
+    private string _sourceValue = "";
 
     public MainWindowViewModel()
     {
@@ -58,7 +59,7 @@ public class MainWindowViewModel : ViewModelBase
 
         SourceFormats = this.WhenAnyValue(x => x.SelectedSourceStandard)
             .Select(StandardToFormatOptions);
-        
+
         DestinationFormatPlaceholder = this.WhenAnyValue(x => x.SelectedDestinationStandard)
             .Select(StandardToFormatPlaceholder);
 
@@ -69,15 +70,16 @@ public class MainWindowViewModel : ViewModelBase
             .WhenAnyValue(
                 x => x.SelectedSourceStandard,
                 x => x.SelectedSourceFormat,
-                
                 x => x.SelectedDestinationStandard,
-                x => x.SelectedDestinationFormat
+                x => x.SelectedDestinationFormat,
+                x => x.SourceValue
             )
             .Select(tuple =>
                 tuple.Item1 is not null &&
                 tuple.Item2 is not null &&
                 tuple.Item3 is not null &&
-                tuple.Item4 is not null
+                tuple.Item4 is not null &&
+                !string.IsNullOrWhiteSpace(tuple.Item5)
             );
 
         Convert = ReactiveCommand.Create(
@@ -99,7 +101,8 @@ public class MainWindowViewModel : ViewModelBase
         }
 
         return _converterCollection.CovertersByStandard[standardOption.Id]
-            .SupportedFormats.Formats.Where(descriptor => descriptor.IsText) // Currently we have no way to use binary data in the UI
+            .SupportedFormats.Formats
+            .Where(descriptor => descriptor.IsText) // Currently we have no way to use binary data in the UI
             .Select(descriptor => new DropdownOption { Id = descriptor.FormatId, Label = descriptor.FormatId })
             .ToArray();
     }
@@ -121,11 +124,11 @@ public class MainWindowViewModel : ViewModelBase
         get => _selectedSourceFormat;
         set => this.RaiseAndSetIfChanged(ref _selectedSourceFormat, value);
     }
-    
+
     public IObservable<string> DestinationFormatPlaceholder { get; }
 
     public IObservable<DropdownOption[]> DestinationFormats { get; }
-    
+
     public DropdownOption? SelectedDestinationStandard
     {
         get => _selectedDestinationStandard;
@@ -139,6 +142,12 @@ public class MainWindowViewModel : ViewModelBase
     }
 
     public ReactiveCommand<Unit, Unit> Convert { get; }
+
+    public string SourceValue
+    {
+        get => _sourceValue;
+        set => this.RaiseAndSetIfChanged(ref _sourceValue, value);
+    }
 
     public string DestinationValue
     {
