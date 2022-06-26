@@ -1,12 +1,17 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using ReactiveUI;
+using Slices.Common;
 using Slices.V1.Converters.Common;
+using Slices.V1.Converters.Common.Exceptions;
 using Slices.V1.Converters.DataCite;
 using Slices.V1.Converters.DublinCore;
 using Slices.V1.Converters.EoscProviderProfile;
+using Slices.V1.Model;
 
 namespace Slices.ConverterGUI.ViewModels;
 
@@ -82,8 +87,8 @@ public class MainWindowViewModel : ViewModelBase
                 !string.IsNullOrWhiteSpace(tuple.Item5)
             );
 
-        Convert = ReactiveCommand.Create(
-            () => { DestinationValue += "1"; },
+        Convert = ReactiveCommand.CreateFromTask(
+            DoConvert,
             convertEnabled
         );
     }
@@ -105,6 +110,49 @@ public class MainWindowViewModel : ViewModelBase
             .Where(descriptor => descriptor.IsText) // Currently we have no way to use binary data in the UI
             .Select(descriptor => new DropdownOption { Id = descriptor.FormatId, Label = descriptor.FormatId })
             .ToArray();
+    }
+
+    private async Task DoConvert()
+    {
+        DestinationValue = "";
+        
+        await using MemoryStream sourceStream = new();
+        await using MemoryStream destinationStream = new();
+
+        // ReSharper disable once ConvertToUsingDeclaration - don't want to leak scope
+        await using (StreamWriter writer = new(sourceStream, leaveOpen: true))
+        {
+            // ReSharper disable once MethodHasAsyncOverload - MemoryStream
+            writer.Write(SourceValue);
+        }
+        sourceStream.Seek(0, SeekOrigin.Begin);
+
+        SfdoResource sfdo;
+        try
+        {
+            // From external to SLICES
+            sfdo = await _converterCollection.CovertersByStandard[SelectedSourceStandard!.Id]
+                .FromSerializedExternalAsync(sourceStream, SelectedSourceFormat!.Id);
+        }
+        catch (StandardSerializationException)
+        {
+            DestinationValue = "Failed to parse source value";
+            return;
+        }
+        
+        try
+        {
+            // From SLICES to external
+            await _converterCollection.CovertersByStandard[SelectedDestinationStandard!.Id]
+                .ToSerializedExternalAsync(sfdo, SelectedDestinationFormat!.Id, destinationStream);
+        }
+        catch (StandardSerializationException)
+        {
+            DestinationValue = "Failed to convert output to text";
+            return;
+        }
+
+        DestinationValue = destinationStream.ReadAsStringFromStart();
     }
 
     public DropdownOption[] Standards { get; }
