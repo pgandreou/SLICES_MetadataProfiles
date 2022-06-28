@@ -109,7 +109,18 @@ public class DataCiteExporter : ISlicesExporter<DataCiteResource>
                         }
                     }
 
-                    dcRelatedId.relationType = Enum.Parse<DataCiteRelationType>(ro.RelationshipType!); // TODO: this is very prone to errors
+                    if (
+                        ro.RelationshipType is not null &&
+                        Enum.TryParse(ro.RelationshipType, out DataCiteRelationType relationType)
+                    )
+                    {
+                        dcRelatedId.relationType = relationType;
+                    }
+                    else
+                    {
+                        // TODO: Better default
+                        dcRelatedId.relationType = DataCiteRelationType.References;
+                    }
 
                     return dcRelatedId;
                 })
