@@ -7,7 +7,7 @@ namespace Slices.V1.Converters.DublinCore;
 
 public class DublinCoreImporter : ISlicesImporter<DublinCoreResource>
 {
-    // TODO: handle lang attribute, fill not nullables on SFDO
+    // TODO: handle lang attribute
     public SfdoResource FromExternal(DublinCoreResource externalModel)
     {
         SfdoResource sfdo = new();

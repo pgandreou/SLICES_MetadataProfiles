@@ -322,7 +322,6 @@ public sealed class SfdoResource
     [SlicesAssociatedResourceTypes(SfdoResourceType.Data)]
     public SfdoOptional<DateTime> DateTimeEnd { get; set; }
 
-    // TODO: type
     /// <summary>
     /// Combination of Latitude, Longitude and Altitude Coordinate(s)
     /// </summary>
