@@ -67,7 +67,7 @@ public class DataCiteImporter : ISlicesImporter<DataCiteResource>
             .Select(s => s.Value)
             .ToList();
 
-        // TODO: keywords
+        sfdo.Keywords = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
 
         //slicesObject.DateTimeCreated = DateTime.Now;
 
@@ -83,6 +83,8 @@ public class DataCiteImporter : ISlicesImporter<DataCiteResource>
                 })
                 .ToList();
         }
+        
+        sfdo.RequiredObjects = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
 
         sfdo.RelatedObjects = externalModel.relatedIdentifiers
             .Select(ri => new SfdoRelationLink
@@ -92,6 +94,9 @@ public class DataCiteImporter : ISlicesImporter<DataCiteResource>
                 ResourceType = ri.resourceTypeGeneralSpecified ? ri.relatedIdentifierType.ToString() : null,
             })
             .ToList();
+        
+        sfdo.Contact = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.PublicContact = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
 
         if (externalModel.language != null)
         {
@@ -111,6 +116,18 @@ public class DataCiteImporter : ISlicesImporter<DataCiteResource>
             sfdo.Rights = rights.Value;
             sfdo.RightsURI = new Uri(rights.rightsURI);
         }
+        
+        sfdo.AccessRights = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.License = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.LicenseURI = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.CopyrightsHolder = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.ConfidentialityDeclaration = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.SpecialPermissions = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.Restrictions = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.CitationRequirements = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.Conditions = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.Disclaimer = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
+        sfdo.Provenance = SfdoOptional.WithAbsent(DataCiteConstants.CannotImportReason);
         
         if (sfdo.ResourceTypes.ContainsAny(SfdoResourceType.Data, SfdoResourceType.Publication))
         {

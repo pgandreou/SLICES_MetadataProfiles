@@ -12,7 +12,7 @@ public class EoscProviderExporter : ISlicesExporter<EoscProviderRecord>
         profile.Id = sfdo.Identifier.ToString();
 
         profile.Name = sfdo.Name;
-        profile.Description = sfdo.Description;
+        profile.Description = sfdo.Description.ValueOrDefault();
 
         profile.Website = sfdo.WebPage.ValueOrDefault()?.ToString();
         profile.Logo = sfdo.Logo.ValueOrDefault()?.ToString();

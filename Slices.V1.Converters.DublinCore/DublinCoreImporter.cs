@@ -62,6 +62,9 @@ public class DublinCoreImporter : ISlicesImporter<DublinCoreResource>
                 .ToList();
         }
 
+        sfdo.Keywords = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.Version = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+
         if (externalModel.Contributors != null)
         {
             sfdo.Contributors = externalModel.Contributors
@@ -77,6 +80,8 @@ public class DublinCoreImporter : ISlicesImporter<DublinCoreResource>
                 .Select(r => new SfdoRelationLink { Identifier = r!.Value })
                 .ToList();
         }
+        
+        sfdo.RequiredObjects = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
 
         if (externalModel.Languages != null)
         {
@@ -97,11 +102,27 @@ public class DublinCoreImporter : ISlicesImporter<DublinCoreResource>
             }
         }
 
+        sfdo.Contact = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.PublicContact = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        
         if (externalModel.Rights != null)
         {
             sfdo.Rights = externalModel.Rights.FirstOrDefault()?.Value!;
         }
 
+        sfdo.RightsURI = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.AccessRights = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.License = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.LicenseURI = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.CopyrightsHolder = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.ConfidentialityDeclaration = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.SpecialPermissions = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.Restrictions = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.CitationRequirements = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.Conditions = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.Disclaimer = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        sfdo.Provenance = SfdoOptional.WithAbsent(DublinCoreConstants.CannotImportReason);
+        
         if (externalModel.Types.Any(t => t.Value == "dataset"))
         {
             sfdo.ResourceTypes.Add(SfdoResourceType.Data);

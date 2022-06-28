@@ -15,18 +15,25 @@ public class DublinCoreExporter : ISlicesExporter<DublinCoreResource>
             .Select(c => new DublinCoreElement(c.Name))
             .ToArray();
 
-        dcResource.Subjects = sfdo.Subjects
-            .Select(s => new DublinCoreElement(s))
-            .ToArray();
-
-        if (sfdo.Description != null)
+        if (sfdo.Subjects.IsSet)
         {
-            dcResource.Descriptions = new[] { new DublinCoreElement(sfdo.Description) };
+            dcResource.Subjects = sfdo.Subjects.Value
+                .Select(s => new DublinCoreElement(s))
+                .ToArray();
+            
         }
 
-        dcResource.Contributors = sfdo.Contributors
-            .Select(c => new DublinCoreElement(c.Name))
-            .ToArray();
+        if (sfdo.Description.IsSet)
+        {
+            dcResource.Descriptions = new[] { new DublinCoreElement(sfdo.Description.Value) };
+        }
+
+        if (sfdo.Contributors.IsSet)
+        {
+            dcResource.Contributors = sfdo.Contributors.Value
+                .Select(c => new DublinCoreElement(c.Name))
+                .ToArray();
+        }
 
         dcResource.Dates = GenerateDates(sfdo);
 
@@ -51,11 +58,17 @@ public class DublinCoreExporter : ISlicesExporter<DublinCoreResource>
             .Select(l => new DublinCoreElement(l.Code))
             .ToArray();
 
-        dcResource.Relations = sfdo.RelatedObjects
-            .Select(ro => new DublinCoreElement(ro.Identifier.ToString()))
-            .ToArray();
+        if (sfdo.RelatedObjects.IsSet)
+        {
+            dcResource.Relations = sfdo.RelatedObjects.Value
+                .Select(ro => new DublinCoreElement(ro.Identifier.ToString()))
+                .ToArray();
+        }
 
-        dcResource.Rights = new[] { new DublinCoreElement(sfdo.Rights) };
+        if (sfdo.Rights.IsSet)
+        {
+            dcResource.Rights = new[] { new DublinCoreElement(sfdo.Rights.Value) };
+        }
 
         return dcResource;
     }

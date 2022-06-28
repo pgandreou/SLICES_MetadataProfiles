@@ -38,29 +38,35 @@ public class DataCiteExporter : ISlicesExporter<DataCiteResource>
 
         dataCiteResource.titles = new[] { new DataCiteResourceTitle() { Value = sfdo.Name } };
 
-        dataCiteResource.subjects = sfdo.Subjects
-            .Select(s => new DataCiteResourceSubject { Value = s })
-            .ToArray();
+        if (sfdo.Subjects.IsSet)
+        {
+            dataCiteResource.subjects = sfdo.Subjects.Value
+                .Select(s => new DataCiteResourceSubject { Value = s })
+                .ToArray();
+        }
 
-        dataCiteResource.contributors = sfdo.Contributors
-            .Select(c =>
-            {
-                DataCiteResourceContributor dataCiteContributor = new DataCiteResourceContributor
+        if (sfdo.Contributors.IsSet)
+        {
+            dataCiteResource.contributors = sfdo.Contributors.Value
+                .Select(c =>
                 {
-                    contributorName = new() { Value = c.Name },
-                };
+                    DataCiteResourceContributor dataCiteContributor = new DataCiteResourceContributor
+                    {
+                        contributorName = new() { Value = c.Name },
+                    };
 
-                if (c.Identifier.HasValue)
-                {
-                    dataCiteContributor.nameIdentifier = new[] { new DataCiteNameIdentifier() {
-                        nameIdentifierScheme = c.Identifier.Value.Type,
-                        Value = c.Identifier.Value.Value,
-                    }};
-                }
+                    if (c.Identifier.HasValue)
+                    {
+                        dataCiteContributor.nameIdentifier = new[] { new DataCiteNameIdentifier() {
+                            nameIdentifierScheme = c.Identifier.Value.Type,
+                            Value = c.Identifier.Value.Value,
+                        }};
+                    }
 
-                return dataCiteContributor;
-            })
-            .ToArray();
+                    return dataCiteContributor;
+                })
+                .ToArray();
+        }
 
         // TODO: DataCite doesn't use iso-3
         dataCiteResource.language = sfdo.PrimaryLanguage.FirstOrDefault().Code;
@@ -69,58 +75,67 @@ public class DataCiteExporter : ISlicesExporter<DataCiteResource>
             .Select(id => new DataCiteResourceAlternateIdentifier { Type = id.Type, Value = id.Value })
             .ToArray();
 
-        dataCiteResource.relatedIdentifiers = sfdo.RelatedObjects
-            .Select(ro =>
-            {
-                DataCiteResourceRelatedIdentifier dcRelatedId = new();
-
+        if (sfdo.RelatedObjects.IsSet)
+        {
+            dataCiteResource.relatedIdentifiers = sfdo.RelatedObjects.Value
+                .Select(ro =>
                 {
-                    if (Enum.TryParse(ro.Identifier.Type, ignoreCase: true, out DataCiteRelatedIdentifierType dataCiteType))
+                    DataCiteResourceRelatedIdentifier dcRelatedId = new();
+
                     {
-                        dcRelatedId.relatedIdentifierType = dataCiteType;
-                        dcRelatedId.Value = ro.Identifier.Value;
+                        if (Enum.TryParse(ro.Identifier.Type, ignoreCase: true, out DataCiteRelatedIdentifierType dataCiteType))
+                        {
+                            dcRelatedId.relatedIdentifierType = dataCiteType;
+                            dcRelatedId.Value = ro.Identifier.Value;
+                        }
+                        else
+                        {
+                            dcRelatedId.relatedIdentifierType = DataCiteRelatedIdentifierType.Handle;
+                            dcRelatedId.Value = ro.Identifier.ToString();
+                        }
                     }
-                    else
+
+                    if (ro.ResourceType != null)
                     {
-                        dcRelatedId.relatedIdentifierType = DataCiteRelatedIdentifierType.Handle;
-                        dcRelatedId.Value = ro.Identifier.ToString();
+                        dcRelatedId.resourceTypeGeneralSpecified = true;
+
+                        if (Enum.TryParse(ro.ResourceType, ignoreCase: true, out DataCiteResourceTypeGeneral dataCiteType))
+                        {
+                            dcRelatedId.resourceTypeGeneral = dataCiteType;
+                        }
+                        else
+                        {
+                            dcRelatedId.resourceTypeGeneral = DataCiteResourceTypeGeneral.Other;
+                        }
                     }
-                }
 
-                if (ro.ResourceType != null)
-                {
-                    dcRelatedId.resourceTypeGeneralSpecified = true;
+                    dcRelatedId.relationType = Enum.Parse<DataCiteRelationType>(ro.RelationshipType!); // TODO: this is very prone to errors
 
-                    if (Enum.TryParse(ro.ResourceType, ignoreCase: true, out DataCiteResourceTypeGeneral dataCiteType))
-                    {
-                        dcRelatedId.resourceTypeGeneral = dataCiteType;
-                    }
-                    else
-                    {
-                        dcRelatedId.resourceTypeGeneral = DataCiteResourceTypeGeneral.Other;
-                    }
-                }
+                    return dcRelatedId;
+                })
+                .ToArray();
+        }
 
-                dcRelatedId.relationType = Enum.Parse<DataCiteRelationType>(ro.RelationshipType!); // TODO: this is very prone to errors
+        if (sfdo.Version.IsSet)
+        {
+            dataCiteResource.version = sfdo.Version.Value;
+        }
 
-                return dcRelatedId;
-            })
-            .ToArray();
-
-        dataCiteResource.version = sfdo.Version;
-
-        if (sfdo.Rights != null || sfdo.RightsURI != null)
+        if (sfdo.Rights.IsSet || sfdo.RightsURI.IsSet)
         {
             dataCiteResource.rightsList = new[] { new DataCiteResourceRights
             {
-                rightsURI = sfdo.RightsURI?.ToString(),
-                Value = sfdo.Rights,
+                rightsURI = sfdo.RightsURI.ValueOrDefault()?.ToString(),
+                Value = sfdo.Rights.ValueOrDefault(),
             }};
         }
 
-        if (sfdo.Description != null)
+        if (sfdo.Description.IsSet)
         {
-            dataCiteResource.descriptions = new[] { new DataCiteResourceDescription { Text = sfdo.Description } };
+            dataCiteResource.descriptions = new[]
+            {
+                new DataCiteResourceDescription { Text = sfdo.Description.Value }
+            };
         }
 
         return dataCiteResource;
